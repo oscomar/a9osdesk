@@ -1,0 +1,129 @@
+/*_gtlsc_
+ * os.com.ar (a9os) - Open web LAMP framework and desktop environment
+ * Copyright (C) 2019-2021  Santiago Pereyra (asp95)
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
+cmp.a9os_core_taskbar_popuparea .popup-area{
+	display: block;
+	position: absolute;
+	bottom: 50px;
+	right: 0;
+	width: 350px;
+	box-sizing: border-box;
+	z-index: 1000;
+}
+
+cmp.a9os_core_taskbar_popuparea .templates {
+	display: none;
+}
+
+cmp.a9os_core_taskbar_popuparea .popup-area .popup{
+	display: block;
+	position: relative;
+	border-radius: 5px;
+	width: 90%;
+	margin: 10px 5%;
+	box-sizing: border-box;
+	padding: 10px 10px 10px 15px;
+	box-shadow: inset 5px 0 0 0 #999, 0 10px 15px rgba(0,0,0,0.3); 
+	background-color: rgba(255,255,255,1);
+	text-align: left;
+	overflow: hidden;
+
+	transform: translateY(0);
+	transition: all 0.2s;
+	opacity: 1;
+	visibility: visible;
+}
+cmp.a9os_core_taskbar_popuparea .popup-area .popup:active{
+	opacity: 0.7;
+}
+cmp.a9os_core_taskbar_popuparea .popup-area .popup.closed{
+	transform: translateY(10px);
+	opacity: 0;
+	visibility: hidden;
+}
+cmp.a9os_core_taskbar_popuparea .popup-area .popup:after {
+	content: "×";
+	display: block;
+	position: absolute;
+	color: #666;
+	top: 0;
+	right: 0;
+	text-align: center;
+	font-size: 20px;
+	line-height: 20px;
+	padding: 10px;
+	width: 15px;
+	cursor: pointer;
+	opacity: 0;
+	transition: all 0.1s;
+}
+cmp.a9os_core_taskbar_popuparea .popup-area .popup:hover:after {
+	opacity: 1;
+}
+cmp.a9os_core_taskbar_popuparea .popup-area .popup .icon {
+	display: inline-block;
+	position: relative;
+	margin-right: 20px;
+	width: 50px;
+	height: 50px;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	vertical-align: middle;
+}
+cmp.a9os_core_taskbar_popuparea .popup-area .popup .text {
+	display: inline-block;
+	width: calc(100% - 70px);
+	vertical-align: middle;
+	color: #222;
+	font-weight: bold;
+}
+
+@media screen and (max-width: 650px){
+	cmp.a9os_core_taskbar_popuparea .popup-area {
+		right: 0;
+		left: 0;
+		top: 30px;
+		bottom: auto;
+		width: 100%;
+	}
+	cmp.a9os_core_taskbar_popuparea .popup-area .popup.closed{
+		transform: translateY(-10px);
+		opacity: 0;
+		visibility: hidden;
+	}
+}
+
+
+
+
+cmp.a9os_core_taskbar_popuparea .popup-area .popup .demo-popup-html {
+	font-size: 12px;
+	line-height: 18px;
+	font-weight: normal;
+}
+cmp.a9os_core_taskbar_popuparea .popup-area .popup .demo-popup-html .title {
+	font-size: 9px;
+	margin-bottom: 10px;
+}
+
+cmp.a9os_core_taskbar_popuparea .popup-area .popup .demo-popup-html a {
+	color: #444;
+	font-weight: bold;
+	text-align: center;
+	display: block;
+	
+}

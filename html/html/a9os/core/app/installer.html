@@ -1,0 +1,77 @@
+<!--_gtlsc_
+	os.com.ar (a9os) - Open web LAMP framework and desktop environment
+	Copyright (C) 2019-2021  Santiago Pereyra (asp95)
+	
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+	
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <https://www.gnu.org/licenses/>.-->
+<div class="not-syskey">
+	<label>
+		<input type="code" name="code" class="code">
+		<span>Código de la aplicación</span>
+	</label>
+	<div class="preview"></div>
+	<div class="buttons">
+		<div class="btn submit">Aceptar</div>
+		<div class="btn cancel">Cancelar</div>
+	</div>
+</div>
+<div class="can-syskey mobile-show-apps not-selected-app">
+	<div class="app-list">
+		<div class="scrolled" data-foreach="arrApps:currApp">		
+			<div class="item ibl-c" data-data="app-id:currApp.id">
+				<img data-src="currApp.icon_url">
+				<div class="name" data-textcontent="currApp.name"></div>
+				<div class="status-icon" data-data="status:currApp.app_install_status"></div>
+			</div>
+		</div>
+		<input type="text" class="search" placeholder="Buscar">
+	</div>
+	<div class="app-area">
+		<div class="app-info ibl-c">
+			<img src="/resources/a9os/core/app/installer/icon.svg" class="icon">
+			<div class="app-data">
+				<div class="name">Seleccionar programa</div>
+				<div class="app-scope"></div>
+				<div class="app-code-line">
+					App code: <input type="password" disabled="true"> <button class="btn alter-show">Mostrar</button>
+				</div>
+				<div class="version-line installed">Versión instalada: <span></span></div>
+				<div class="version-line to-update">Última versión: <span></span></div>
+				<div class="buttons app">
+					<button class="btn install" data-action="install">Instalar</button>
+					<button class="btn update" data-action="update">Actualizar</button>
+					<button class="btn uninstall" data-action="uninstall">Desinstalar</button>
+				</div>
+				<div class="enabled-users">
+					<div class="title">Usuarios habilitados</div>
+					<div class="users-list" data-foreach="allUsers:currUser">
+						<label class="user-item ibl-c" data-data="user-id:currUser.id">
+							<input type="checkbox" class="enabled">
+							<div class="name" data-textcontent="currUser.name"></div>
+						</label>
+					</div>
+					<div class="buttons">
+						<button class="btn apply">Aplicar</button>
+						<button class="btn reset">Descartar cambios</button>
+					</div>
+
+				</div>
+				<div class="changelog-area hide">
+					<div class="title">Lista de cambios</div>
+					<div class="changelog-list" data-empty-msg="(Esta aplicación no tiene lista de cambios)"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="mobile-app-button" title="Mostrar apps"></div>
+</div>

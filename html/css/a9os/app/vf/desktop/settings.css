@@ -1,0 +1,224 @@
+/*_gtlsc_
+ * os.com.ar (a9os) - Open web LAMP framework and desktop environment
+ * Copyright (C) 2019-2021  Santiago Pereyra (asp95)
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
+.a9os_app_vf_desktop_settings .main {
+	display: block;
+	position: relative;
+	width: 100%;
+	max-height: 100%;
+	overflow: hidden;
+	overflow-y: auto;
+	font-size: 0;
+}
+
+.a9os_app_vf_desktop_settings .main .sources-selector {
+	display: inline-block;
+	position: relative;
+	vertical-align: top;
+	box-sizing: border-box;
+	width: 75%;
+	padding: 10px;
+	font-size: 14px;
+}
+.a9os_app_vf_desktop_settings .main .sources-selector .source {
+	display: block;
+	position: relative;
+	width: calc(100% - 20px);
+	margin: 10px;
+	border-radius: 5px;
+	transition: all 0.1s;
+	box-sizing: border-box;
+	padding: 10px;
+	background-color: rgba(0,0,0,0.1);
+}
+.a9os_app_vf_desktop_settings .main .sources-selector .source.selected {
+	background-color: rgba(50,50,50,0.5);
+	color: #fff;
+}
+.a9os_app_vf_desktop_settings .main .sources-selector .source label {
+	display: block;
+	position: relative;
+}
+.a9os_app_vf_desktop_settings .main .sources-selector .source label > * {
+	display: inline-block;
+	vertical-align: middle;
+	height: 20px;
+	line-height: 20px;
+	margin: 5px;
+}
+
+.a9os_app_vf_desktop_settings .main .sources-selector .source .system-wallpapers-selector {
+	display: block;
+	position: relative;
+	height: 100px;
+	overflow: hidden;
+	overflow-y: auto;
+	background-color: #fff;
+	margin: 10px 0;
+}
+.a9os_app_vf_desktop_settings .main .sources-selector .source .system-wallpapers-selector .item {
+	display: inline-block;
+	position: relative;
+	vertical-align: top;
+	width: 100px;
+	height: 70px;
+	margin: 5px;
+	border-radius: 5px;
+	transition: all 0.1s;
+	text-align: center;
+	box-sizing: border-box;
+	font-size: 0;
+}
+.a9os_app_vf_desktop_settings .main .sources-selector .source .system-wallpapers-selector .item:hover {
+	background-color: rgba(0,0,0,0.1);
+}
+.a9os_app_vf_desktop_settings .main .sources-selector .source .system-wallpapers-selector .item[data-selected=true] {
+	background-color: rgba(0,0,0,0.3);
+}
+.a9os_app_vf_desktop_settings .main .sources-selector .source .system-wallpapers-selector .item img {
+	display: inline-block;
+	width: 90%;
+	height: auto;
+	vertical-align: middle;
+}
+
+
+.a9os_app_vf_desktop_settings .main .sources-selector .source .select-file {
+	display: inline-block;
+	font-size: 0;
+	height: 100px;
+	width: 80%;
+	margin: 10px;
+	transition: all 0.1s;
+	position: relative;
+}
+.a9os_app_vf_desktop_settings .main .sources-selector .source .select-file.dragover {
+	background-color: #aaa;
+}
+
+.a9os_app_vf_desktop_settings .main .sources-selector .source .select-file > * {
+	display: inline-block;
+	vertical-align: middle;
+
+}
+.a9os_app_vf_desktop_settings .main .sources-selector .source .select-file img {
+	width: 25%;
+	height: auto;
+}
+.a9os_app_vf_desktop_settings .main .sources-selector .source .select-file .info {
+	font-size: 14px;
+	width: 75%;
+	text-align: center;
+	color: #444;
+}
+.a9os_app_vf_desktop_settings .main .sources-selector .source .select-file .info .path {
+	font-style: italic;
+	font-size: 12px;
+	margin-bottom: 10px;
+	word-wrap: break-word;
+}
+.a9os_app_vf_desktop_settings .main .sources-selector .source .select-file .info .title {
+	font-weight: bold;
+	font-size: 14px;
+	padding: 5px 10px;
+	background-color: rgba(0,0,0,0.1);
+	border-radius: 3px;
+	display: inline-block;
+}
+
+.a9os_app_vf_desktop_settings .main .sources-selector .source .max-resolution {
+	font-size: 14px;
+}
+.a9os_app_vf_desktop_settings .main .sources-selector .source .max-resolution > * {
+	display: inline-block;
+	vertical-align: middle;
+}
+.a9os_app_vf_desktop_settings .main .sources-selector .source .max-resolution input {
+	width: 50px;
+	border: none;
+	-moz-appearance: textfield;
+	text-align: center;
+}
+.a9os_app_vf_desktop_settings .main .sources-selector .source .max-resolution input::-webkit-outer-spin-button,
+.a9os_app_vf_desktop_settings .main .sources-selector .source .max-resolution input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+.a9os_app_vf_desktop_settings .main .sources-selector .source input[type=color] {
+	display: block;
+	width: 70%;
+	height: 50px;
+}
+
+.a9os_app_vf_desktop_settings .main .size-selector {
+	display: inline-block;
+	position: relative;
+	vertical-align: top;
+	box-sizing: border-box;
+	width: 25%;
+	padding: 10px;
+	text-align: center;
+}
+.a9os_app_vf_desktop_settings .main .size-selector .size {
+	display: inline-block;
+	width: 100px;
+	border-radius: 5px;
+	margin: 10px;
+	background-color: #fff;
+	text-align: center;
+	position: relative;
+	cursor: pointer;
+}
+.a9os_app_vf_desktop_settings .main .size-selector .size.selected {
+	box-shadow: 0 0 0 3px rgba(0,0,0,0.5);
+}
+.a9os_app_vf_desktop_settings .main .size-selector .size .preview {
+	width: 90px;
+	height: 110px;
+	border:2px solid #aaa;
+	display: inline-block;
+	position: relative;
+	margin-top: 5px;
+	background: url(/resources/a9os/app/vf/desktop/default-wallpapers/thumbs/img3.jpg) center center no-repeat;
+	background-color: #000;
+}
+.a9os_app_vf_desktop_settings .main .size-selector .size.contain .preview {
+	background-size: contain;
+}
+.a9os_app_vf_desktop_settings .main .size-selector .size.cover .preview {
+	background-size: cover;
+}
+.a9os_app_vf_desktop_settings .main .size-selector .size.deform .preview {
+	background-size: 100% 100%;
+}
+.a9os_app_vf_desktop_settings .main .size-selector .size .title {
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	font-size: 12px;
+	font-style: italic;
+	color: #444;
+	line-height: 30px;
+}
+
+
+.is-mobile .a9os_app_vf_desktop_settings .main .sources-selector {
+	width: 100%;
+}
+.is-mobile .a9os_app_vf_desktop_settings .main .size-selector {
+	width: 100%;
+}

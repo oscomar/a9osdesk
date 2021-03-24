@@ -1,0 +1,77 @@
+/*_gtlsc_
+ * os.com.ar (a9os) - Open web LAMP framework and desktop environment
+ * Copyright (C) 2019-2021  Santiago Pereyra (asp95)
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
+.a9os_core_about_main .head {
+	position: relative;
+	width: 100%;
+	display: block;
+	box-sizing: border-box;
+	font-size: 0;
+	background-color: #fff;
+	height: 100px;
+}
+.a9os_core_about_main .head .logo {
+	display: inline-block;
+	width: 100px;
+	height: 100px;
+	background: url(/resources/a9os/core/install/icon.svg) center center no-repeat;
+	background-size: 70%;
+	vertical-align: middle;
+}
+
+.a9os_core_about_main .head .name {
+	display: inline-block;
+	width: 250px;
+	height: 100px;
+	background: url(/resources/a9os/img/a9os_logo_taskbar.svg) center center no-repeat;
+	background-size: 70%;
+	vertical-align: middle;
+}
+.a9os_core_about_main .head .version {
+	display: block;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	font-size: 12px;
+	color: #666;
+	line-height: 13px;
+}
+.a9os_core_about_main .copy {
+	font-size: 12px;
+	text-align: justify;
+	padding: 10px;
+	box-sizing: border-box;
+	color: #444;
+	user-select: text;
+} 
+.a9os_core_about_main .copy .main {
+	font-size: 13px;
+	color: #222;
+	text-align: left;
+}
+.a9os_core_about_main .buttons {
+	display: block;
+	position: relative;
+	text-align: right;
+	font-size: 14px;
+	padding: 10px;
+	box-sizing: border-box;
+	width: 100%;
+}
+.a9os_core_about_main .buttons .btn {
+	display: inline-block;
+	position: relative;
+}

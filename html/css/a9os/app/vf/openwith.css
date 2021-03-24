@@ -1,0 +1,103 @@
+/*_gtlsc_
+ * os.com.ar (a9os) - Open web LAMP framework and desktop environment
+ * Copyright (C) 2019-2021  Santiago Pereyra (asp95)
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
+.a9os_app_vf_openwith h1{
+	display: block;
+	width: 100%;
+	color: #fff;
+	font-weight: 300;
+	padding: 20px;
+	margin: 0;
+	box-sizing: border-box;
+}
+.a9os_app_vf_openwith .no-apps{
+	text-align: center;
+	width: 100%;
+	padding: 10px;
+	margin: 0;
+	color: #bbb;
+	font-size: 12px;
+	display: none;
+	box-sizing: border-box;
+}
+
+.a9os_app_vf_openwith .no-apps.show {
+	display: block;
+}
+
+.a9os_app_vf_openwith .no-apps button {
+	margin-top: 15px;
+}
+
+.a9os_app_vf_openwith .as-default{
+	text-align: left;
+	width: 100%;
+	padding: 20px;
+	margin: 0;
+	color: #fff;
+	font-size: 12px;
+	display: none;
+	vertical-align: middle;
+}
+.a9os_app_vf_openwith .as-default input {
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+}
+
+.a9os_app_vf_openwith .as-default.show {
+	display: block;
+}
+
+
+.a9os_app_vf_openwith .app-list {
+	box-sizing: border-box;
+	overflow-y: auto;
+	font-size: 0;
+
+	width: 100%;
+}
+
+
+.a9os_app_vf_openwith .app-list .app {
+	display: block;
+	font-size: 0;
+	border-bottom: 1px solid rgba(0,0,0,0.2);
+	height: 50px;
+	margin: 5px;
+	background-color: #ddd;
+	text-decoration: none;
+	transition: all 0.1s;
+}
+.a9os_app_vf_openwith .app-list .app:hover {
+	background-color: #eee;
+}
+
+.a9os_app_vf_openwith .app-list .app img{
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	vertical-align: middle;
+	border: none;
+	margin: 0 14px;
+	pointer-events: none;
+}
+
+.a9os_app_vf_openwith .app-list .app span{
+	vertical-align: middle;
+	font-size: 14px;
+	color: #444;
+}

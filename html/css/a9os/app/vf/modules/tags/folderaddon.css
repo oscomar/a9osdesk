@@ -1,0 +1,157 @@
+/*_gtlsc_
+ * os.com.ar (a9os) - Open web LAMP framework and desktop environment
+ * Copyright (C) 2019-2021  Santiago Pereyra (asp95)
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
+.vf-files-container .item .icon.type-tagfolder {
+	background:url(/resources/a9os/app/vf/icons/files/tagfolder-icon.svg) center center no-repeat;
+	background-size: contain;
+}
+.vf-files-container .item .expand-tags{
+	display: block;
+	position: relative;
+	color: #444;
+	width: 150px;
+	margin-left: -10px;
+	background-color: rgba(255,255,255,0.8);
+	overflow: hidden;
+	opacity: 0;
+	height: 0;
+	visibility: hidden;
+	padding: 5px;
+	margin-top: 10px;
+	box-sizing: border-box;
+	font-size: 13px;
+	transition: none;
+}
+.vf-files-container .item.expand .expand-tags {
+	visibility: visible;
+	opacity: 1;
+	transition: all 0.1s;
+}
+.vf-files-container.list-mode .item .expand-tags{
+	background-color: rgba(0,0,0,0.1);
+	margin-left: 0;
+}
+
+.vf-files-container .item .expand-tags .item-tag {
+	display: block;
+	position: relative;
+	width: 100%;
+	margin-bottom: 5px;
+	box-sizing: border-box;
+	padding: 2px;
+	text-align: left;
+	overflow: hidden;
+	transition: background-color 0.1s;
+}
+.vf-files-container .item .expand-tags .item-tag:hover,
+.vf-files-container .item .expand-tags .item-tag.editing {
+	background-color: rgba(0,0,0,0.1);
+}
+
+.vf-files-container .item .expand-tags .add-button {
+    cursor: pointer;
+	opacity: 1;
+	visibility: visible;
+	height: 30px;
+	font-size: 12px;
+	line-height: 30px;
+	transition: all 0.1s;
+	border-radius: 3px;
+	color: #fff;
+	background-color: rgba(0,0,0,0.6);
+}
+.vf-files-container .item .expand-tags .add-button:hover {
+	background-color: rgba(0,0,0,0.7);
+}
+.vf-files-container .item .expand-tags .add-button.hide {
+	opacity: 0;
+	visibility: hidden;
+	height: 0;
+}
+.vf-files-container .item .expand-tags .add-button:before{
+	content: "";
+	width: 15px;
+	height: 15px;
+	display: inline-block;
+	margin: 0 9px 0 5px;
+	vertical-align: middle;
+	background:url(/resources/a9os/app/vf/icons/tag-icon.svg) center center no-repeat;
+	background-size: contain;
+}
+
+.vf-files-container .item .expand-tags .add-dialog {
+	display: block;
+	text-align: center;
+	width: 150px;
+	margin-left: -5px;
+	box-sizing: border-box;
+	font-size: 0;
+	background-color: rgba(0,0,0,0.5);
+	opacity: 0;
+	visibility: hidden;
+	height: 0;
+	padding: 0;
+	transition: all 0.1s;
+}
+.vf-files-container .item .expand-tags .add-dialog.show {
+	opacity: 1;
+	visibility: visible;
+	height: 70px;
+	padding: 5px;
+}
+.vf-files-container .item .expand-tags .add-dialog input {
+	display: inline-block;
+	font-size: 13px;
+	line-height: 13px;
+	padding: 8px 2px;
+	width: 45%;
+	height: 30px;
+	box-sizing: border-box;
+	border: none;
+	background-color: rgba(255,255,255,1);
+	text-align: left;
+	outline: none;
+	vertical-align: middle;
+	border-radius: 3px;
+	color: #222;
+}
+.vf-files-container .item .expand-tags .add-dialog input[disabled] {
+	opacity: 0.5;
+	background-color: #bbb;
+}
+.vf-files-container .item .expand-tags .add-dialog span {
+	display: inline-block;
+	width: 10%;
+	font-size: 15px;
+	height: 30px;
+	line-height: 30px;
+	vertical-align: middle;
+	color: #fff;
+}
+.vf-files-container .item .expand-tags .add-dialog .btn {
+	margin-top: 5px;
+	background-color: rgba(0,0,0,0.4);
+	box-shadow: none;
+	color: #fff;
+	transition: all .1s;
+}
+.vf-files-container .item .expand-tags .add-dialog .btn:hover {
+	background-color: rgba(0,0,0,0.5);
+}
+
+.a9os_app_vf_window .left .top .bookmark-menu .items .item.type-bookmark:before {
+	background-image: url(/resources/a9os/app/vf/icons/filesources/tags/icon.svg);
+}

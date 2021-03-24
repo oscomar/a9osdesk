@@ -1,0 +1,507 @@
+/*_gtlsc_
+ * os.com.ar (a9os) - Open web LAMP framework and desktop environment
+ * Copyright (C) 2019-2021  Santiago Pereyra (asp95)
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
+.a9os_app_mediaviewer_main video{
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+}
+
+.a9os_app_mediaviewer_main .player{
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(rgba(0,0,0,0.2) 74%, rgba(0,0,0,0.6) 100%);
+	transition: all 0.3s;
+}
+.a9os_app_mediaviewer_main .player.playing{
+	background: linear-gradient(rgba(0,0,0,0) 74%, rgba(0,0,0,0.6) 100%);
+	opacity: 0;
+	cursor: none;
+}
+.a9os_app_mediaviewer_main .player.playing:hover, 
+.a9os_app_mediaviewer_main .player.playing.paused,
+.a9os_app_mediaviewer_main audio.used + .player.playing
+{
+	opacity: 1;
+	cursor: default;
+}
+.a9os_app_mediaviewer_main .player.playing.stop-over{
+	opacity: 0;
+	cursor: none;
+}
+
+.a9os_app_mediaviewer_main .big-play{
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	background:url(/resources/a9os/app/mediaviewer/icon.svg) center center no-repeat;
+	background-size: 10%;
+	cursor: pointer;
+	transition: all 0.3s;
+}
+.a9os_app_mediaviewer_main .player.playing .big-play{
+	opacity: 0;
+}
+.a9os_app_mediaviewer_main .player .bar{
+	display: block;
+	position: absolute;
+	left: 5%;
+	right: 5%;
+	bottom: 60px;
+	height: 10px;
+	background-color: rgba(255,255,255,0.2);
+	overflow-y: hidden;
+	border-radius: 5px;
+}
+.a9os_app_mediaviewer_main .player .bar:after {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+.is-mobile .a9os_app_mediaviewer_main .player .bar {
+	height: 20px;
+}
+.a9os_app_mediaviewer_main .player .bar .load{
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	background-color: rgba(255,255,255,0.2);
+}
+.a9os_app_mediaviewer_main .player .bar .played{
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+
+	background-color: #a05403;
+}
+
+.a9os_app_mediaviewer_main .player .times{
+	display: block;
+	position: absolute;
+	left: 3%;
+	right: 3%;
+	bottom: 75px;
+	height: 15px;
+	font-size: 10px;
+	color: #fff;
+	font-weight: 300;
+}
+
+.is-mobile .a9os_app_mediaviewer_main .player .times {
+	bottom: 85px;
+}
+.a9os_app_mediaviewer_main .player .times > div{
+	display: inline-block;
+	padding: 0 5px;
+	height: 15px;
+	border-radius: 15px;
+	text-align: center;
+	line-height: 15px;
+	background-color: rgba(255,255,255,0.2);
+}
+.a9os_app_mediaviewer_main .player .times .e{
+	float: right;
+}
+
+
+
+.a9os_app_mediaviewer_main .player .controls {
+	display: block;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding: 0 5%;
+	height: 60px;
+	box-sizing: border-box;
+	font-size: 0;
+	white-space: nowrap;
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+.a9os_app_mediaviewer_main .player .controls:before{
+	content: "";
+	display: inline-block;
+	vertical-align: middle;
+	width: 0;
+	height: 100%;
+
+}
+.a9os_app_mediaviewer_main .player .controls > div, .a9os_app_mediaviewer_main .player .controls > button{
+	display: inline-block;
+	vertical-align: middle;
+	height: 40px;
+	width: 40px;
+	margin: 0 3px;
+	border-radius: 5px;
+	transition: all 0.1s;
+	border: none;
+	position: relative;
+}
+.a9os_app_mediaviewer_main .player .controls > .button:hover {
+	background-color: rgba(128,128,128,0.4);
+}
+
+.a9os_app_mediaviewer_main .player .controls > .button:disabled {
+	opacity: 0.5;
+}
+.a9os_app_mediaviewer_main .player .controls .play{
+	background:url(/resources/a9os/app/mediaviewer/play.svg) center center no-repeat;
+	background-size: 60%;
+	transition: all 0.2s;
+}
+.a9os_app_mediaviewer_main .player.playing .controls .play{
+	background-image: url(/resources/a9os/app/mediaviewer/pause.svg);
+}
+.a9os_app_mediaviewer_main .player.playing.paused .controls .play{
+	background-image: url(/resources/a9os/app/mediaviewer/play.svg);
+}
+
+.a9os_app_mediaviewer_main .player .controls .prevvideo{
+	background:url(/resources/a9os/app/mediaviewer/prevvideo.svg) center center no-repeat;
+	background-size: 60%;
+	transition: all 0.2s;
+}
+
+.a9os_app_mediaviewer_main .player .controls .stop{
+	background:url(/resources/a9os/app/mediaviewer/stop.svg) center center no-repeat;
+	background-size: 60%;
+	transition: all 0.2s;
+}
+
+.a9os_app_mediaviewer_main .player .controls .nextvideo{
+	background:url(/resources/a9os/app/mediaviewer/nextvideo.svg) center center no-repeat;
+	background-size: 60%;
+	transition: all 0.2s;
+}
+
+
+.a9os_app_mediaviewer_main .player .controls .flex {
+	width: calc(100% - 410px);
+}
+
+.a9os_app_mediaviewer_main .player .controls .v.up{
+	background:url(/resources/a9os/app/mediaviewer/vplus.svg) center center no-repeat;
+	background-size: 60%;
+}
+.a9os_app_mediaviewer_main .player .controls .v.down{
+	background:url(/resources/a9os/app/mediaviewer/vmin.svg) center center no-repeat;
+	background-size: 60%;
+}
+.a9os_app_mediaviewer_main .player .controls .v.percent{
+	color: #fff;
+	font-weight: 300;
+	width: 25px;
+	text-align: center;
+	font-size: 10px;
+	line-height: 40px;
+	white-space: normal;
+}
+.a9os_app_mediaviewer_main .player .controls .v.percent .p {
+	display: inline-block;
+	width: 100%;
+	height: 15px;
+	line-height: 15px;
+	margin-top: 4px;
+}
+.a9os_app_mediaviewer_main .player .controls .v.percent .mute {
+	display: inline-block;
+	position: relative;
+	width: 100%;
+	height: 25px;
+	background:url(/resources/a9os/app/mediaviewer/vmute.svg) center center no-repeat;
+	background-size: 70%;
+	opacity: 0.5;
+}
+.a9os_app_mediaviewer_main .player .controls .v.percent.muted .mute {
+	opacity: 1;
+}
+.a9os_app_mediaviewer_main .player .controls .v.percent.muted .p {
+	opacity: 0.5;
+}
+
+
+.a9os_app_mediaviewer_main .player .controls .quality{
+	width: 95px;
+	border-radius: 10px;
+	overflow: hidden;
+	font-size: 0;
+	height: 20px;
+	float: right;
+	top: 20px;
+	display: block;
+	position: relative;
+}
+.a9os_app_mediaviewer_main .player .controls .quality > div{
+	text-align: center;
+	line-height: 20px;
+	background-color: rgba(255,255,255,0.7);
+	font-size: 10px;
+	font-weight: 400;
+	display: inline-block;
+	vertical-align: middle;
+	width: 50%;
+	transition: all 0.2s;
+	cursor: pointer;
+}
+.a9os_app_mediaviewer_main .player .controls .quality > div.active{
+	background-color: #a64500;
+	color: #fff;
+
+}
+
+
+.a9os_app_mediaviewer_main .player .controls .fullscreen{
+	background:url(/resources/a9os/app/mediaviewer/vfull.svg) center center no-repeat;
+	background-size: 60%;
+	display: inline-block;
+}
+.a9os_app_mediaviewer_main .player .controls .list{
+	background:url(/resources/a9os/app/mediaviewer/list.svg) center center no-repeat;
+	background-size: 60%;
+	display: inline-block;
+}
+.a9os_app_mediaviewer_main .player .controls .list.show {
+	background-color: rgba(255,255,255,0.3);
+}
+
+.a9os_app_mediaviewer_main .buffering{
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin:auto;
+	width: 40px;
+	height: 40px;
+	background: url(/resources/a9os/core/main/loader.svg) center center no-repeat;
+	background-size: contain;
+	opacity: 0;
+	visibility: hidden;
+}
+.a9os_app_mediaviewer_main .buffering.show{
+	opacity: 1;
+	visibility: visible;
+	animation: rotates 0.7s linear infinite;
+}
+
+.a9os_app_mediaviewer_main .error{
+	display: none;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 20px;
+	margin: auto;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 14px;
+	color: #fff;
+}
+.a9os_app_mediaviewer_main .error.show{
+	display: inline-block;
+}
+@keyframes rotates{
+	from{
+		transform: rotate(0deg);
+	}
+	to{
+		transform: rotate(360deg);
+	}
+}
+
+.a9os_app_mediaviewer_main .media-popup {
+	display: block;
+	position: absolute;
+	border-radius: 5px;
+	width: 175px;
+	height: 230px;
+	background-color: rgba(60,60,60, 0.8);
+	color: #fff;
+	right: 5%;
+	bottom: 75px;
+	font-size: 14px;
+	overflow: hidden;
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(20px);
+	transition: all 0.2s;
+}
+.a9os_app_mediaviewer_main .media-popup.show {
+	opacity: 1;
+	transform: translateY(0);
+	visibility: visible;
+}
+
+.a9os_app_mediaviewer_main .media-popup .buttons {
+	display: block;
+	position: relative;
+	width: 100%;
+	font-size: 0;
+	border-bottom: 1px solid rgba(0,0,0,0.2);
+	background-color: rgba(255,255,255,0.1);
+	text-align: center;
+	box-sizing: border-box;
+}
+
+.a9os_app_mediaviewer_main .media-popup .buttons .button {
+	display: inline-block;
+	position: relative;
+	height: 40px;
+	width: 40px;
+	border-radius: 5px;
+	margin: 3px;
+	transition: all 0.1s;
+	background: center center no-repeat;
+	background-size: 60%;
+	border: none;
+	vertical-align: middle;
+}
+.a9os_app_mediaviewer_main .media-popup .buttons .button:hover {
+	background-color: rgba(255,255,255,0.2);
+}
+
+
+.a9os_app_mediaviewer_main .media-popup .buttons .button.add{
+	background-image: url(/resources/a9os/app/mediaviewer/addmedia.svg);
+}
+.a9os_app_mediaviewer_main .media-popup .buttons .button.repeat{
+	background-image: url(/resources/a9os/app/mediaviewer/repeat.svg);
+}
+.a9os_app_mediaviewer_main .media-popup .buttons .button.repeat.one,
+.a9os_app_mediaviewer_main .media-popup .buttons .button.repeat.list {
+	background-color: rgba(255,255,255,0.3);
+}
+.a9os_app_mediaviewer_main .media-popup .buttons .button.repeat.one:after{
+	content: "1";
+	display: block;
+	position: absolute;
+	bottom: 2px;
+	right: 4px;
+	color: #fff;
+	font-size: 14px;
+	text-align: right;
+	font-weight: bold;
+	padding: 0;
+}
+.a9os_app_mediaviewer_main .media-popup .buttons .button.repeat.list:after{
+	content: "L";
+	display: block;
+	position: absolute;
+	bottom: 2px;
+	right: 2px;
+	color: #fff;
+	font-size: 14px;
+	text-align: right;
+	font-weight: bold;
+	padding: 0;
+}
+.a9os_app_mediaviewer_main .media-popup .buttons .button.shuffle{
+	background-image: url(/resources/a9os/app/mediaviewer/shuffle.svg);
+}
+.a9os_app_mediaviewer_main .media-popup .buttons .button.shuffle.enabled {
+	background-color: rgba(255,255,255,0.3);
+}
+
+.a9os_app_mediaviewer_main .media-popup .list {
+	display: block;
+	position: relative;
+	width: 100%;
+	height: 183px;
+	overflow-y: auto;
+	box-sizing: border-box;
+}
+
+.a9os_app_mediaviewer_main .media-popup .list:empty:after {
+	content: "Sin archivos";
+	display: block;
+	position: relative;
+	text-align: center;
+	padding: 10px 0;
+	font-size: 10px;
+}
+.a9os_app_mediaviewer_main .media-popup .list .item {
+	display: block;
+	position: relative;
+	width: 100%;
+	line-height: 30px;
+	padding: 0 35px 0 5px;
+	box-sizing: border-box;
+	transition: all 0.1s;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.a9os_app_mediaviewer_main .media-popup .list .item:nth-child(even) {
+	background-color: rgba(255,255,255,0.2);
+}
+.a9os_app_mediaviewer_main .media-popup .list .item:nth-child(odd) {
+	background-color: rgba(255,255,255,0.1);
+}
+.a9os_app_mediaviewer_main .media-popup .list .item:hover {
+	background-color: rgba(255,255,255,0.3);
+}
+
+.a9os_app_mediaviewer_main .media-popup .list .item:after {
+	content: "";
+	display: block;
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	top: 0;
+	right: 0;
+	background: center center no-repeat;
+	background-size: 60%;
+}
+
+.a9os_app_mediaviewer_main .media-popup .list .item.play, .a9os_app_mediaviewer_main .media-popup .list .item.pause {
+	background-color: rgba(255,255,255,0.4);
+}
+
+.a9os_app_mediaviewer_main .media-popup .list .item.play:after {
+	background-image: url(/resources/a9os/app/mediaviewer/play.svg);
+}
+.a9os_app_mediaviewer_main .media-popup .list .item.pause:after {
+	background-image: url(/resources/a9os/app/mediaviewer/pause.svg);
+}

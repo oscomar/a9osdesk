@@ -1,0 +1,113 @@
+<!--_gtlsc_
+	os.com.ar (a9os) - Open web LAMP framework and desktop environment
+	Copyright (C) 2019-2021  Santiago Pereyra (asp95)
+	
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+	
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <https://www.gnu.org/licenses/>.-->
+<div class="right">
+	<div class="vf-files-container" data-menu-r='[
+		{
+			"name" : "Nueva carpeta",
+			"action" : "folder.new"
+		},
+		{
+			"name" : "Nuevo archivo vacío",
+			"action" : "file.new"
+		},
+		{
+			"name" : "Subir archivos",
+			"action" : "file.upload"
+		},
+		"separator",
+		{
+			"name" : "Pegar",
+			"shortcut" : ["Ctrl","V"],
+			"action" : "[a9os_app_vf_desktop].fileClipboard.vfContainerToClipboard",
+			"data" : "paste",
+			"dynamicShowTrigger" : "[a9os_app_vf_desktop].fileClipboard.menuDynamicTrigger"
+		},
+		"separator",
+		{
+			"name" : "Actualizar",
+			"action" : "refresh"
+		}
+	]'></div>
+	<div class="saveas-input ibl-c">
+		<div class="title">Nombre: </div>
+		<input type="text" class="name">
+		<select class="extension"></select>
+		<button class="btn">Aceptar</button>
+	</div>
+	<div class="main-bar ibl-c">
+		<div class="main-menu"></div>
+		<div class="back"></div>
+		<input type="text" class="address-bar">
+		<div class="address-bar-buttons show" data-foreach="arrPathsAndNames:currPath">
+			<div class="button" data-menu-r='[
+				{
+					"name" : "Abrir en nueva ventana",
+					"action" : "addressBar.openInNewWindow"
+				}
+			]' data-data="path:currPath.path" data-vf-drop-area="true"><span data-textcontent="currPath.name"></span></div>
+		</div>
+		<div class="address-bar-edit" title="Editar"></div>
+	</div>
+</div>
+<div class="left">
+	<div class="top">	
+		<div class="action-buttons">
+			<div class="item new-folder ibl-c"><span>Nueva carpeta</span></div>
+			<div class="item update ibl-c" ><span>Actualizar</span></div>
+			<div class="item alter-list list-mode ibl-c"><span>Modo lista</span></div>
+		</div>
+		<div class="bookmark-menu">
+			<div class="title">Marcadores</div>
+			<div class="items">
+			</div>
+		</div>
+		<div class="sources-list">
+			<div class="title">Fuentes <button class="edit-btn" title="Editar"></button></div>
+			<div class="items" data-foreach="arrSources:currSource">
+				<div class="item" data-data="id:currSource.item_id,path:currSource.path_prefix" data-menu-r='[
+					{
+						"name" : "Abrir en nueva ventana",
+						"action" : "sourcesList.openInNewWindow"
+					},
+					{
+						"name" : "Quitar",
+						"action" : "sourcesList.removeItem"
+					}
+				]'>
+					<img class="icon" data-src="currSource.icon_url">
+					<div class="name" data-textcontent="currSource.name"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="bottom">
+		<input type="text" class="search-input" placeholder="Buscar...">
+	</div>
+</div>
+
+<div class="templates" style="display: none;">
+	<button class="item">
+		<div class="icon"></div>
+		<div class="name"></div>
+		<div class="size"></div>
+		<div class="select-button" title="Seleccionar"></div>
+	</button>
+
+
+	<div class="empty-folder">Esta carpeta está vacía</div>
+	<div class="not-exist-folder">Esta carpeta no existe <br><button class="btn">Crear carpeta</button></div>
+</div>

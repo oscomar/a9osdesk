@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="100" height="100" viewBox="0 0 26.458 26.46" version="1.1" id="svg8" inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)" sodipodi:docname="icon.svg">
+ <defs id="defs2">
+  <linearGradient gradientUnits="userSpaceOnUse" x2="0" y2="7" y1="57" id="a">
+   <stop id="stop2" stop-color="#3a539b" />
+   <stop id="stop4" stop-color="#3f5aa9" offset="1" />
+  </linearGradient>
+  <linearGradient id="a-3" y1="17" x1="40" y2="31" gradientUnits="userSpaceOnUse" x2="54" gradientTransform="translate(6,4)">
+   <stop stop-color="#060606" id="stop4764" />
+   <stop offset="1" stop-opacity="0" id="stop4766" />
+  </linearGradient>
+  <linearGradient id="b" y1="392.36" y2="320.48" x2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(1,0,0,0.84587,-34,-276.73)">
+   <stop stop-color="#ffffff" stop-opacity="0" id="stop4769" />
+   <stop offset="1" stop-color="#ffffff" stop-opacity=".2" id="stop4771" />
+  </linearGradient>
+  <path color-rendering="auto" color-interpolation-filters="linearRGB" shape-rendering="auto" image-rendering="auto" text-rendering="auto" id="c" color-interpolation="sRGB" color="#000000" d="m4 57v-50h42l14 14v36h-14z" />
+ </defs>
+ <sodipodi:namedview id="base" pagecolor="#cfcfcf" bordercolor="#666666" borderopacity="1.0" inkscape:pageopacity="0" inkscape:pageshadow="2" inkscape:zoom="2.82842713" inkscape:cx="42.7032719" inkscape:cy="38.1681823" inkscape:document-units="mm" inkscape:current-layer="layer1" showgrid="false" units="px" inkscape:window-width="960" inkscape:window-height="1025" inkscape:window-x="0" inkscape:window-y="0" inkscape:window-maximized="0" showguides="true" inkscape:guide-bbox="true" />
+ <metadata id="metadata5">
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+    <dc:title />
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g inkscape:label="Capa 1" inkscape:groupmode="layer" id="layer1" transform="translate(0,-270.55)">
+  <rect style="opacity:1;fill:#3f5aa9;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.793799996;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" id="rect4775" width="24.3810005" height="24.3810005" x="1.03849971" y="271.589508" ry="1.98449075" />
+  <path style="opacity:1;fill:#839cca;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.722567916;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill" d="M 6.0694446,276.216419 C 5.2180039,276.216419 4.5324907,276.901932 4.5324907,277.753374 V 289.806626 C 4.5324907,290.658067 5.2180039,291.34358 6.0694446,291.34358 H 20.3919532 C 21.2433939,291.34358 21.9283903,290.658067 21.9283903,289.806626 V 277.753374 C 21.9283903,276.901932 21.2433939,276.216419 20.3919532,276.216419 Z" id="rect904" inkscape:connector-curvature="0" />
+  <g style="stroke:none" id="g877" transform="translate(-0.0471817,29.4027387)">
+   <path sodipodi:nodetypes="ccccccccccc" inkscape:connector-curvature="0" id="path879" d="M 19.251691,254.29495 13.8440597,257.414997 9.03455717,254.638464 4.57679141,259.089272 4.57811982,260.221944 9.16608896,255.635797 13.8440597,258.336847 19.251691,255.216518 21.9752974,256.788993 21.9748676,255.867177 Z" style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.798202693;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" />
+   <circle r="1.45055854" cy="250.113571" cx="18.5149708" id="path873" style="opacity:1;fill:#ffffff;fill-opacity:0.831111115;fill-rule:evenodd;stroke:none;stroke-width:0.715610206;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill" />
+  </g>
+ </g>
+</svg>

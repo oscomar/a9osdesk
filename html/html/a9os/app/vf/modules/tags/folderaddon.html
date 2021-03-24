@@ -1,0 +1,45 @@
+<!--_gtlsc_
+	os.com.ar (a9os) - Open web LAMP framework and desktop environment
+	Copyright (C) 2019-2021  Santiago Pereyra (asp95)
+	
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+	
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <https://www.gnu.org/licenses/>.-->
+<div class="expand-tags">
+	<div class="item-tag" data-menu-r='[
+		{
+			"name" : "Abrir Tag",
+			"action" : "[a9os_app_vf_modules_tags_folderaddon].itemMenu.open"
+		},
+		{
+			"name" : "Abrir Tag en nueva ventana",
+			"action" : "[a9os_app_vf_modules_tags_folderaddon].itemMenu.openInNewWindow"
+		},
+		"separator",
+		{
+			"name" : "Editar Tag",
+			"action" : "[a9os_app_vf_modules_tags_folderaddon].itemMenu.edit"
+		},
+		{
+			"name" : "Borrar Tag",
+			"action" : "[a9os_app_vf_modules_tags_folderaddon].itemMenu.delete"
+		}
+	]'>
+		<b class="tag-name" data-textcontent="currItemTag.tag_name"></b><b>: </b><span class="tag-value" data-textcontent="currItemTag.tag_value"></span>
+	</div>
+
+	<div class="add-button" data-preventloop="true">Agregar tag</div>
+	<div class="add-dialog" data-preventloop="true">
+		<input type="text" class="input-name"><span> : </span><input type="text" class="input-value">
+		<button class="btn submit">Aceptar</button>
+	</div>
+</div>

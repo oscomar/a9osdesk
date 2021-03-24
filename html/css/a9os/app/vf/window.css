@@ -1,0 +1,502 @@
+/*_gtlsc_
+ * os.com.ar (a9os) - Open web LAMP framework and desktop environment
+ * Copyright (C) 2019-2021  Santiago Pereyra (asp95)
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
+.a9os_app_vf_window .left {
+	display: block;
+	position: absolute;
+	width: 150px;
+	height: 100%;
+	left: 0;
+	font-size: 0;
+	background-color: #ddd;
+	box-sizing: border-box;
+	color: #444;
+	overflow: hidden;
+	z-index: 3;
+	text-align: center;
+}
+.a9os_app_vf_window .right{
+	display: block;
+	position: absolute;
+	width: calc(100% - 150px);
+	right: 0;
+	height: 100%;
+	background-color: #fff;
+	padding: 0;
+	box-sizing: border-box;
+	color: #fff;
+}
+.a9os_app_vf_window .right .main-bar{
+	display: inline-block;
+	position: absolute;
+	width: calc(100% - 14px);
+	margin: 7px;
+	height: 35px;
+	top: 0;
+	box-sizing: border-box;
+	background-color: #222;
+	font-size: 0;
+	color: #fff;
+	border-radius: 5px;
+	z-index: 2;
+	overflow: hidden;
+
+}
+.a9os_app_vf_window .right .main-bar .back,
+.a9os_app_vf_window .right .main-bar .forward,
+.a9os_app_vf_window .right .main-bar .main-menu,
+.a9os_app_vf_window .right .main-bar .address-bar-edit {
+	display: inline-block;
+	vertical-align: top;
+	width: 35px;
+	height: 35px;
+	font-size: 15px;
+	line-height: 30px;
+	text-align: center;
+
+}
+.a9os_app_vf_window .right .main-bar .address-bar-edit {
+
+	background: url(/resources/a9os/app/vf/icons/edit-icon-white.svg) center center no-repeat;
+	background-size: contain;
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 35px;
+	height: 35px;
+}
+.a9os_app_vf_window .right .main-bar .address-bar-edit.to-confirm {
+	background: url(/resources/a9os/app/vf/icons/enter-icon-white.svg) center center no-repeat;
+}
+
+
+.a9os_app_vf_window .right .main-bar .main-menu {
+	padding-left: 10px;
+}
+.a9os_app_vf_window .right .main-bar .back {
+	background: url(/resources/a9os/app/vf/icons/back-icon-white.svg) center center no-repeat;
+}
+.a9os_app_vf_window .right .main-bar .back:hover,
+.a9os_app_vf_window .right .main-bar .forward:hover,
+.a9os_app_vf_window .right .main-bar .main-menu:hover,
+.a9os_app_vf_window .right .main-bar .address-bar-edit:hover{
+	background-color: rgba(255,255,255,0.3);
+}
+.a9os_app_vf_window .right .main-bar .main-menu {
+	background: url(/resources/a9os/app/vf/icons/burger-icon-white.svg) center center no-repeat;
+	background-size: contain;
+	display: none;
+}
+.a9os_app_vf_window .right .main-bar .address-bar{
+	display: none;
+	vertical-align: top;
+	width: calc(100% - 70px);
+	box-sizing: border-box;
+	border: none;
+	background-color: #fff;
+	color: #000;
+	font-size: 16px;
+	line-height: 35px;
+	border-radius: 0;
+	padding: 0 15px;
+	outline: none;
+	display: none;
+	box-shadow: inset 0 0 0 2px #bbb;
+}
+.is-mobile .a9os_app_vf_window .right .main-bar .address-bar {
+	margin-right: 35px;
+	width: calc(100% - 115px);
+}
+.a9os_app_vf_window .right .main-bar .address-bar.show {
+	display: inline-block;
+}
+.a9os_app_vf_window .right .main-bar .address-bar-buttons {
+	display: none;
+	vertical-align: top;
+	width: calc(100% - 70px);
+	box-sizing: border-box;
+	color: #fff;
+	font-size: 16px;
+	line-height: 35px;
+	padding: 0 10px;
+	font-size: 0;
+	white-space: nowrap;
+	overflow-x: auto;
+}
+.is-mobile .a9os_app_vf_window .right .main-bar .address-bar-buttons {
+	margin-right: 35px;
+	width: calc(100% - 115px);
+}
+.a9os_app_vf_window .right .main-bar .address-bar-buttons.show {
+	display: inline-block;
+}
+.a9os_app_vf_window .right .main-bar .address-bar-buttons .button {
+	font-size: 14px;
+	display: inline-block;
+	height: 100%;
+	position: relative;
+	box-sizing: border-box;
+	padding: 0 8px;
+	box-shadow: inset -15px 0 20px -20px rgba(255,255,255,0.3);
+	transform: skewX(-15deg);
+	border-right: 1px solid #fff;
+	background-color: rgba(255,255,255,0.05);
+	transition: all 0.1s;
+	cursor: pointer;
+	vertical-align: top;
+	text-align: center;
+}
+.a9os_app_vf_window .right .main-bar .address-bar-buttons .button:nth-of-type(1) {
+	min-width: 50px;
+	font-weight: bold;
+	/*background-color: rgba(255,255,255,0.2);*/
+}
+.a9os_app_vf_window .right .main-bar .address-bar-buttons .button:last-of-type{
+	background-color: rgba(255,255,255,0.2);
+}
+.a9os_app_vf_window .right .main-bar .address-bar-buttons .button:hover {
+	background-color: rgba(255,255,255,0.2);
+}
+.a9os_app_vf_window .right .main-bar .address-bar-buttons .button:last-of-type:hover {
+	background-color: rgba(255,255,255,0.4);
+}
+.a9os_app_vf_window .right .main-bar .address-bar-buttons .button span {
+	transform: skewX(15deg);
+	display: inline-block;
+}
+.a9os_app_vf_window .right .main-bar .address-bar-buttons .button.dragover{
+	box-shadow: inset 0 0 0 2px #fff;
+}
+
+
+.a9os_app_vf_window .right .vf-files-container .item {
+	color: #444;
+}
+.a9os_app_vf_window .right .vf-files-container:not(.list-mode) .item:not(.hide){	
+	width: 150px;
+	height: 200px;
+	background-color: rgba(0,0,0,0.1);
+}
+
+.a9os_app_vf_window .right .vf-files-container:not(.list-mode) .item .icon{
+	height: 95px;
+	background-size: cover;
+	border-radius: 5px;
+	margin: 10px auto;
+}
+
+
+.a9os_app_vf_window .right .saveas-input {
+	display: none;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: calc(100% - 1px);
+	height: 50px;
+	background-color: #ddd;
+	color: #222;
+	z-index: 2;
+	border-left: 1px solid #aaa;
+}
+.a9os_app_vf_window .right .saveas-input.show{
+	display: block;
+}
+.a9os_app_vf_window .right .saveas-input > * {
+	display: inline-block;
+	vertical-align: middle;
+}
+.a9os_app_vf_window .right .saveas-input .title {
+	width: 60px;
+	font-size: 12px;
+	text-align: center;
+}
+.a9os_app_vf_window .right .saveas-input input {
+    border: none;
+    width: calc(100% - 245px);
+    height: 25px;
+    box-sizing: border-box;
+    padding: 5px 10px;
+}
+.a9os_app_vf_window .right .saveas-input .extension {
+	margin: 0 0 0 5px;
+	height: 25px;
+	width: 70px;
+	line-height: 14px;
+}
+
+
+
+.a9os_app_vf_window .right .vf-files-container{
+	display: block;
+	font-size: 12px;
+	position: relative;
+	height: 100%;
+	overflow-y: auto;
+	color: #444;
+	box-sizing: border-box;
+	padding: 45px 0 0 0;
+}
+
+.a9os_app_vf_window .right .vf-files-container.saveas-mode {
+	height: calc(100% - 50px);
+}
+
+.a9os_app_vf_window .right .vf-files-container .empty-folder{
+	margin-top: 50px;
+	display: block;
+	width: 100%;
+	text-align: center;	
+}
+.a9os_app_vf_window .right .vf-files-container .not-exist-folder{
+	margin-top: 50px;
+	display: block;
+	width: 100%;
+	text-align: center;	
+}
+.a9os_app_vf_window .right .vf-files-container .not-exist-folder .btn {
+	margin-top: 10px;
+	background-color: #ddd;
+}
+.a9os_app_vf_window .left .top{
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 50px;
+	right: 0;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+.a9os_app_vf_window .left .top > div:not(.bottom) {
+	display: inline-block;
+	position: relative;
+	text-align: left;
+	width: 100%;
+	border-top: 1px solid rgba(0,0,0,0.1);
+	margin: 0 0 5px 0;
+	padding: 10px;
+	font-size: 14px;
+	box-sizing: border-box;
+
+}
+.a9os_app_vf_window .left .top > div:first-child {
+	border: none;
+}
+.a9os_app_vf_window .left .top > div > .title {
+	display: block;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.a9os_app_vf_window .left .top > div > .items{
+	position: relative;
+}
+
+.a9os_app_vf_window .left .top > div > .items .item {
+	padding: 5px;
+	font-size: 12px;
+	transition: all 0.1s;
+	position: relative;
+}
+.a9os_app_vf_window .left .top > div > .items .item.dragover{
+	box-shadow: inset 0 0 0 2px #444;
+	background-color: rgba(0,0,0,0.2);
+}
+
+.a9os_app_vf_window .left .top > div > .items .item:hover{
+	background-color: rgba(0,0,0,0.1);
+}
+
+.a9os_app_vf_window .left .top > div > .items .move-divisor {
+	display: block;
+	position: relative;
+	height: 3px;
+	border-radius: 3px;
+	background-color: #fff;
+
+}
+.a9os_app_vf_window .left .top > div > .items .item.tmp-dragger {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0.8;
+	background-color: rgba(0,0,0,0.1);
+	transition: none;
+}
+.a9os_app_vf_window .left .top > div > .items.empty:before {
+	content: "Vacío";
+	display: block;
+	text-align: center;
+	margin: 10px 0;
+	font-size: 12px;
+	color: #666;
+	font-style: italic;
+
+}
+.a9os_app_vf_window .left .top .bookmark-menu .items .item:before {
+	content: "";
+	width: 20px;
+	height: 20px;
+	margin-right: 5px;
+	background: url(/resources/a9os/app/vf/icons/sidebar-folder-icon.svg) center center no-repeat;
+	background-size: contain;
+	vertical-align: middle;
+	display: inline-block;
+	position: relative;
+}
+.a9os_app_vf_window .left .top .sources-list .title {
+	height: 25px;
+	position: relative;
+	line-height: 25px;
+}
+.a9os_app_vf_window .left .top .sources-list .title .edit-btn{
+	display: inline-block;
+	vertical-align: middle;
+	right: -2.5px;
+	top: -2.5px;
+	position: absolute;
+	direction: rtl;
+	border-radius: 3px;
+	background: rgba(255,255,255,0.5) url(/resources/a9os/app/vf/icons/edit-button-icon.svg) center center no-repeat;
+	background-size: contain;
+	width: 30px;
+	height: 30px;
+	transition: all 0.1s;
+	border: none;
+	outline: none;
+}
+.a9os_app_vf_window .left .top .sources-list .title .edit-btn:hover {
+	background-color: rgba(0,0,0,0.1);
+}
+.a9os_app_vf_window .left .top .sources-list .items .item .icon {
+	width: 20px;
+	height: 20px;
+	margin-right: 5px;
+	vertical-align: middle;
+	display: inline-block;
+	position: relative;
+}
+.a9os_app_vf_window .left .top .sources-list .items .item .name {
+	display: inline;
+	position: relative;
+	vertical-align: middle;
+}
+
+
+.a9os_app_vf_window .left .bottom{
+	display: block;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	padding: 10px 0;
+	height: 30px;
+	text-align: center;
+}
+.a9os_app_vf_window .left .bottom .search-input{
+	display: inline-block;
+	position: relative;
+	width: 80%;
+	border: 2px solid #fff;
+	font-size: 12px;
+	font-weight: 300;
+	border-radius: 20px;
+	padding: 4px 10px;
+	box-sizing: border-box;
+	background-color: #fff;
+	outline: none;
+	color: #444;
+}
+.a9os_app_vf_window .left .action-buttons {
+	font-size: 0;
+	text-align: center;
+}
+.a9os_app_vf_window .left .action-buttons .item {
+	display: block;
+	box-sizing: border-box;
+	vertical-align: middle;
+	width: 100%;
+	height: 30px;
+	background: rgba(0,0,0,0.15) 5px center no-repeat;
+	margin: 3px 0;
+	box-sizing: border-box;
+	padding: 0 3px 0 40px;
+	transition: all 0.1s;
+	cursor: pointer;
+	border-radius: 3px;
+}
+.a9os_app_vf_window .left .action-buttons .item.disabled {
+	opacity: 0.5;
+	cursor: default;
+}
+.a9os_app_vf_window .left .action-buttons .item:hover {
+	background-color: rgba(0,0,0,0.2);
+}
+.a9os_app_vf_window .left .action-buttons .item span {
+	display: inline-block;
+	font-size: 12px;
+	line-height: 14px;
+	vertical-align: middle;
+}
+
+.a9os_app_vf_window .left .action-buttons .item.new-folder {
+	background-image: url(/resources/a9os/app/vf/icons/new-folder-icon.svg);
+}
+.a9os_app_vf_window .left .action-buttons .item.update {
+	background-image: url(/resources/a9os/app/vf/icons/update-icon-white.svg);
+}
+
+.a9os_app_vf_window .left .action-buttons .item.list-mode {
+	background-image: url(/resources/a9os/app/vf/icons/list-mode-icon.svg);
+}
+.a9os_app_vf_window .left .action-buttons .item.list-mode.active {
+	background-image: url(/resources/a9os/app/vf/icons/icon-mode-icon.svg);
+}
+
+
+/*RESPOSIVE STYLE*/
+.is-mobile .a9os_app_vf_window .left {
+	transform: translateX(-150px);
+	transition: all 0.3s;
+}
+.is-mobile .a9os_app_vf_window.side-open .left {
+	transform: translateX(0);
+	box-shadow: 0 0 30px rgba(0,0,0,0.2);
+}
+.is-mobile .a9os_app_vf_window.side-open .right {
+	transform: translateX(100px);
+}
+.is-mobile .a9os_app_vf_window .right {
+	width: 100%;
+	transition: all 0.3s;
+}
+.is-mobile .a9os_app_vf_window .right .main-bar .main-menu {
+	display: none;
+}
+.is-mobile .a9os_app_vf_window .right .main-bar .main-menu {
+	display: inline-block;
+}
+
+@media screen and (max-width: 650px){
+	.a9os_app_vf_window .right .main-bar {
+		margin-top: 25px;
+	}
+	.a9os_app_vf_window .right .vf-files-container {
+		padding-top: 70px;
+	}
+}

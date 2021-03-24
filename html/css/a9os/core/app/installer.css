@@ -1,0 +1,463 @@
+/*_gtlsc_
+ * os.com.ar (a9os) - Open web LAMP framework and desktop environment
+ * Copyright (C) 2019-2021  Santiago Pereyra (asp95)
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
+.a9os_core_app_installer .not-syskey, .a9os_core_app_installer .can-syskey {
+	display: none;
+}
+.a9os_core_app_installer .not-syskey.show, .a9os_core_app_installer .can-syskey.show {
+	display: block;
+}
+
+.a9os_core_app_installer .can-syskey {
+	font-size: 0;
+}
+.a9os_core_app_installer .can-syskey .app-list {
+	display: inline-block;
+	position: relative;
+	width: 200px;
+	height: 100%;
+	background-color: #fff;
+	vertical-align: top;
+	box-sizing: border-box;
+}
+.a9os_core_app_installer .can-syskey.installing-blocked .app-list:before {
+	content: "";
+	background-color: rgba(0,0,0,0.5);
+	top: 0;left: 0;
+	right: 0; bottom: 0;
+	display: block;
+	position: absolute;
+	z-index: 2;
+}
+
+.a9os_core_app_installer .can-syskey .app-list .scrolled {
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: calc(100% - 40px);
+	top: 0;
+	left: 0;
+	overflow-y: auto;
+	overflow-x: hidden;
+	box-sizing: border-box;
+}
+
+.a9os_core_app_installer .can-syskey .app-list .item {
+	display: block;
+	position: relative;
+	width: 100%;
+	height: 40px;
+	transition: all 0.1s
+}
+.a9os_core_app_installer .can-syskey .app-list .item.filtered {
+	display: none;
+}
+.a9os_core_app_installer .can-syskey .app-list .item.selected {
+	background-color: rgba(0,0,0,0.2);
+}
+.a9os_core_app_installer .can-syskey .app-list .item:hover {
+	background-color: rgba(0,0,0,0.1);
+}
+.a9os_core_app_installer .can-syskey .app-list .item img {
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+	vertical-align: middle;
+	border: none;
+	margin: 0 7px;
+	pointer-events: none;
+}
+.a9os_core_app_installer .can-syskey .app-list .item .name {
+	vertical-align: middle;
+	display: inline-block;
+	position: relative;
+	font-size: 12px;
+	color: #222;
+	max-width: 95px;
+}
+
+.a9os_core_app_installer .can-syskey .app-list .item .status-icon {
+	display: block;
+	position: absolute;
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	top: 12px;
+	right: 5px;
+	background-color: #ddd;
+}
+.a9os_core_app_installer .can-syskey .app-list .item .status-icon[data-status="installed"] {
+	background: url(/resources/a9os/core/app/installer/icon-installed.svg) center center no-repeat;
+	background-size: contain;
+}
+.a9os_core_app_installer .can-syskey .app-list .item .status-icon[data-status="to-update"] {
+	background: url(/resources/a9os/core/app/installer/icon-to-update.svg) center center no-repeat;
+	background-size: contain;
+}
+
+.a9os_core_app_installer .can-syskey .app-list .search {
+	display: block;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 40px;
+	font-size: 12px;
+	line-height: 40px;
+	padding: 0 15px;
+	background-color: rgba(255,255,255,1);
+	box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
+	color: #222;
+	border: none;
+	outline: none;
+	border-radius: 0;
+
+}
+
+.a9os_core_app_installer .can-syskey .app-area {
+	display: inline-block;
+	position: relative;
+	width: calc(100% - 200px);
+	height: 100%;
+	overflow: hidden;
+	overflow-y: auto;
+	padding: 50px 10px 0 30px;
+	box-sizing: border-box;
+}
+
+.a9os_core_app_installer .can-syskey.not-selected-app .app-data .app-scope,
+.a9os_core_app_installer .can-syskey.not-selected-app .app-data .app-code-line,
+.a9os_core_app_installer .can-syskey.not-selected-app .app-data .version-line,
+.a9os_core_app_installer .can-syskey.not-selected-app .app-data .buttons,
+.a9os_core_app_installer .can-syskey.not-selected-app .app-data .enabled-users {
+	display: none!important;
+}
+.a9os_core_app_installer .can-syskey .not-selected-app .app-data .name {
+	margin-top: 15px;
+}
+
+.a9os_core_app_installer .can-syskey .app-area .icon {
+	display: inline-block;
+	vertical-align: top;
+	width: 70px;
+	left: 70px;
+}
+.a9os_core_app_installer .can-syskey .app-area .app-data {
+	display: inline-block;
+	vertical-align: top;
+	width: calc(100% - 70px);
+	height: auto;
+	font-size: 14px;
+	padding: 0 0 0 15px;
+	box-sizing: border-box;
+}
+.a9os_core_app_installer .can-syskey .app-area .app-data .name {
+	color: #444;
+	font-size: 25px;
+}
+.a9os_core_app_installer .can-syskey .app-area .app-data .app-scope {
+	display: inline-block;
+	position: relative;
+	padding: 3px 5px;
+	border-radius: 3px;
+	background-color: rgba(0,0,0,0.6);
+	color: #fff;
+	font-size: 14px;
+	margin-bottom: 20px;
+
+}
+.a9os_core_app_installer .can-syskey .app-area .app-data .version-line {
+	font-size: 14px;
+	font-weight: bold;
+	color: #222;
+	margin-bottom: 5px;
+}
+.a9os_core_app_installer .can-syskey .app-area .app-data .version-line.hide {
+	display: none;
+}
+.a9os_core_app_installer .can-syskey .app-area .app-data .version-line span {
+	font-weight: normal;
+}
+.a9os_core_app_installer .can-syskey .app-area .app-data .app-code-line {
+	display: block;
+	position: relative;
+	font-size: 14px;
+	font-weight: bold;
+	margin: 10px 0;
+}
+.a9os_core_app_installer .can-syskey .app-area .app-data .app-code-line input {
+	background-color: transparent;
+	height: 30px;
+	width: 100px;
+	border: none;
+	display: inline-block;
+	outline: none;
+	vertical-align: middle;
+	text-align: center;
+}
+.a9os_core_app_installer .can-syskey .app-area .app-data .app-code-line .btn {
+	vertical-align: middle;
+	height: 21px;
+	margin: 0;
+}
+
+.a9os_core_app_installer .can-syskey .app-area .app-data .buttons {
+	text-align: left;
+	margin: 20px 0;
+}
+.a9os_core_app_installer .can-syskey .app-area .app-data .buttons .btn.hide {
+	display: none;
+}
+.a9os_core_app_installer .can-syskey .app-area .app-data .enabled-users .users-list {
+	border: 1px solid #444;
+	background-color: #fff;
+	font-size: 14px;
+	height: 200px;
+	width: 200px;
+	overflow: hidden;
+	overflow-y: auto;
+}
+.a9os_core_app_installer .can-syskey .app-area .app-data .enabled-users.hide {
+	display: none;
+}
+.a9os_core_app_installer .can-syskey .app-area .app-data .enabled-users .users-list .user-item {
+	display: block;
+	position: relative;
+	width: 100%;
+	height: 30px;
+	padding: 0;
+}
+.a9os_core_app_installer .can-syskey .app-area .app-data .enabled-users .users-list .user-item:hover {
+	background-color: rgba(0,0,0,0.1);
+}
+.a9os_core_app_installer .can-syskey .app-area .app-data .enabled-users .users-list .user-item input {
+	display: inline-block;
+	vertical-align: middle;
+	width: 15px;
+	margin: 0;
+}
+.a9os_core_app_installer .can-syskey .app-area .app-data .enabled-users .users-list .user-item .name {
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 14px;
+	color: #222;
+	margin: 0;
+	margin-left: 15px;
+}
+.a9os_core_app_installer .can-syskey .app-area .app-data .enabled-users .buttons {
+	margin-top: 5px;
+	margin-left: 0;
+}
+
+
+
+.a9os_core_app_installer .can-syskey .changelog-area {
+	display: block;
+	position: relative;
+	margin-bottom: 20px;
+}
+.a9os_core_app_installer .can-syskey .changelog-area.hide {
+	display: none;
+}
+.a9os_core_app_installer .can-syskey .changelog-area .title {
+	display: block;
+	position: relative;
+	font-size: 14px;
+	text-align: left;
+	cursor: pointer;
+}
+.a9os_core_app_installer .can-syskey .changelog-area .title:after {
+	content: "+";
+	display: inline-block;
+	vertical-align: middle;
+	background-color: #fff;
+	border-radius: 3px;
+	box-sizing: border-box;
+	font-size: 14px;
+	line-height: 20px;
+	color: #222;
+	text-align: center;
+	width: 20px;
+	height: 20px;
+	box-shadow: 0 0 0 1px rgba(0,0,0,0.2);
+	margin: 0 0 0 10px;
+}
+.a9os_core_app_installer .can-syskey .changelog-area.show .title:after {
+	content: "-";
+}
+
+.a9os_core_app_installer .can-syskey .changelog-area .changelog-list {
+	background-color: #fff;
+	position: relative;
+	width: 100%;
+	text-align: left;
+	border-radius: 5px;
+	padding: 10px;
+	box-sizing: border-box;
+	font-size: 12px;
+	color: #222;
+	margin-top: 5px;
+	display: none;
+	user-select: text;
+}
+.a9os_core_app_installer .can-syskey .changelog-area.show .changelog-list {
+	display: block;
+}
+
+
+
+
+
+
+
+
+
+
+.a9os_core_app_installer .can-syskey .mobile-app-button {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 200px;
+	width: 50px;
+	height: 50px;
+	background: url(/resources/a9os/core/taskbar/main-button.svg) center center no-repeat;
+	background-size: contain;
+	cursor: pointer;
+}
+.is-mobile .a9os_core_app_installer .can-syskey .mobile-app-button {
+	display: block;
+}
+
+.is-mobile .a9os_core_app_installer .can-syskey {
+	width: calc(100% + 200px);
+	transform: translateX(-200px);
+	transition: transform 0.3s;
+}
+.is-mobile .a9os_core_app_installer .can-syskey .app-list {
+	z-index: 1;
+}
+.is-mobile .a9os_core_app_installer .can-syskey .app-area {
+	padding: 50px 2% 0;
+	transition: all 0.3s;
+}
+
+.is-mobile .a9os_core_app_installer .can-syskey .app-area .app-data {
+	width: calc(100% - 12%);
+}
+
+.is-mobile .a9os_core_app_installer .can-syskey .app-area .icon {
+	width: 12%;
+	margin-top: 20px;
+}
+.is-mobile .a9os_core_app_installer .can-syskey.mobile-show-apps {
+	transform: translateX(0px);
+}
+
+.is-mobile .a9os_core_app_installer .can-syskey.mobile-show-apps .app-area {
+	transform: translateX(-100px);
+	opacity: 0.5;
+	background-color: rgba(0,0,0,0.3);
+}
+
+
+
+
+
+
+.a9os_core_app_installer h1 {
+	color: red;
+}
+
+.a9os_core_app_installer label {
+	display: block;
+	position: relative;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 30px 5% 5px;
+}
+.a9os_core_app_installer label input {
+	display: block;
+	position: relative;
+	width: 100%;
+	height: 30px;
+	padding: 5px;
+	border: none;
+	border: none;
+	border-bottom: 1px solid #444;
+	background-color: transparent;
+	box-sizing: border-box;
+}
+.a9os_core_app_installer label span {
+	display: inline-block;
+	position: relative;
+	font-size: 13px;
+	margin: -25px 0 0 5px;
+	transition: all 0.1s;
+}
+.a9os_core_app_installer label input:focus {
+	outline: none;
+	border-bottom: 1px solid #222;
+	transition: all 0.1s;
+}
+.a9os_core_app_installer label input:focus + span,
+.a9os_core_app_installer label input.non-empty + span {
+	margin: -40px 0 0 2px;
+	font-size: 10px;
+}
+
+.a9os_core_app_installer .buttons {
+	display: block;
+	position: relative;
+	height: 37px;
+	text-align: right;
+	box-sizing: border-box;
+	padding-right: 10px
+}
+.a9os_core_app_installer .buttons .btn {
+	display: inline-block;
+}
+
+
+.a9os_core_app_installer .preview {
+	display: block;
+	position: relative;
+	box-sizing: border-box;
+	padding: 20px;
+	text-align: left;
+}
+.a9os_core_app_installer .preview .favicon{
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	vertical-align: middle;
+	background-position: center center;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+.a9os_core_app_installer .preview .name {
+	display: inline-block;
+	margin-left: 20px;
+	vertical-align: middle;
+	font-size: 16px;
+	color: #444;
+}
+.a9os_core_app_installer .preview.error {
+	display: block;
+	text-align: center;
+	padding: 20px;
+	box-sizing: border-box;
+	width: 100%;
+}

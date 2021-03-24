@@ -1,0 +1,388 @@
+/*_gtlsc_
+ * os.com.ar (a9os) - Open web LAMP framework and desktop environment
+ * Copyright (C) 2019-2021  Santiago Pereyra (asp95)
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
+
+.a9os_app_vf_desktop .vf-files-container {
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	padding-bottom: 50px;
+	box-sizing: border-box;
+	writing-mode: vertical-lr;
+	text-orientation: upright;
+	z-index: -1;
+	background-position: center center;
+	background-repeat: no-repeat;
+	overflow: hidden;
+	overflow-x: auto;
+	scrollbar-width: none;
+}
+.a9os_app_vf_desktop .vf-files-container::-webkit-scrollbar {
+	display: none;
+}
+.a9os_app_vf_desktop .vf-files-container .item {
+	text-shadow: 0 0 5px rgba(0,0,0,1);
+}
+
+.a9os_app_vf_desktop .vf-files-container .empty-folder {
+	display: block;
+	position: relative;
+	margin: 20px auto;
+	width: 100%;
+	writing-mode: horizontal-tb;
+	text-orientation: unset;
+	text-align: center;
+}
+
+.a9os_app_vf_desktop .desktop-scroll {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 5px 5%;
+	height: 15px;
+	width: 90%;
+	border-radius: 15px;
+	overflow: hidden;
+	background-color: rgba(0,0,0,0.1);
+
+}
+.a9os_app_vf_desktop .desktop-scroll.show {
+	display: block;
+}
+.a9os_app_vf_desktop .desktop-scroll .bar {
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 50%;
+	border-radius: 15px;
+	background-color: rgba(0,0,0,0.4);
+	transition: background-color 0.1s, width 0.1s;
+}
+.a9os_app_vf_desktop .desktop-scroll .bar:hover {
+	background-color: rgba(0,0,0,0.8);
+}
+
+.a9os_app_vf_desktop .desktop-scroll.show + .vf-files-container {
+	padding-top: 25px;
+}
+.vf-files-container .item{
+	writing-mode: horizontal-tb;
+	border-radius: 2px;
+	margin: 10px;
+	display: inline-block;
+	width: 100px;
+	height: 115px;
+	background-color: rgba(0,0,0,0);
+	color: #fff;
+	vertical-align: top;
+	transition: background-color 0.1s;
+	text-align: center;
+	padding: 0 10px;
+	box-sizing: border-box;
+	position: relative;
+	word-break: break-word;
+	cursor: default;
+	border: none;
+	overflow: hidden;
+}
+.vf-files-container:not(.square-selection-doing) .item:hover{
+	background-color: rgba(0,0,0,0.15);
+	overflow: visible;
+	z-index: 1;
+}
+
+.vf-files-container .item.hide, .vf-files-container.list-mode .item.hide{
+	visibility: hidden;
+	opacity: 0;
+	margin: 0;
+	padding: 0;
+	width: 0;
+	height: 0;
+}
+.vf-files-container .item .icon{
+	margin: 5px auto;
+	width:80%;
+	height: 65px;
+	background-size: cover;
+	border-radius: 5px;
+}
+
+.vf-files-container .item.edit {
+	height: auto;
+	background-color: rgba(0,0,0,0.15);
+}
+
+.vf-files-container .item.edit .name {
+	background-color: #fff!important;
+	border: 1px solid #888;
+	border-radius: 3px;
+	padding: 2px;
+	box-sizing: border-box;
+	outline: none;
+	color: #444;
+	text-shadow: none;
+}
+
+.vf-files-container .item .select-button {
+	display: block;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background-color: rgba(60,60,60,1);
+	opacity: 0;
+	cursor: pointer;
+	transition: opacity 0.1s;
+}
+.vf-files-container .item:hover .select-button {
+	opacity: 0.2;
+}
+.vf-files-container .item .select-button:hover {
+	opacity: 0.5;
+}
+.vf-files-container .item.selected .select-button {
+	opacity: 1!important;
+}
+
+.vf-files-container .item.selected {
+	background-color: rgba(100,100,100,0.4)!important;
+}
+.vf-files-container .item.cutted {
+	opacity: 0.5;
+}
+
+.vf-files-container .item .size{
+	font-weight: 300;
+	font-size: 9px;
+	margin-top: 5px;
+}
+
+
+.vf-files-container .item .name{
+	display: block;
+	width: 100%;
+	font-size: 12px;
+	 word-wrap: break-word;
+}
+
+.vf-files-container .item .name.edit {
+	background-color: rgba(255,255,255,0.1);
+}
+
+.vf-files-container .item.expand{
+	background-color: rgba(0,0,0,0.2);
+	height: auto!important;
+	padding: 10px;
+	overflow-y:auto;
+	transition: all 0.2s;
+
+}
+.vf-files-container .item.expand > .name {
+	text-align: left;
+	font-size: 16px;
+	font-weight: bold;
+    padding: 3px 0;
+}
+.vf-files-container .item.expand .size {
+	text-align: left;
+	font-size: 12px;
+	margin-bottom: 0;
+	transition: margin-bottom 0.2s;
+}
+
+.vf-files-container .item.expand .expand-tags{
+	text-align: left;
+	display: block;
+	opacity: 1;
+	visibility: visible;
+	height: auto;
+	transition: all 0.1s 0.1s;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.vf-files-container .type-folder{
+	background:url(/resources/a9os/app/vf/icons/files/folder-icon.svg) center center no-repeat;
+	background-size: contain;
+}
+.vf-files-container .type-file{
+	background:url(/resources/a9os/app/vf/icons/files/file-icon.svg) center center no-repeat;
+	background-size: contain;
+}
+
+.vf-files-container .item[data-path="/desktop/"]:not(.new-item-rename) .icon {
+	background-image: url(/resources/a9os/app/vf/icons/files/default-user-folders/folder-desktop-icon.svg);
+	background-size: contain!important;
+}
+.vf-files-container .item[data-path="/documentos/"]:not(.new-item-rename) .icon {
+	background-image: url(/resources/a9os/app/vf/icons/files/default-user-folders/folder-documentos-icon.svg);
+	background-size: contain!important;
+}
+.vf-files-container .item[data-path="/imagenes/"]:not(.new-item-rename) .icon {
+	background-image: url(/resources/a9os/app/vf/icons/files/default-user-folders/folder-imagenes-icon.svg);
+	background-size: contain!important;
+}
+.vf-files-container .item[data-path="/videos/"]:not(.new-item-rename) .icon {
+	background-image: url(/resources/a9os/app/vf/icons/files/default-user-folders/folder-videos-icon.svg);
+	background-size: contain!important;
+}
+.vf-files-container .item[data-path="/musica/"]:not(.new-item-rename) .icon {
+	background-image: url(/resources/a9os/app/vf/icons/files/default-user-folders/folder-musica-icon.svg);
+	background-size: contain!important;
+}
+
+
+.vf-files-container.list-mode {
+	padding-bottom: 30px; 
+}
+.vf-files-container.list-mode .item {
+	display: block;
+	position: relative;
+	width: calc(100% - 20px);
+	box-sizing: border-box;
+	height: 40px;
+	padding: 5px 3px;
+	margin: 0 10px;
+	background-color: transparent;
+	border-bottom: 1px solid rgba(0,0,0,0.03);
+	border-radius: 0;
+	font-size: 0;
+	text-align: left;
+	overflow: hidden;
+}
+.vf-files-container.list-mode .item > *{
+	display: inline-block!important;
+	vertical-align: middle;
+	max-height: 30px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.vf-files-container.list-mode .item.expand > * {
+	max-height: none;
+}
+.vf-files-container.list-mode .item .icon {
+	height: 30px;
+	width: 30px;
+	margin: 0 10px;
+}
+.vf-files-container.list-mode .item .name {
+	width: calc(100% - 120px);
+	box-sizing: border-box;
+	padding: 0 5px 0 0;
+}
+.vf-files-container.list-mode .item .size {
+	margin: 0 5px;
+	width: 60px;
+	text-align: center;
+}
+.vf-files-container.list-mode .item.expand {
+	height: 100px;
+}
+.vf-files-container.list-mode .item.expand .name {
+	border-right: none;
+	width: calc( 100% - 50px);
+	max-height: none;
+}
+.vf-files-container.list-mode .item .select-button {
+	opacity: 0.2;
+	left: 3px;
+	top: 5px;
+	width: 6px;
+	height: 30px;
+	border-radius: 3px;
+}
+
+.vf-files-container.item-move-layer.list-mode .item {
+	background-color: rgba(100,100,100,0.4);
+}
+.vf-files-container.item-move-layer.list-mode .item:hover {
+	background-color: rgba(100,100,100,0.4);
+}
+
+
+.vf-files-container .square-selection {
+	display: block;
+	position: absolute;
+	background-color: rgba(20,50,200,0.3);
+	box-shadow: inset 0 0 0 1px rgba(20,50,200,0.8);
+}
+
+.vf-files-container.dragover, .vf-files-container .item.dragover {
+	box-shadow: inset 0 0 0 1px #111;
+	background-color: rgba(0,0,0,0.2)!important;
+}
+
+
+.a9os-main .item-move-layer.closed {
+	opacity: 0;
+}
+.a9os-main .item-move-layer {
+	display: block;
+	position: fixed;
+	width: 20px;
+	height: 20px;
+	overflow: hidden;
+	z-index: 1000;
+
+	opacity: 0.8;
+	transition: opacity 0.1s;
+}
+.a9os-main .item-move-layer.dropover {
+	opacity: 0.4;
+}
+.a9os-main .item-move-layer.list-mode {
+	padding-bottom: 0;
+}
+.a9os-main .item-move-layer .item {
+	position: absolute;
+	margin: 0;
+}
+.a9os-main .item-move-layer:not(.is-desktop):not(.list-mode) .item .icon {
+	height: 95px;
+	margin: 10px auto;
+}
+.vf-files-container.item-move-layer .item, .a9os-main .item-move-layer.list-mode .item {
+	background-color: rgba(100,100,100,0.6);
+}
+.vf-files-container.item-move-layer .item:hover, .a9os-main .item-move-layer.list-mode .item:hover {
+	background-color: rgba(100,100,100,0.6);
+}
+
+.a9os-main .item.move-hide {
+	opacity: 0;
+	transition: opacity 0.1s;
+}

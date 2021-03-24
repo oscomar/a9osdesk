@@ -1,0 +1,113 @@
+/*_gtlsc_
+ * os.com.ar (a9os) - Open web LAMP framework and desktop environment
+ * Copyright (C) 2019-2021  Santiago Pereyra (asp95)
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
+cmp.a9os_core_taskbar_statusbox .statusbox {
+	display: block;
+	position: fixed;
+	bottom: 50px;
+	right: 10px;
+	color: #222;
+	box-sizing: border-box;
+	min-width: 300px;
+	min-height: 50px;
+	text-align: center;
+	transform: translateY(60px);
+	opacity: 0;
+	visibility: hidden;
+	padding-top: 20px;
+	overflow: hidden;
+	z-index: 999;
+	box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+	backdrop-filter:none;
+	background-color: #fff;
+	transition: all 0.2s, transform 0.4s, backdrop-filter 0s, background-color 0.2s;
+}
+cmp.a9os_core_taskbar_statusbox .statusbox.show {
+	transform: translateY(0);
+	padding-top: 0;
+	opacity: 1;
+	visibility: visible;
+	transition: all 0.4s;
+
+	background-color: rgba(255,255,255,0.8);
+	backdrop-filter: blur(5px);
+	transition: all 0.2s, transform 0.4s, backdrop-filter 0s 0.4s, background-color 0.5s 0.4s;
+	
+}
+
+cmp.a9os_core_taskbar_statusbox .statusbox > * {
+	transform: translateX(0);
+	opacity: 0;
+	transition: all 0.2s;
+}
+cmp.a9os_core_taskbar_statusbox .statusbox.show > * {
+	opacity: 1;
+	transition: all 0.2s;
+}
+
+cmp.a9os_core_taskbar_statusbox .statusbox.sliding > * {
+	animation: statusbox-sliding 0.2s;
+}
+cmp.a9os_core_taskbar_statusbox .statusbox.sliding2 > * {
+	animation: statusbox-sliding2 0.2s;
+	transform: translateX(30px);
+	opacity: 0;
+}
+@keyframes statusbox-sliding{
+	0% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+	100% {
+		transform: translateX(-30px);
+		opacity: 0;
+	}
+}
+
+@keyframes statusbox-sliding2{
+	0% {
+		transform: translateX(30px);
+		opacity: 0;
+	}
+	100% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+
+@media screen and (max-width: 650px){
+	cmp.a9os_core_taskbar_statusbox .statusbox {
+		bottom: auto;
+		top: 0;
+		right: 5%;
+		border-radius: 0;
+		width: 90%;
+		transform: translateY(-60px);
+		padding-bottom: 20px;
+		border-radius: 0 0 3px 3px;
+		padding-top: 32px;
+		background-color: #fff;
+		backdrop-filter:none;
+
+		box-shadow: 0 10px 15px rgba(0,0,0,0.5), inset 0 30px 0 #fff;
+	}
+	cmp.a9os_core_taskbar_statusbox .statusbox.show {
+		transform: translateY(0);
+		padding-top: 30px;
+		background-color: #fff;
+		backdrop-filter:none;
+	}
+}

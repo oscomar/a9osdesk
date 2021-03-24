@@ -1,0 +1,46 @@
+<!--_gtlsc_
+	os.com.ar (a9os) - Open web LAMP framework and desktop environment
+	Copyright (C) 2019-2021  Santiago Pereyra (asp95)
+	
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+	
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <https://www.gnu.org/licenses/>.-->
+<div class="files-to-check-container ibl-c" data-foreach="arrFilesToCheck:currFileToCheck">
+	<div class="item" data-textcontent="currFileToCheck.origin.path" data-data="id:currFileToCheck.id"></div>
+</div>
+<div class="file-dialog-container" data-foreach="arrFilesToCheck:currFileToCheck">
+	<div class="file-dialog" data-data="id:currFileToCheck.id,currpath:currFileToCheck.currPath,currinternalpath:currFileToCheck.currInternalPath">
+		<div class="file origin">
+			<div class="icon"><img data-src="currFileToCheck.origin.icon"></div>
+			<div class="path" data-textcontent="currFileToCheck.origin.path"></div>
+			<div class="size" data-textcontent="currFileToCheck.origin.size"></div>
+		</div>
+		<div class="file dest">
+			<div class="icon"><img data-src="currFileToCheck.dest.icon"></div>
+			<div class="path" data-textcontent="currFileToCheck.dest.path"></div>
+			<div class="size" data-textcontent="currFileToCheck.dest.size"></div>
+		</div>
+		<div class="label"><span data-textcontent="currFileToCheck.typeLabel"></span> ya se encuentra en el destino. ¿Qué desea hacer?</div>
+		<div class="buttons">
+			<button class="btn overwrite" data-textcontent="currFileToCheck.overwriteNameByType">Reemplazar</button>
+			<button class="btn rename">Renombrar</button>
+			<button class="btn skip">Omitir</button>
+		</div>
+		<div class="rename-line">
+			Nuevo nombre: <input type="text" data-value="currFileToCheck.fileName">
+		</div>
+	</div>
+</div>
+<div class="bottom-buttons ibl-c">
+	<button class="btn submit" disabled>Aceptar</button>
+	<button class="btn cancel">Cancelar</button>
+</div>

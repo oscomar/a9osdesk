@@ -1,0 +1,170 @@
+/*_gtlsc_
+ * os.com.ar (a9os) - Open web LAMP framework and desktop environment
+ * Copyright (C) 2019-2021  Santiago Pereyra (asp95)
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
+cmp.a9os_core_taskbar .taskbar{
+	display: flex;
+	align-items: flex-start;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 50px;
+	background-color: #222;
+	box-shadow: 0 0 10px rgba(0,0,0,0.2);
+	font-size: 0;
+	text-align: left;
+	z-index: 1000;
+	transition: background 0.2s;
+}
+cmp.a9os_core_taskbar .taskbar.dark-foreground {
+	color: #444;
+}
+cmp.a9os_core_taskbar .taskbar.transparent {
+	backdrop-filter:blur(5px);
+}
+cmp.a9os_core_taskbar .taskbar .main-button{
+	display: inline-block;
+	position: relative;
+	width: 50px;
+	height: 100%;
+	box-sizing: border-box;
+	background: #fff url(/resources/a9os/core/taskbar/main-button.svg) center center no-repeat;
+	background-size: cover;
+	cursor: pointer;
+	background-color: #fff;
+	transition: transform 0.3s;
+}
+cmp.a9os_core_taskbar .taskbar .main-button:active{
+	background-color: #ddd;
+}
+
+
+
+
+
+/*
+cmp.a9os_core_taskbar .taskbar .notif-area .loader-spin{
+	box-sizing: border-box;
+	position: relative;
+	border-radius: 50%;
+	z-index: 1100;
+	animation: loading 0.5s linear infinite;
+	background-color: transparent;
+	background-image: url(/resources/a9os/app/vf/icons/loader.svg);
+	background-size: contain;
+	z-index: 1001;
+	display: none;
+}
+cmp.a9os_core_taskbar .taskbar .notif-area .loader-spin .percent {
+	display: inline-block;
+	color: #fff;
+	font-size: 12px;
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	padding-top: 13%;
+	animation: loading-percent 0.5s linear infinite;
+}
+body.loading cmp.a9os_core_taskbar .taskbar .notif-area .loader-spin{
+	display: inline-block;
+}
+
+@keyframes loading-percent{
+	from{
+		transform: rotate(360deg);
+	}
+	to{
+		transform: rotate(0deg);
+	}
+}*/
+
+
+
+
+
+
+@media screen and (max-width: 650px){
+	cmp.a9os_core_taskbar .taskbar{
+		height: 40px;
+		width: calc(100% - 40px);
+		left: 0;
+		background-color: rgba(10,10,10, 0)!important;
+		box-shadow: none;
+	}
+	cmp.a9os_core_taskbar .taskbar.transparent {
+		backdrop-filter: none;
+	}
+
+	cmp.a9os_core_taskbar .taskbar .main-button{
+		width: 50px;
+		height: 50px;
+		margin: -15px 0 0 5px;
+		border-radius: 50%;
+		transition: all 0.1s;
+		box-shadow: -1px 3px 8px rgba(0,0,0,0.5);
+	}
+	cmp.a9os_core_taskbar .taskbar.with-apps .main-button {
+		width: 30px;
+		height: 30px;
+		margin: 5px 0 0 5px;
+	}
+	cmp.a9os_core_taskbar .taskbar .main-button:hover:before {
+		opacity: 1;
+		visibility: visible;
+	}
+	cmp.a9os_core_taskbar .taskbar .notif-area {
+		transition: background-color 0s, transform 0.1s;
+	}
+
+	body.loading cmp.a9os_core_taskbar .taskbar .main-button {
+		background: #fff;
+	}
+	body.loading cmp.a9os_core_taskbar .taskbar .main-button:after {
+		content: "";
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		background: url(/resources/a9os/app/vf/icons/loader.svg) center center no-repeat;
+		background-size: 60%;
+		filter: invert(1);
+		animation: mobile-notif-loading 0.5s linear infinite;
+	}
+	@keyframes mobile-notif-loading {
+		from{
+			transform: rotate(0deg);
+		}
+		to{
+			transform: rotate(360deg);
+		}
+	}
+
+
+	.a9os-main:after{
+		content: "";
+		display: block;
+		position: absolute;
+		width: 40px;
+		height: 40px;
+		background-color: rgba(10,10,10, 0);
+		z-index: -1;
+		right: 0;
+		bottom: 0;
+	}
+}

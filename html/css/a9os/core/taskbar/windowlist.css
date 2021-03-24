@@ -1,0 +1,121 @@
+/*_gtlsc_
+ * os.com.ar (a9os) - Open web LAMP framework and desktop environment
+ * Copyright (C) 2019-2021  Santiago Pereyra (asp95)
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
+cmp.a9os_core_taskbar_windowlist {
+	flex: 1;
+}
+cmp.a9os_core_taskbar_windowlist .window-list{
+	display: inline-block;
+	position: relative;
+	height: 50px;
+	/*width: calc(100% - 50px - 200px);*/
+	width: 100%;
+	vertical-align: top;
+	box-sizing: border-box;
+	padding-left: 5px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+cmp.a9os_core_taskbar_windowlist .window-list .item{
+	display: inline-block;
+	vertical-align: middle;
+	height: 100%;
+	width: 50px;
+	margin: 0 1px;
+	background: url(/resources/a9os/app/vf/icons/warning-icon.svg) center center no-repeat;
+	background-size: 70%;
+	background-color: rgba(255,255,255,0.1);
+	transition: all 0.2s;
+}
+.dark-foreground cmp.a9os_core_taskbar_windowlist .window-list .item{
+	background-color: rgba(0,0,0,0.1);
+}
+
+
+
+cmp.a9os_core_taskbar_windowlist .window-list .item:hover{
+	background-color: rgba(255,255,255,0.35);
+	opacity: 1;
+}
+.dark-foreground cmp.a9os_core_taskbar_windowlist .window-list .item:hover{
+	background-color: rgba(0,0,0,0.35);
+	opacity: 1;
+}
+
+cmp.a9os_core_taskbar_windowlist .window-list .item.active{
+	background-color: rgba(255,255,255,0.5)!important;
+}
+.dark-foreground cmp.a9os_core_taskbar_windowlist .window-list .item.active{
+	background-color: rgba(0,0,0,0.5)!important;
+}
+
+cmp.a9os_core_taskbar_windowlist .window-list .item.minimized{
+	transition: all 0.2s 0.2s;
+	opacity: 0.4;
+}
+
+
+cmp.a9os_core_taskbar_windowlist .window-list .item.pinned:not(.used) {
+	background-color: transparent;
+}
+
+cmp.a9os_core_taskbar_windowlist .window-list .item.pinned:not(.used):active {
+	background-color: rgba(255,255,255,0.3);
+	transition: all 0.1s;
+}
+.dark-foreground cmp.a9os_core_taskbar_windowlist .window-list .item.pinned:not(.used):active {
+	background-color: rgba(0,0,0,0.3);
+	transition: all 0.1s;
+}
+
+cmp.a9os_core_taskbar_windowlist .window-list .item.move-hide {
+	opacity: 0;
+	width: 0;
+	transition: width 0.2s;
+}
+cmp.a9os_core_taskbar_windowlist .window-list .item.move-hide:hover{
+	opacity: 0;
+}
+
+cmp.a9os_core_taskbar_windowlist .window-list .item.item-to-move {
+	position: absolute;
+	top: 0;
+	left: 0;
+	transition: none;
+}
+cmp.a9os_core_taskbar_windowlist .window-list .item.move-marginleft {
+	margin-left: 51px;
+}
+
+@media screen and (max-width: 650px){
+	cmp.a9os_core_taskbar_windowlist {
+		flex: none;
+		width: calc(100% - 55px);
+	}
+
+	cmp.a9os_core_taskbar_windowlist .window-list{
+		width: calc(100%);
+		height: 40px;
+		white-space: nowrap;
+		overflow-x: auto;
+		overflow-y: hidden;
+	}
+	cmp.a9os_core_taskbar_windowlist .window-list .item{
+		width: 40px;
+	}
+
+}

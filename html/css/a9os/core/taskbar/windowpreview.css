@@ -1,0 +1,98 @@
+/*_gtlsc_
+ * os.com.ar (a9os) - Open web LAMP framework and desktop environment
+ * Copyright (C) 2019-2021  Santiago Pereyra (asp95)
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
+cmp.a9os_core_taskbar_windowpreview .window-preview {
+	display: block;
+	position: fixed;
+	z-index: 998;
+	max-width: 300px;
+	box-sizing: border-box;
+	padding: 0 10px 10px;
+	text-align: center;
+	bottom: 50px;
+	background-color: #444;
+	color: #fff;
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(10px);
+	transition: all 0.2s;
+	overflow: hidden;
+	box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+cmp.a9os_core_taskbar_windowpreview .window-preview.dark-foreground {
+	color: #222;
+}
+cmp.a9os_core_taskbar_windowpreview .window-preview.transparent {
+	backdrop-filter:blur(5px);
+}
+cmp.a9os_core_taskbar_windowpreview .window-preview.show {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+}
+
+cmp.a9os_core_taskbar_windowpreview .window-preview .name {
+	display: block;
+	text-align: center;
+	white-space: nowrap;
+	font-size: 14px;
+	padding: 10px 0;
+	width: 100%;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+cmp.a9os_core_taskbar_windowpreview .window-preview .preview {
+	display: block;
+	margin: 0 auto;
+	overflow: hidden;
+	text-align: left;
+	text-overflow: initial;
+	position: relative;
+	border: 1px solid rgba(255,255,255,0.3);
+	transition: height 0.2s;
+}
+cmp.a9os_core_taskbar_windowpreview .window-preview .preview .main-content {
+	background-color: rgba(230,230,230,1);
+	color: #000;
+	top:0;
+	left: 0;
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+cmp.a9os_core_taskbar_windowpreview .window-preview .preview .main-content.transparent {
+	background-color: rgba(0,0,0,0.1);
+	color: #fff;
+}
+cmp.a9os_core_taskbar_windowpreview .window-preview.dark-foreground .preview {
+	border: 1px solid rgba(0,0,0,0.5);
+} 
+
+cmp.a9os_core_taskbar_windowpreview .window-preview:after {
+	content: "";
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: transparent;
+	transition: all 0.1s;
+}
+cmp.a9os_core_taskbar_windowpreview .window-preview:hover:after {
+	background-color: rgba(255,255,255,0.1);
+}

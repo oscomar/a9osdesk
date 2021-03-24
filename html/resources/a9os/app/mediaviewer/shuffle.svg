@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="141.40245" height="120.71436" viewBox="0 0 141.40245 120.71436" id="svg2" version="1.1" inkscape:version="0.92.3 (2405546, 2018-03-11)" sodipodi:docname="shuffle.svg">
+ <defs id="defs4" />
+ <sodipodi:namedview id="base" pagecolor="#d9d9d9" bordercolor="#666666" borderopacity="1.0" inkscape:pageopacity="0" inkscape:pageshadow="2" inkscape:zoom="1.4" inkscape:cx="-45.5725548" inkscape:cy="44.6489329" inkscape:document-units="px" inkscape:current-layer="layer1" showgrid="false" units="px" fit-margin-top="0" fit-margin-left="0" fit-margin-right="0" fit-margin-bottom="0" inkscape:window-width="1882" inkscape:window-height="1051" inkscape:window-x="1958" inkscape:window-y="0" inkscape:window-maximized="1" />
+ <metadata id="metadata7">
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+    <dc:title></dc:title>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g inkscape:label="Capa 1" inkscape:groupmode="layer" id="layer1" transform="translate(-316.7989,-444.25974)">
+  <g id="g860" transform="translate(139.571528,9.00440421)">
+   <polygon transform="matrix(2.27610293e-4,0.177108411,-0.177108411,2.27610293e-4,303.106537,495.116747)" style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:22.32412529;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" points="16.8615612,172 100,28 183.138439,172 " id="polygon822-3" />
+   <path sodipodi:nodetypes="ccccc" inkscape:connector-curvature="0" id="path822" d="M 203.584614,476.045531 C 226.503936,501.632897 254.56647,508.234146 278.227472,513.188389 V 513.188389 513.188389 513.188389" style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+   <path style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:15.600000381;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" d="M 203.584614,476.045531 C 226.503936,501.632897 254.56647,508.234146 278.227472,513.188389 V 513.188389 513.188389 513.188389" id="path824" inkscape:connector-curvature="0" sodipodi:nodetypes="ccccc" />
+   <path sodipodi:nodetypes="ccccc" inkscape:connector-curvature="0" id="path826" d="M 203.584614,513.128828 C 226.503936,487.541462 254.56647,480.940213 278.227472,475.98597 V 475.98597 475.98597 475.98597" style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:15.600000381;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+   <polygon id="polygon853" points="183.138439,172 16.8615612,172 100,28 " style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:22.32412529;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" transform="matrix(2.27610293e-4,0.177108411,-0.177108411,2.27610293e-4,302.808043,460.608308)" />
+  </g>
+ </g>
+</svg>

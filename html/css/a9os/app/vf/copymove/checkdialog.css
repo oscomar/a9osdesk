@@ -1,0 +1,190 @@
+/*_gtlsc_
+ * os.com.ar (a9os) - Open web LAMP framework and desktop environment
+ * Copyright (C) 2019-2021  Santiago Pereyra (asp95)
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
+cmp.a9os_app_vf_copymove_checkdialog .files-to-check-container {
+	display: block;
+	position: relative;
+	width: 100%;
+	height: 50px;
+	padding-left: 5px;
+	white-space: nowrap;
+	text-align: left;
+	font-size: 0;
+	overflow-x: auto;
+
+}
+
+cmp.a9os_app_vf_copymove_checkdialog .files-to-check-container .item {
+	display: inline-block;
+	position: relative;
+	vertical-align: middle;
+	margin: 5px;
+	box-sizing: border-box;
+	line-height: 30px;
+	border-radius: 5px;
+	font-size: 12px;
+	color: #222;
+	background-color: rgba(255,255,255,0.3);
+	padding: 0 10px;
+	cursor: pointer;
+	transition: all 0.1s
+}
+cmp.a9os_app_vf_copymove_checkdialog .files-to-check-container .item:hover {
+	background-color: rgba(255,255,255,0.4);
+}
+
+cmp.a9os_app_vf_copymove_checkdialog .files-to-check-container .item.ok{
+	background-color: #56a5d0;
+}
+cmp.a9os_app_vf_copymove_checkdialog .files-to-check-container .item.ok.selected{
+	background-color: #5295ba;
+}
+cmp.a9os_app_vf_copymove_checkdialog .files-to-check-container .item.error{
+	background-color: #f26b6b;
+}
+cmp.a9os_app_vf_copymove_checkdialog .files-to-check-container .item.error.selected{
+	background-color: #dd6464;
+}
+cmp.a9os_app_vf_copymove_checkdialog .files-to-check-container .item.selected {
+	background-color: rgba(255,255,255,1);
+}
+
+
+
+cmp.a9os_app_vf_copymove_checkdialog .bottom-buttons {
+	display: block;
+	position: relative;
+	width: 100%;
+	height: 40px;
+	text-align: right;
+}
+cmp.a9os_app_vf_copymove_checkdialog .bottom-buttons .btn {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+
+
+cmp.a9os_app_vf_copymove_checkdialog .file-dialog-container {
+	display: block;
+	position: relative;
+	white-space: nowrap;
+	width: 100%;
+	font-size: 0;
+}
+
+cmp.a9os_app_vf_copymove_checkdialog .file-dialog-container .file-dialog {
+	display: none;
+	margin: 0 10px;
+	border-radius: 3px;
+	background-color: rgba(255,255,255,0.1);
+	width: calc(100% - 22px);
+	overflow: hidden;
+	white-space: normal;
+}
+cmp.a9os_app_vf_copymove_checkdialog .file-dialog-container .file-dialog.show {
+	display: block;
+}
+
+cmp.a9os_app_vf_copymove_checkdialog .file-dialog-container .file-dialog .file{
+	display: inline-block;
+	width: 40%;
+	margin: 0 5%;
+	text-align: center;
+	min-height: 100px;
+	vertical-align: top;
+}
+cmp.a9os_app_vf_copymove_checkdialog .file-dialog-container .file-dialog .file .icon{
+	display: block;
+	position: relative;
+	width: 100%;
+	height: 110px;
+	padding: 5px;
+	box-sizing: border-box;
+}
+cmp.a9os_app_vf_copymove_checkdialog .file-dialog-container .file-dialog .file .path{
+	display: block;
+	position: relative;
+	width: 100%;
+	font-size: 12px;
+	text-align: center;
+	padding: 5px;
+	box-sizing: border-box;
+	overflow-wrap: break-word;
+}
+
+cmp.a9os_app_vf_copymove_checkdialog .file-dialog-container .file-dialog .label {
+	display: block;
+	position: relative;
+	font-size: 14px;
+	text-align: center;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 5px;
+}
+cmp.a9os_app_vf_copymove_checkdialog .file-dialog-container .file-dialog .buttons {
+	display: block;
+	position: relative;
+	text-align: center;
+	padding: 5px;
+	box-sizing: border-box;
+}
+cmp.a9os_app_vf_copymove_checkdialog .file-dialog-container .file-dialog .buttons .btn {
+	display: inline-block;
+	margin: 5px;
+}
+cmp.a9os_app_vf_copymove_checkdialog .file-dialog-container .file-dialog .buttons .btn.selected {
+	background-color: #56a5d0;
+}
+
+cmp.a9os_app_vf_copymove_checkdialog .file-dialog-container .file-dialog .rename-line {
+	display: none;
+	position: relative;
+	width: 100%;
+	font-size: 12px;
+	box-sizing: border-box;
+	padding: 5px;
+	text-align: center;
+}
+cmp.a9os_app_vf_copymove_checkdialog .file-dialog-container .file-dialog .rename-line.show {
+	display: block;
+}
+cmp.a9os_app_vf_copymove_checkdialog .file-dialog-container .file-dialog .rename-line input {
+	width: 200px;
+}
+
+@media screen and (max-width: 650px){
+	cmp.a9os_app_vf_copymove_checkdialog .files-to-check-container {
+		margin-top: 35px;
+		white-space: normal;
+		height: auto;
+		margin-bottom: 10px;
+	}
+	cmp.a9os_app_vf_copymove_checkdialog .files-to-check-container:before {
+		height: auto;
+	}
+	cmp.a9os_app_vf_copymove_checkdialog .files-to-check-container .item {
+		max-width: calc(100% - 23px);
+		line-height: normal;
+		padding: 5px;
+		box-sizing: border-box;
+	}
+	cmp.a9os_app_vf_copymove_checkdialog .file-dialog-container .file-dialog .file{
+		display: block;
+		width: 100%;
+		margin: 0 0 10px 0;
+	}
+}

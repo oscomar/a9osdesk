@@ -1,0 +1,214 @@
+/*_gtlsc_
+ * os.com.ar (a9os) - Open web LAMP framework and desktop environment
+ * Copyright (C) 2019-2021  Santiago Pereyra (asp95)
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
+.a9os_app_browser1_main .header{
+	display: block;
+	position: relative;
+	width: 100%;
+	height: 60px;
+	color:#fff;
+}
+@media screen and (max-width: 650px) {
+	.is-mobile .a9os_app_browser1_main .header{
+		padding-top: 25px;
+	}
+}
+.a9os_app_browser1_main .header .tabs{
+	display: block;
+	position: relative;
+	font-size: 0;
+	height: 30px;
+	white-space: nowrap;
+	width: 100%;
+	box-sizing: border-box;
+
+}
+.a9os_app_browser1_main .header .tabs .list {
+	display: flex;
+	max-width: calc(100% - 25px);
+	align-items: flex-end;
+	float: left;
+	height: 30px;
+	transition: all 0.1s;
+}
+.a9os_app_browser1_main .header .tabs .tab{
+	display: inline-block;
+	position: relative;
+	background-color: #eee;
+	color: #000;
+	width: 150px; 
+	min-width: 10px;
+	height: 28px;
+	vertical-align: bottom;
+	font-size: 12px;
+	text-overflow: ellipsis;
+	box-shadow: inset 1px 0 0 rgba(0,0,0,0.1);
+	transition: all 0.1s;
+	overflow: hidden;
+}
+.a9os_app_browser1_main .header .tabs .tab.opening {
+	width: 0;
+}
+.a9os_app_browser1_main .header .tabs .tab.selected {
+	height: 30px;
+	min-width: 100px;
+	background-color: #fff;
+}
+.a9os_app_browser1_main .header .tabs .tab.loading {
+	height: 28px;
+	border-bottom: 2px solid #fff;
+	animation: tabOpening 1s linear infinite;
+}
+@keyframes tabOpening {
+	0% {
+		border-bottom-color: #ffffff;
+	}
+	50% {
+		border-bottom-color: #30627c;
+	}
+	100% {
+		border-bottom-color: #ffffff;
+	}
+}
+.a9os_app_browser1_main .header .tabs .tab .close{
+	top: 0;
+	right: 0;
+	font-size: 18px;
+	line-height: 25px;
+	width: 25px;
+	height: 25px;
+	text-align: center;
+	margin: 2.5px;
+	transition: all 0.1s;
+	position: absolute;
+}
+.a9os_app_browser1_main .header .tabs .tab .close:hover{
+	background-color: rgba(100,100,100,0.2);
+}
+.a9os_app_browser1_main .header .tabs .tab .favicon {
+	display: inline-block;
+	vertical-align: middle;
+	width: 16px;
+	height: 16px;
+	margin: 2.5px;
+}
+.a9os_app_browser1_main .header .tabs .tab .title {
+	display: inline-block;
+	vertical-align: middle;
+	width: calc(100% - 51px);
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.a9os_app_browser1_main .header .tabs .newtab-button{
+	display: inline-block;
+	position: relative;
+	color: #fff;
+	font-size: 20px;
+	height: 30px;
+	line-height: 30px;
+	font-weight: bold;
+	text-align: center;
+	width: 30px;
+	box-sizing: border-box;
+}
+
+.a9os_app_browser1_main .header .main-bar{
+	display: inline-block;
+	position: relative;
+	width: 100%;
+	height: 30px;
+	background-color: #fff;
+	box-shadow: inset 0 -1px 0 rgba(0,0,0,0.2);
+	font-size: 0;
+	color: #000;
+}
+.a9os_app_browser1_main .header .main-bar .back,
+.a9os_app_browser1_main .header .main-bar .forward,
+.a9os_app_browser1_main .header .main-bar .refresh,
+.a9os_app_browser1_main .header .main-bar .favorites-menu {
+	display: inline-block;
+	vertical-align: middle;
+	width: 30px;
+	height: 30px;
+	font-size: 15px;
+	line-height: 30px;
+	text-align: center;
+	border: none;
+	outline: none;
+}
+.a9os_app_browser1_main .header .main-bar .back {
+	background: url(/resources/a9os/app/vf/icons/back-icon.svg) center center no-repeat;
+}
+.a9os_app_browser1_main .header .main-bar .forward {
+	background: url(/resources/a9os/app/vf/icons/forward-icon.svg) center center no-repeat;
+}
+.a9os_app_browser1_main .header .main-bar .refresh {
+	background: url(/resources/a9os/app/vf/icons/update-icon.svg) center center no-repeat;
+	background-size: 85%;
+}
+.a9os_app_browser1_main .header .main-bar .favorites-menu {
+	background: url(/resources/a9os/app/vf/icons/star-icon.svg) center center no-repeat;
+}
+.a9os_app_browser1_main .header .main-bar .back:hover,
+.a9os_app_browser1_main .header .main-bar .forward:hover,
+.a9os_app_browser1_main .header .main-bar .refresh:hover,
+.a9os_app_browser1_main .header .main-bar .favorites-menu:hover{
+	background-color: rgba(0,0,0,0.1);
+}
+
+.a9os_app_browser1_main .header .main-bar .back.disabled,
+.a9os_app_browser1_main .header .main-bar .forward.disabled,
+.a9os_app_browser1_main .header .main-bar .refresh.disabled,
+.a9os_app_browser1_main .header .main-bar .favorites-menu.disabled{
+	opacity: 0.4;
+}
+
+.a9os_app_browser1_main .header .main-bar .address-bar{
+	display: inline-block;
+	vertical-align: middle;
+	width: calc(100% - 120px);
+	box-sizing: border-box;
+	border: none;
+	background-color: #fff;
+	height: 25px;
+	padding: 5px 5px 5px 20px;
+	outline: none;
+}
+.a9os_app_browser1_main .header .main-bar .favorites-menu{
+	font-size: 12px;
+}
+.a9os_app_browser1_main .main-content{
+	height: calc(100% - 60px)!important;
+	top: 30px!important;
+	background-color: #fff;
+}
+.a9os_app_browser1_main .main-content .content-tab{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	display: none;
+}
+.a9os_app_browser1_main .main-content .content-tab.selected {
+	display: block;
+}
+.a9os_app_browser1_main .main-content .content-tab iframe {
+	width: 100%;
+	height: 100%;
+}
+.a9os_app_browser1_main .templates {
+	display: none;
+}

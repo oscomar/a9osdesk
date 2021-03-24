@@ -1,0 +1,90 @@
+/*_gtlsc_
+ * os.com.ar (a9os) - Open web LAMP framework and desktop environment
+ * Copyright (C) 2019-2021  Santiago Pereyra (asp95)
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
+cmp.a9os_core_taskbar_alttabber .alttabber {
+	display: block;
+	position: fixed;
+	box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+	min-height: 115px;
+	padding: 5px 0;
+	text-align: center;
+	top: calc(50% - 75px);
+	visibility: hidden;
+	opacity: 0;
+	z-index: 999;
+
+	color: #fff;
+	background-color: #666;
+	transition: opacity 0.2s;
+}
+cmp.a9os_core_taskbar_alttabber .alttabber.show {
+	opacity: 1;
+	visibility: visible;
+}
+cmp.a9os_core_taskbar_alttabber .alttabber.dark-foreground {
+	color: #444;
+	background-color: #fff;
+}
+cmp.a9os_core_taskbar_alttabber .alttabber.transparent {
+	backdrop-filter:blur(5px);
+}
+
+cmp.a9os_core_taskbar_alttabber .alttabber .name {
+	display: block;
+	position: relative;
+	font-size: 14px;
+	line-height: 40px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	width: 100%;
+	padding: 0 15px;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+cmp.a9os_core_taskbar_alttabber .alttabber .items {
+	display: block;
+	position: relative;
+	padding: 0 20px;
+	box-sizing: border-box;
+	text-align: center;
+}
+cmp.a9os_core_taskbar_alttabber .alttabber .items .item {
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	background: rgba(255,255,255,0.1) center center no-repeat;
+	background-size: 70%;
+	margin: 2px;
+}
+
+cmp.a9os_core_taskbar_alttabber .alttabber.dark-foreground .item {
+	background-color: rgba(0,0,0,0.1);
+}
+
+cmp.a9os_core_taskbar_alttabber .alttabber .indicator {
+	display: block;
+	position: absolute;
+	height: 50px;
+	width: 50px;
+	top: 45px;
+	left: 0px;
+	background-color: rgba(255,255,255,0.5);
+	transition: all 0.1s;
+}
+cmp.a9os_core_taskbar_alttabber .alttabber.dark-foreground .indicator {
+	background-color: rgba(0,0,0,0.5);
+}

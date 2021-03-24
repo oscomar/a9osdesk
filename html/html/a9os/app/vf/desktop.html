@@ -1,0 +1,61 @@
+<!--_gtlsc_
+	os.com.ar (a9os) - Open web LAMP framework and desktop environment
+	Copyright (C) 2019-2021  Santiago Pereyra (asp95)
+	
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+	
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <https://www.gnu.org/licenses/>.-->
+<div class="desktop-scroll"><div class="bar"></div></div>
+<div class="vf-files-container selected is-desktop" data-menu-r='[
+	{
+		"name" : "Nueva carpeta",
+		"action" : "folder.new"
+	},
+	{
+		"name" : "Nuevo archivo vacío",
+		"action" : "file.new"
+	},
+	{
+		"name" : "Subir archivos",
+		"action" : "file.upload"
+	},
+	"separator",
+	{
+		"name" : "Pegar",
+		"shortcut" : ["Ctrl","V"],
+		"action" : "[a9os_app_vf_desktop].fileClipboard.vfContainerToClipboard",
+		"data" : "paste",
+		"dynamicShowTrigger" : "[a9os_app_vf_desktop].fileClipboard.menuDynamicTrigger"
+	},
+	"separator",
+	{
+		"name" : "Actualizar",
+		"action" : "refresh"
+	},
+	"separator",
+	{
+		"name" : "Configurar Escritorio",
+		"action" : "userWallpaper.openDesktopSettings"
+	}
+]'>
+	
+</div>
+
+<div class="templates" style="display: none;">
+	<button class="item">
+		<div class="icon"></div>
+		<div class="name"></div>
+		<div class="select-button" title="Seleccionar"></div>
+	</button>
+	<div class="empty-folder">Sin elementos</div>
+</div>
+<div class="window-folderaddons-components" style="display: none;"></div>

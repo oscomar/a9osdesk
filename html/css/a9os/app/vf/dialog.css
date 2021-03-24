@@ -1,0 +1,79 @@
+/*_gtlsc_
+ * os.com.ar (a9os) - Open web LAMP framework and desktop environment
+ * Copyright (C) 2019-2021  Santiago Pereyra (asp95)
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
+.a9os_app_vf_dialog .hbox {
+	display: block;
+	position: relative;
+	font-size: 0;
+	height: 100%;
+	width: 100%;
+}
+.a9os_app_vf_dialog .hbox > * {
+	vertical-align: middle;
+	box-sizing: border-box;
+	display: block;
+}
+.a9os_app_vf_dialog .hbox .main-icon {
+	padding-bottom: 5px;
+	width: 100%;
+	height: 100px;
+	text-align: left;
+}
+.a9os_app_vf_dialog .hbox .main-icon img {
+	display: inline-block;
+	width: 100%;
+	margin: 20px auto 0;
+	height: 75%;
+}
+.a9os_app_vf_dialog .hbox .path {
+	font-size: 12px;
+	text-align: center;
+	display: block;
+	position: relative;
+	width: 100%;
+	padding: 0 15% 10px;
+	max-height: 150px;
+	overflow-y: auto;
+	box-sizing: border-box;
+}
+.a9os_app_vf_dialog .hbox .dialog {
+	width: 100%;
+	height: 60%;
+}
+.a9os_app_vf_dialog .hbox .dialog .text {
+	font-size: 20px;
+    padding: 10px;
+	box-sizing: border-box;
+	text-align: center;
+}
+.a9os_app_vf_dialog .hbox .dialog .actions {
+	padding: 10px;
+	box-sizing: border-box;
+	text-align: center;
+}
+.a9os_app_vf_dialog .hbox .dialog .actions > * {
+	display: inline-block;
+	margin: 2px;
+	font-size: 12px;
+}
+.a9os_app_vf_dialog .hbox .dialog .actions .btn {
+	height: 27px;
+}
+@media screen and (max-width: 650px){
+	.a9os_app_vf_dialog .closingdialog{
+		padding-top: calc(2vh * 5);
+	}
+}

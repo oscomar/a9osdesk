@@ -1,0 +1,77 @@
+/*_gtlsc_
+ * os.com.ar (a9os) - Open web LAMP framework and desktop environment
+ * Copyright (C) 2019-2021  Santiago Pereyra (asp95)
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
+cmp.a9os_core_install{
+
+}
+cmp.a9os_core_install .header {
+	background-color: #fff;
+	height: 120px;
+
+}
+cmp.a9os_core_install .header .icon {
+	display: inline-block;
+	width: 70px;
+	height: 70px;
+	box-sizing: border-box;
+	margin: 25px;
+	background: url(/resources/a9os/core/install/icon.svg) center center no-repeat;
+	background-size: contain;
+	vertical-align: middle;
+}
+
+cmp.a9os_core_install .header h1 {
+	display: inline-block;
+	color: #666;
+	vertical-align: middle;
+}
+
+cmp.a9os_core_install .syskey-input {
+	display: block;
+	width: 100%;
+	height: calc(100% - 120px - 50px);
+	padding: 30px 5%;
+	text-align: center;
+	box-sizing: border-box;
+}
+cmp.a9os_core_install .syskey-input .title {
+	font-size: 14px;
+	display: inline-block;
+	vertical-align: middle;
+}
+cmp.a9os_core_install .syskey-input .message {
+	display: inline-block;
+	padding: 5px 10px;
+	border-radius: 3px;
+	background-color: #444;
+	color: #fff;
+	font-size: 13px;
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.1s;
+}
+cmp.a9os_core_install .syskey-input .message.show {
+	opacity: 1;
+	visibility: visible;
+}
+cmp.a9os_core_install .buttons {
+	text-align: right;
+	height: 50px;
+}
+cmp.a9os_core_install .buttons .btn {
+	vertical-align: middle;
+	display: inline-block;
+}

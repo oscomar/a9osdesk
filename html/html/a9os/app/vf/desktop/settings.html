@@ -1,0 +1,62 @@
+<!--_gtlsc_
+	os.com.ar (a9os) - Open web LAMP framework and desktop environment
+	Copyright (C) 2019-2021  Santiago Pereyra (asp95)
+	
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+	
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <https://www.gnu.org/licenses/>.-->
+<div class="main">
+	<div class="sources-selector">
+		<div class="source system">
+			<label><input class="item-radio" type="radio"><span>Wallpapers del sistema</span></label>
+			<div class="system-wallpapers-selector" data-foreach="windowData.arrSystemWallpapers:currSystemWallpaper">
+				<div class="item ibl-c" data-data="id:currSystemWallpaper.valueId,selected:currSystemWallpaper.selected">
+					<img data-src="currSystemWallpaper.thumbUrl">
+				</div>
+			</div>
+		</div>
+		<div class="source user">
+			<label><input class="item-radio" type="radio"><span>Wallpaper de usuario</span></label>
+			<div class="btn select-file ibl-c">
+				<img class="thumb" data-src="windowData.userWallpaperThumbUrl">
+				<div class="info">
+					<div class="path" data-textcontent="windowData.userWallpaperFilePath"></div>
+					<div class="title">Seleccionar</div>
+				</div>
+			</div>
+			<div class="max-resolution">
+				<span>Resolución máxima</span>
+				<input type="number" class="maxres w" data-value="arrUserWallpaperData.userWallpaperMaxResW">
+				<span>X</span>
+				<input type="number" class="maxres h" data-value="arrUserWallpaperData.userWallpaperMaxResH">
+			</div>
+		</div>
+		<div class="source color">
+			<label><input class="item-radio" type="radio"><span>Color de fondo</span></label>
+			<input type="color" data-value="windowData.colorValue">
+		</div>
+	</div>
+	<div class="size-selector">
+		<div class="size contain">
+			<div class="preview"></div>
+			<div class="title">Contener</div>
+		</div>
+		<div class="size cover">
+			<div class="preview"></div>
+			<div class="title">Cubrir</div>
+		</div>
+		<div class="size deform">
+			<div class="preview"></div>
+			<div class="title">Deformar</div>
+		</div>
+	</div>
+</div>

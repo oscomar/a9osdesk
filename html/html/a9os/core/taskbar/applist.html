@@ -1,0 +1,77 @@
+<!--_gtlsc_
+	os.com.ar (a9os) - Open web LAMP framework and desktop environment
+	Copyright (C) 2019-2021  Santiago Pereyra (asp95)
+	
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+	
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <https://www.gnu.org/licenses/>.-->
+<div class="main-app-list not-logged">
+	<div class="header">
+		<span class="logged">
+			<div class="avatar" data-menu-r='[
+				{
+					"name" : "Cambiar icono",
+					"action" : "setUserAvatar.set"
+				}
+			]'></div>
+			<div class="name"></div>
+			<div class="buttons">
+				<div class="menu" data-menu='[
+					{
+						"name" : "Cambiar icono de usuario",
+						"action" : "setUserAvatar.set"
+					},
+					{
+						"name" : "Cerrar sesión",
+						"action" : "[a9os_user].logout"
+					},
+					"separator",
+					{
+						"name" : "Acerca de os.com.ar",
+						"action" : "openAbout"
+					}
+				]'></div>
+			</div>
+		</span>
+		<span class="not-logged">
+			<input type="text" class="name" placeholder="Nombre de usuario">
+			<input type="password" class="password" placeholder="Password">
+			<div class="buttons ibl-c">
+				<button class="submit">Iniciar Sesión</button>
+				<a href="/register" class="register">Registrarse</a>
+			</div>
+		</span>
+		<span class="logged demo-mode" style="display: none;">
+			<div class="name">Modo Demo</div>
+			<div class="buttons">
+				<div class="menu" data-menu='[
+					{
+						"name" : "Acerca de os.com.ar",
+						"action" : "openAbout"
+					}
+				]'></div>
+			</div>
+		</span>
+		<input type="text" class="app-search" placeholder="Buscar...">
+	</div>
+	<div class="app-list">
+		<a href="/app-installer" class="ibl-c add-app"><img src="/resources/a9os/core/app/installer/icon.svg">Agregar programa</a>
+		<div class="app-list-inner" data-foreach="appList:currApp">
+			<a data-href="currApp.path" class="ibl-c" data-data="appid:currApp.id" data-menu-r='[
+				{
+					"name" : "Agregar a la barra de tareas",
+					"action" : "addToWindowlist"
+				}
+			]'><img data-src=currApp.icon_url><span data-textcontent="currApp.name"></span></a>
+		</div>
+	</div>
+</div>
