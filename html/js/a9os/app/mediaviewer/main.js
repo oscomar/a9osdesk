@@ -634,10 +634,13 @@ a9os_app_mediaviewer_main.mediaPopup.item.play = (item) => {
 a9os_app_mediaviewer_main.mediaPopup.item.alterPlayPause = (event, button) => {
 	
 	var video = self.component.querySelector("video.used, audio.used");
-	if (!video) return;
+	if (!video) {
+		var playingItem = self.component.querySelector(".media-popup .list .item");
+		self.mediaPopup.item.play(playingItem);
+		return;
+	}
 
 	var item = self.component.querySelector(".media-popup .list .item.play, .media-popup .list .item.pause");
-
 	if (item) {	
 		if (item.classList.contains("play")) {
 			video.pause();

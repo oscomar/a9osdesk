@@ -21,6 +21,8 @@ a9os_app_vf_copymove_checkdialog.main = (data) => {
 	self.component.arrCrossData = a9os_core_main.windowCrossData.get(core.link.hash.get()["cdi"]);
 	self.component.arrPaths = [];
 
+	if (!self.component.arrCrossData) a9os_core_main.removeWindow(self.component);
+
 	self.loadInterface();
 	self.initInterface();
 

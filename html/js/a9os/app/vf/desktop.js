@@ -303,9 +303,10 @@ a9os_app_vf_desktop.file.openWith = (event, item) => {
 
 a9os_app_vf_desktop.file.convertSize = (bytes) => {
 	if (bytes < 1024) return bytes + " B";
-	else if (bytes < 1048576) return (bytes / 1024).toFixed(2) + " Kb";
-	else if (bytes < 1073741824) return (bytes / 1048576).toFixed(2) + " Mb";
-	else return (bytes / 1073741824).toFixed(2) + " Gb";
+	else if (bytes < 1048576) return (bytes / 1024).toFixed(2) + " kB";
+	else if (bytes < 1073741824) return (bytes / 1048576).toFixed(2) + " MB";
+	else if (bytes < 1099511627776) return (bytes / 1073741824).toFixed(2) + " GB";
+	else return (bytes / 1099511627776).toFixed(2) + " TB";
 }
 
 a9os_app_vf_desktop.file.delete = (event, item) => {
@@ -717,6 +718,7 @@ a9os_app_vf_desktop.userWallpaper.init = (data) => {
 
 	if (data.wallpaperType == "system") {
 		desktopVfFilesContainer.style.backgroundImage = "url("+data.systemWallpaperResourceFolder+data.wallpaperValue+")";
+		desktopVfFilesContainer.setAttribute("data-background-image", data.systemWallpaperResourceFolder+data.wallpaperValue);
 	}
 	if (data.wallpaperType == "user") {
 		a9os_app_vf_main.fileHandle.requestFile(
@@ -725,7 +727,14 @@ a9os_app_vf_desktop.userWallpaper.init = (data) => {
 			},
 			{
 				fn : (handle) => {
-					desktopVfFilesContainer.style.backgroundImage = "url("+a9os_app_vf_main.fileHandle.getBlobUrl(handle.data)+")";
+					var imgBlobUrl = a9os_app_vf_main.fileHandle.getBlobUrl(handle.data);
+					desktopVfFilesContainer.style.backgroundImage = "url("+imgBlobUrl+")";
+					desktopVfFilesContainer.setAttribute("data-background-image", imgBlobUrl);
+
+					setTimeout(() => {
+						if (window.a9os_core_taskbar_applist) a9os_core_taskbar_applist.setHeaderGradientByBackground();
+					}, 50);
+					
 				},
 				args : {
 					handle : false
@@ -737,7 +746,12 @@ a9os_app_vf_desktop.userWallpaper.init = (data) => {
 
 	if (data.wallpaperType == "color") {
 		desktopVfFilesContainer.style.backgroundImage = "";
+		desktopVfFilesContainer.setAttribute("data-background-image", "false");
 	}
+
+	setTimeout(() => {
+		if (window.a9os_core_taskbar_applist) a9os_core_taskbar_applist.setHeaderGradientByBackground();
+	}, 50);
 }
 
 a9os_app_vf_desktop.userWallpaper.openDesktopSettings = () => {
@@ -777,6 +791,11 @@ a9os_app_vf_desktop.folder.show = (path, arrFiles, baseComponent, arrHandlers, f
 		vfFilesContainer.appendChild(baseComponent.querySelector(".templates .empty-folder").cloneNode(true));
 	}
 
+	var selectionDetail = vfFilesContainer.parentElement.querySelector(".selection-detail");
+	if (selectionDetail) {
+		selectionDetail.classList.remove("show");
+	}
+
 	for (var i = 0 ; i < arrFiles.length ; i++){
 		var currFile = arrFiles[i];
 
@@ -800,6 +819,7 @@ a9os_app_vf_desktop.folder.show = (path, arrFiles, baseComponent, arrHandlers, f
 
 			if (newItem.querySelector(".size")) {
 				newItem.querySelector(".size").textContent = self.file.convertSize(currFile.size);
+				newItem.querySelector(".size").setAttribute("data-size", currFile.size);
 			}
 			
 			newItem.setAttribute("data-id", currFile.id);
@@ -1301,9 +1321,49 @@ a9os_app_vf_desktop.folder.download = (event, item) => {
 
 
 
-a9os_app_vf_desktop.selectItem = (item) => {
+a9os_app_vf_desktop.selectItem = (item, preventCount) => {
 	item.classList.add("selected");
 	item.classList.remove("temp-unselected");
+
+
+	//selection detail
+	if (preventCount) return;
+	var vfFilesContainer = item.goToParentClass("vf-files-container");
+	var selectionDetail = vfFilesContainer.parentElement.querySelector(".selection-detail");
+	if (selectionDetail) {
+		selectionDetail.classList.add("show");
+
+		var arrSelectedItems = vfFilesContainer.querySelectorAll(".item.selected");
+
+		var qtyFiles = 0;
+		var qtyFolders = 0;
+		var filesTotalSize = 0;
+		for (var i = 0 ; i < arrSelectedItems.length ; i++) {
+			var currSelectedItem = arrSelectedItems[i];
+			if (currSelectedItem.getAttribute("data-type") == "file") {
+				qtyFiles++;
+				filesTotalSize += parseInt(currSelectedItem.querySelector(".size").getAttribute("data-size"));
+			} else {
+				qtyFolders++;
+			}
+		}
+
+		if (filesTotalSize == 0) {
+			selectionDetail.querySelector(".size-lbl").classList.add("hide");
+		} else {
+			selectionDetail.querySelector(".size-lbl").classList.remove("hide");
+		}
+
+		if (qtyFolders + qtyFiles > 1) {
+			selectionDetail.querySelector(".s").classList.remove("hide");
+		} else {
+			selectionDetail.querySelector(".s").classList.add("hide");
+		}
+
+		selectionDetail.querySelector(".qty").textContent = qtyFolders + qtyFiles;
+		selectionDetail.querySelector(".size").textContent = self.file.convertSize(filesTotalSize);
+	}
+	//////////////
 }
 
 a9os_app_vf_desktop.unselectItem = (item) => {
@@ -1311,12 +1371,29 @@ a9os_app_vf_desktop.unselectItem = (item) => {
 	item.classList.remove("expand");
 	item.classList.remove("temp-selected");
 	item.classList.remove("temp-unselected");
+
+	var vfFilesContainer = item.goToParentClass("vf-files-container");
+	if (vfFilesContainer && vfFilesContainer.querySelectorAll(".item.selected").length == 0) {
+		var vfFilesContainer = item.goToParentClass("vf-files-container");
+		var selectionDetail = vfFilesContainer.parentElement.querySelector(".selection-detail");
+		if (selectionDetail) {
+			selectionDetail.classList.remove("show");
+		}
+	}
+
 }
 
 a9os_app_vf_desktop.unselectItems = (vfFilesContainer) => {
 	vfFilesContainer.querySelectorAll(".item.selected, .item.expand, .item.temp-unselected").forEach((item) => {
 		self.unselectItem(item);
 	});
+}
+
+a9os_app_vf_desktop.selectAllItems = (vfFilesContainer) => {
+	vfFilesContainer.querySelectorAll(".item").forEach((item) => {
+		self.selectItem(item, true);
+	});
+	self.selectItem(vfFilesContainer.querySelector(".item"));
 }
 
 a9os_app_vf_desktop.keyboardShortcuts = {};
@@ -1380,6 +1457,16 @@ a9os_app_vf_desktop.keyboardShortcuts.get = (vfFilesContainer) => {
 			args : {
 				vfFilesContainer : vfFilesContainer,
 				type : "paste"
+			}
+		}
+	});
+
+	arrShortcuts.push({
+		shortcut : ["ctrl", "a"],
+		action : {
+			fn : self.selectAllItems,
+			args : {
+				vfFilesContainer : vfFilesContainer
 			}
 		}
 	});

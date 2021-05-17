@@ -391,7 +391,7 @@ a9os_app_vf_main.fileHandle.requestFile = (handle, callbackFn, path, configData)
 		false,
 		{
 			fn : (status, handle) => {
-				a9os_core_taskbar_popuparea.new(handle.path + " no encontrado", "/resources/a9os/app/vf/icons/files/file-icon-error.svg");
+				a9os_core_taskbar_popuparea.new(handle.path + " no encontrado", "/resources/a9os/app/vf/icons/files/file-icon-error.svg", "error");
 			},
 			args : {
 				status : false,
@@ -743,6 +743,21 @@ a9os_app_vf_main.fileHandle.download = (arrPaths) => {
 			fileName = arrName[1]+".zip";
 		} else {
 			fileName = arrName[1];
+
+			self.fileHandle.getDirectFileUrl({}, {
+				fn : (handle, fileName) => {
+					var aDiv = document.createElement("a");
+					aDiv.href = handle.srcUrl;
+					aDiv.download = fileName;
+					aDiv.click();
+				},
+				args : {
+					handle : false,
+					fileName : fileName
+				}
+			}, path);
+			
+			return;
 		}
 	}
 
@@ -1053,6 +1068,6 @@ a9os_app_vf_main.sanitizePath = (path) => {
 }
 
 a9os_app_vf_main.catchBackendError = (error) => {
-	a9os_core_taskbar_popuparea.new(error, "/resources/a9os/app/vf/icons/files/file-icon-error.svg");
+	a9os_core_taskbar_popuparea.new(error, "/resources/a9os/app/vf/icons/files/file-icon-error.svg", "error");
 	console.error("catchBackendError", error);
 }

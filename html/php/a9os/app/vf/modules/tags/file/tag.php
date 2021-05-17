@@ -111,7 +111,7 @@ class a9os_app_vf_modules_tags_file_tag extends core_db_model {
 		$protectionModel = $this->_getProtection();
 		if ($protectionModel->restrictToChildClasses(__CLASS__)) return false;
 
-		if ($tableInfo && $tableInfo["version"] && $tableInfo["version"] == 2) return false;
+		if ($tableInfo && $tableInfo["version"] && $tableInfo["version"] == 3) return false;
 
 
 		if (!$tableInfo) {
@@ -136,7 +136,15 @@ class a9os_app_vf_modules_tags_file_tag extends core_db_model {
 			$tableHandle->setTableInfo($tableInfo);
 			$tableHandle->save();
 		}
+		if ($tableInfo["version"] < 3) {
+			$tableHandle->createIndex("a9os_app_vf_file_id", ["a9os_app_vf_file_id"]);
+			$tableHandle->createIndex("a9os_app_vf_modules_tags_tag_id", ["a9os_app_vf_modules_tags_tag_id"]);
 
+			$tableInfo = ["version" => 3];
+
+			$tableHandle->setTableInfo($tableInfo);
+			$tableHandle->save();
+		}
 		return true;
 	}
 }

@@ -79,7 +79,7 @@ class a9os_app_vf_window_bookmark extends a9os_app_vf_window {
 
 	public function getBookmarkCollection(){
 		$user = $this->getCore()->getModel("a9os.user")->getSessionUser();
-		if ($user->getIsAnonUser()) return false;
+		//if ($user->getIsAnonUser()) return false;
 
 		$bookmarkCollection = $this->getCore()->getModel($this);
 		$bookmarkCollection->_setSelect(" SELECT * from {$bookmarkCollection->getTableName()}

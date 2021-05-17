@@ -14,20 +14,77 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
+cmp.a9os_core_taskbar_alttabber .alttabber-blockover {
+	display: none;
+}
+cmp.a9os_core_taskbar_alttabber .alttabber-blockover.show {
+	display: block;
+	position: fixed;
+	top: 0; 
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 999;
+	background: rgba(0,0,0,0);
+}
+
+cmp.a9os_core_taskbar_alttabber .alttabber-background-grid {
+	display: none;
+	display: block;
+	position: fixed;
+	bottom: 0; 
+	left: 0;
+	width: 100%;
+	height: 50%;
+	z-index: 0;
+	background: #666 url(/resources/a9os/core/taskbar/alttabber/isoback-w.png) top left repeat;
+	mask-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,255));
+	-webkit-mask-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,255));
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.3s;
+}
+cmp.a9os_core_taskbar_alttabber .alttabber-background-grid.show {
+	opacity: 1;
+	visibility: visible;
+}
+cmp.a9os_core_taskbar_alttabber .alttabber-background-grid.dark-foreground {
+	background-image: url(/resources/a9os/core/taskbar/alttabber/isoback.png);
+}
+
+cmp.a9os_core_taskbar_alttabber .alttabber-background {
+	display: none;
+	display: block;
+	position: fixed;
+	bottom: 0; 
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+	background: rgba(0,0,0,0.5);
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.3s;
+}
+cmp.a9os_core_taskbar_alttabber .alttabber-background.show {
+	opacity: 1;
+	visibility: visible;
+}
 cmp.a9os_core_taskbar_alttabber .alttabber {
 	display: block;
 	position: fixed;
-	box-shadow: 0 10px 15px rgba(0,0,0,0.3);
-	min-height: 115px;
+	/*box-shadow: 0 10px 15px rgba(0,0,0,0.3);*/
+	/*min-height: 115px;*/
 	padding: 5px 0;
 	text-align: center;
-	top: calc(50% - 75px);
+	bottom: 20px;
 	visibility: hidden;
 	opacity: 0;
-	z-index: 999;
+	z-index: 1000;
+	width: 100%;
 
 	color: #fff;
-	background-color: #666;
+	/*background-color: #666;*/
 	transition: opacity 0.2s;
 }
 cmp.a9os_core_taskbar_alttabber .alttabber.show {
@@ -36,25 +93,29 @@ cmp.a9os_core_taskbar_alttabber .alttabber.show {
 }
 cmp.a9os_core_taskbar_alttabber .alttabber.dark-foreground {
 	color: #444;
-	background-color: #fff;
 }
 cmp.a9os_core_taskbar_alttabber .alttabber.transparent {
 	backdrop-filter:blur(5px);
 }
 
 cmp.a9os_core_taskbar_alttabber .alttabber .name {
-	display: block;
+	display: inline-block;
 	position: relative;
 	font-size: 14px;
-	line-height: 40px;
+	line-height: 30px;
+	margin-bottom: 10px;
 	white-space: nowrap;
 	text-overflow: ellipsis;
-	width: 100%;
 	padding: 0 15px;
 	box-sizing: border-box;
 	overflow: hidden;
-}
 
+	background-color: rgba(0,0,0,0.5);
+	border-radius: 5px;
+}
+cmp.a9os_core_taskbar_alttabber .alttabber.dark-foreground .name {
+	background-color: rgba(255,255,255,0.5);
+}
 cmp.a9os_core_taskbar_alttabber .alttabber .items {
 	display: block;
 	position: relative;
@@ -64,8 +125,8 @@ cmp.a9os_core_taskbar_alttabber .alttabber .items {
 }
 cmp.a9os_core_taskbar_alttabber .alttabber .items .item {
 	display: inline-block;
-	width: 50px;
-	height: 50px;
+	width: 30px;
+	height: 30px;
 	background: rgba(255,255,255,0.1) center center no-repeat;
 	background-size: 70%;
 	margin: 2px;
@@ -78,8 +139,8 @@ cmp.a9os_core_taskbar_alttabber .alttabber.dark-foreground .item {
 cmp.a9os_core_taskbar_alttabber .alttabber .indicator {
 	display: block;
 	position: absolute;
-	height: 50px;
-	width: 50px;
+	height: 30px;
+	width: 30px;
 	top: 45px;
 	left: 0px;
 	background-color: rgba(255,255,255,0.5);
@@ -87,4 +148,83 @@ cmp.a9os_core_taskbar_alttabber .alttabber .indicator {
 }
 cmp.a9os_core_taskbar_alttabber .alttabber.dark-foreground .indicator {
 	background-color: rgba(0,0,0,0.5);
+}
+
+
+.a9os-main.alttabber-mode .window {
+	top: auto!important;
+	left: auto!important;
+	transition: left 0.3s, bottom 0.3s, opacity 0.3s, transform 0.3s!important;
+	visibility: visible!important;
+
+	opacity: 1;
+
+	transform: skew(0, -20deg) scale(var(--tmp-alttabber-zoom-factor))!important;
+	transform-origin: bottom;
+}
+.a9os-main:not(.alttabber-mode) .window.alttabber-idx {
+	transform: skew(0, 0) scale(1)!important;
+	transition: left 0.3s, bottom 0.3s, opacity 0.3s, transform 0.3s!important;
+	transform-origin: bottom;
+}
+.a9os-main.alttabber-mode .window.alttabber-idx.aix1 {
+	bottom: 150px!important;
+	left: calc(55% - var(--tmp-alttabber-offsetwidth) / 2)!important;
+	z-index: 3!important;
+	opacity: 1!important;
+}
+.a9os-main.alttabber-mode .window.alttabber-idx.aix2 {
+	bottom: 200px!important;
+	left: calc(50% - var(--tmp-alttabber-offsetwidth) / 2)!important;
+	z-index: 2!important;
+	opacity: 1!important;
+
+}
+.a9os-main.alttabber-mode .window.alttabber-idx.aix3 {
+	bottom: 250px!important;
+	left: calc(45% - var(--tmp-alttabber-offsetwidth) / 2)!important;
+	z-index: 1!important;
+	opacity: 1!important;
+
+}
+.a9os-main.alttabber-mode .window.alttabber-idx.aix0 {
+	bottom: 100px!important;
+	left: calc(100% - var(--tmp-alttabber-offsetwidth) / 2)!important;
+	z-index: 4;
+	opacity: 0!important;
+
+}
+.a9os-main.alttabber-mode .window.alttabber-idx.aix-1 {
+	bottom: 300px!important;
+	left: -5%!important;
+	z-index: 0!important;
+	opacity: 0!important;
+	transition: none;
+}
+.a9os-main.alttabber-mode .window.maximized.alttabber-idx {
+	top: var(--tmp-alttabber-origtop)!important;
+}
+
+.a9os-main.alttabber-mode .window.alttabber-idx.aix2:after, 
+.a9os-main.alttabber-mode .window.alttabber-idx.aix3:after {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	border-radius: 3px 3px 0 0;
+	background-color: rgba(60,60,60,0.3);
+	z-index: 10000;
+}
+.a9os-main.alttabber-mode .window.alttabber-idx.aix3:after {
+	background-color: rgba(60,60,60,0.5);
+}
+
+@media screen and (max-width: 650px){
+	.a9os-main.alttabber-mode .window.alttabber-idx {
+		height: 100%!important;
+		width: 100%!important;
+	}
 }

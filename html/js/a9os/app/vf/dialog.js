@@ -49,8 +49,7 @@ a9os_app_vf_dialog.main = (data) => {
 	if (arrHashData["cdi"]) {
 		arrHashData = a9os_core_main.windowCrossData.get(arrHashData["cdi"]);
 	}
-
-	if (!arrHashData)  {
+	if (arrHashData && Object.keys(arrHashData).length == 0)  {
 		a9os_core_main.removeWindow(self.component);
 		return;	
 	}

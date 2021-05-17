@@ -23,7 +23,8 @@ a9os_app_vf_window.main = (data) => {
 	var vfFilesContainer = self.component.querySelector(".vf-files-container");
 	vfFilesContainer.setAttribute("data-path", self.arrHashData.folder||"/");
 
-	a9os_app_vf_desktop.squareSelection.attach(vfFilesContainer);
+	if (self.arrHashData.mode != "saveas") a9os_app_vf_desktop.squareSelection.attach(vfFilesContainer);
+	
 	a9os_app_vf_desktop.attachDragFileUpload(vfFilesContainer);
 	var arrWindowShortcuts = a9os_app_vf_desktop.keyboardShortcuts.get(vfFilesContainer);
 
@@ -1151,7 +1152,7 @@ a9os_app_vf_window.winListMenu.create = (arrBookmarks, arrSources) => {
 		arrMenu.push({
 			name : currSource.name,
 			action : "[a9os_app_vf_window].winListMenu.openSource",
-			data : currSource.path_prefix
+			data : currSource.path_prefix+"/"
 		});
 	}
 

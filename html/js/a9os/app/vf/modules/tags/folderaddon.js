@@ -124,25 +124,25 @@ a9os_app_vf_modules_tags_folderaddon.addNew.submit = (fileItemId, name, value, v
 		{
 			fn : (response, fileItemId, vfFilesContainer) => {
 				if (response == "FILE NOT EXIST") {
-					a9os_core_taskbar_popuparea.new("Archivo no encontrado");
+					a9os_core_taskbar_popuparea.new("Archivo no encontrado", false, "error");
 					vfFilesContainer.click();
 					return;
 				}
 
 				if (response == "TAG VALUE EXIST") {
-					a9os_core_taskbar_popuparea.new("Este tag ya existe");
+					a9os_core_taskbar_popuparea.new("Este tag ya existe", false, "error");
 					vfFilesContainer.click();
 					return;
 				}
 
 				if (response == "EDIT TAG NOT FOUND") {
-					a9os_core_taskbar_popuparea.new("El tag para editar no existe");
+					a9os_core_taskbar_popuparea.new("El tag para editar no existe", false, "error");
 					vfFilesContainer.click();
 					return;
 				}
 
 				if (response == "EDIT TAG ALREADY EXISTS") {
-					a9os_core_taskbar_popuparea.new("El nuevo nombre del tag para editar ya existe");
+					a9os_core_taskbar_popuparea.new("El nuevo nombre del tag para editar ya existe", false, "error");
 					vfFilesContainer.click();
 					return;
 				}
@@ -250,7 +250,7 @@ a9os_app_vf_modules_tags_folderaddon.itemMenu.delete = (event, tagItem) => {
 		{
 			fn : (response, fileItemId ,vfFilesContainer) => {
 				if (response == "NOT FOUND") {
-					a9os_core_taskbar_popuparea.new("Tag no encontrado");
+					a9os_core_taskbar_popuparea.new("Tag no encontrado", false, "error");
 					vfFilesContainer.click();
 					return;
 				}

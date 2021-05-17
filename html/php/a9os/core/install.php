@@ -612,6 +612,24 @@ class a9os_core_install extends a9os_core_window{
 			$coreControllerComponentAppInstaller->save();
 		}
 
+		/* 0.1.6 onlinechecker taskbar icon */
+		if ($installedVersion < 10006) {
+			$coreComponentA9osCoreMain = $this->getCore()->getModel("core.component")->load("a9os_core_main", "component_name");
+
+			$coreComponentTaskbar = $this->getCore()->getModel("core.component");
+			$coreComponentTaskbar->setComponentName("a9os_core_taskbar_notifarea_onlinechecker");
+			$coreComponentTaskbar->setDesignPath("cmp.a9os_core_taskbar_notifarea .notif-area");
+			$coreComponentTaskbar->setOnlyOne(1);
+			$coreComponentTaskbar->setDataModel("a9os.core.taskbar.notifarea.onlinechecker");
+			$coreComponentTaskbar->save();
+
+			$coreComponentDependTaskbar = $this->getCore()->getModel("core.component.depend");
+			$coreComponentDependTaskbar->setCoreComponentId($coreComponentA9osCoreMain->getID());
+			$coreComponentDependTaskbar->setChildId($coreComponentTaskbar->getID());
+			$coreComponentDependTaskbar->setOrder(19);
+			$coreComponentDependTaskbar->save();
+		}
+
 		$a9osUserToInstalledVersion->putA9osVersion($codeVersion);
 		return true;
 	}

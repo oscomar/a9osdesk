@@ -351,7 +351,7 @@ a9os_core_app_installer.confirmAndExit = () => {
 				if (response == "error") {
 					self.showErrorResult();
 				} else {
-					a9os_core_taskbar_popuparea.new(response.name + " Agregado", response.icon_url);
+					a9os_core_taskbar_popuparea.new(response.name + " Agregado", response.icon_url, "info");
 					a9os_core_taskbar_applist.addAppToList(response);
 					a9os_core_window.close();
 				}

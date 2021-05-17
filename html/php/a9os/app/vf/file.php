@@ -248,7 +248,7 @@ class a9os_app_vf_file extends a9os_app_vf_main {
 		$protectionModel = $this->_getProtection();
 		if ($protectionModel->restrictToChildClasses(__CLASS__)) return false;
 
-		if ($tableInfo && $tableInfo["version"] && $tableInfo["version"] == 1) return false;
+		if ($tableInfo && $tableInfo["version"] && $tableInfo["version"] == 2) return false;
 
 		if (!$tableInfo) {
 			$tableHandle->addField("a9os_user_id", "int", false, false, false);
@@ -261,6 +261,17 @@ class a9os_app_vf_file extends a9os_app_vf_main {
 
 			$tableHandle->createIndex("a9os_user_id", ["a9os_user_id"]);
 			$tableInfo = ["version" => 1];
+
+			$tableHandle->setTableInfo($tableInfo);
+			$tableHandle->save();
+		}
+
+		if ($tableInfo["version"] < 2) {
+			$tableHandle->createIndex("path-uq", ["path", "a9os_user_id"], "unique");
+			$tableHandle->createIndex("path", ["path"]);
+			$tableHandle->createIndex("extension", ["extension"]);
+
+			$tableInfo = ["version" => 2];
 
 			$tableHandle->setTableInfo($tableInfo);
 			$tableHandle->save();

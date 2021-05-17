@@ -59,7 +59,7 @@ class a9os_app_vf_modules_tags_tag extends core_db_model {
 		$protectionModel = $this->_getProtection();
 		if ($protectionModel->restrictToChildClasses(__CLASS__)) return false;
 
-		if ($tableInfo && $tableInfo["version"] && $tableInfo["version"] == 1) return false;
+		if ($tableInfo && $tableInfo["version"] && $tableInfo["version"] == 2) return false;
 
 		if (!$tableInfo) {
 			if ($tableHandle->migrateOldTable("a9os_app_vf_tag")) return true;
@@ -73,7 +73,15 @@ class a9os_app_vf_modules_tags_tag extends core_db_model {
 			$tableHandle->setTableInfo($tableInfo);
 			$tableHandle->save();
 		}
+		if ($tableInfo["version"] < 2) {
+			$tableHandle->createIndex("a9os_user_id", ["a9os_user_id"]);
+			$tableHandle->createIndex("name", ["name"]);
 
+			$tableInfo = ["version" => 2];
+
+			$tableHandle->setTableInfo($tableInfo);
+			$tableHandle->save();
+		}
 		return true;
 	}
 }

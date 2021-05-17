@@ -18,9 +18,9 @@
 
 class a9os_app_browser1_appinstaller extends a9os_core_app_installer_base {
 	const arrBaseVersion = [0, 1, 0];
-	const arrVersion = [0, 1, 0];
+	const arrVersion = [0, 1, 1];
 	
-	const appName = "Web Browser";
+	const appName = "HTML Browser";
 	const iconUrl = "/resources/a9os/app/browser1/icon.svg";
 	const appScopePublic = true;
 
@@ -88,6 +88,23 @@ class a9os_app_browser1_appinstaller extends a9os_core_app_installer_base {
 
 		$coreControllerApplication->addNew($coreControllerBrowser1Home, $appAppObj, false);
 		
+
+		return true;
+	}
+
+	public function update($appApp){
+		$arrInstalledVersion = json_decode($appApp->getAppVersion(), true);
+		$arrCodeUpdateVersion = self::arrVersion;
+
+		if ($arrInstalledVersion == $arrCodeUpdateVersion) return false;
+
+		$installedVersionInt = $this->getCore()->arrVersionToInt($arrInstalledVersion);
+
+		$this->arrChangelog["0.1.1"] = "Cambio nombre a HTML Browser";
+		if ($installedVersionInt < 10001) {
+			$appApp->setName("HTML Browser");
+			$appApp->save();
+		}
 
 		return true;
 	}

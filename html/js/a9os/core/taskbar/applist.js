@@ -142,7 +142,7 @@ a9os_core_taskbar_applist.submitLogin = (event) => {
 					a9os_app_vf_desktop.selectDesktop();
 					core.reloadPage();
 				} else {
-					a9os_core_taskbar_popuparea.new("Usuario o contraseña incorrectas");
+					a9os_core_taskbar_popuparea.new("Usuario o contraseña incorrectas", false, "error");
 					component.appList.querySelector(".header input.name").value = "";
 					component.appList.querySelector(".header input.password").value = "";
 				}
@@ -208,4 +208,24 @@ a9os_core_taskbar_applist.setUserAvatar.receive = (path, avatarItem) => {
 
 a9os_core_taskbar_applist.openAbout = () => {
 	core.link.push("/about");
+}
+
+a9os_core_taskbar_applist.setHeaderGradientByBackground = () => {
+	if (!window.a9os_app_vf_desktop) return;
+
+	var appListHeader = self.component.querySelector(".header");
+
+	var imgPreloader = self.component.querySelector(".tmp-preloader");
+	if (imgPreloader.getAttribute("data-attached") == "false") {
+		imgPreloader.setAttribute("data-attached", "true");
+		a9os_core_main.addEventListener(imgPreloader, "load", (event, imgPreloader) => {
+			var arrImgColors = a9os_core_main.colorLogic.getAverageRGB(imgPreloader, 2);
+			appListHeader.style.backgroundImage = "linear-gradient(160deg, "+arrImgColors[0]+" 0%, "+arrImgColors[1]+" 50%)";
+		});
+	}
+
+	var backgroundImageUrl = a9os_app_vf_desktop.component.querySelector(".vf-files-container");
+	backgroundImageUrl = backgroundImageUrl.getAttribute("data-background-image");
+	if (backgroundImageUrl != "false") imgPreloader.src = backgroundImageUrl;
+
 }

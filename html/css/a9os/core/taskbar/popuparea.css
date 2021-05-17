@@ -37,7 +37,7 @@ cmp.a9os_core_taskbar_popuparea .popup-area .popup{
 	box-sizing: border-box;
 	padding: 10px 10px 10px 15px;
 	box-shadow: inset 5px 0 0 0 #999, 0 10px 15px rgba(0,0,0,0.3); 
-	background-color: rgba(255,255,255,1);
+	background-color: rgba(240,240,240,0.9);
 	text-align: left;
 	overflow: hidden;
 
@@ -47,7 +47,10 @@ cmp.a9os_core_taskbar_popuparea .popup-area .popup{
 	visibility: visible;
 }
 cmp.a9os_core_taskbar_popuparea .popup-area .popup:active{
-	opacity: 0.7;
+	background-color: rgba(255,255,255,0.7);
+}
+cmp.a9os_core_taskbar_popuparea .popup-area .popup:hover{
+	background-color: rgba(255,255,255,1);
 }
 cmp.a9os_core_taskbar_popuparea .popup-area .popup.closed{
 	transform: translateY(10px);
@@ -92,19 +95,29 @@ cmp.a9os_core_taskbar_popuparea .popup-area .popup .text {
 	font-weight: bold;
 }
 
+cmp.a9os_core_taskbar_popuparea .popup-area .popup.type-info {
+	box-shadow: inset 5px 0 0 0 #58d, 0 10px 15px rgba(0,0,0,0.3); 
+}
+cmp.a9os_core_taskbar_popuparea .popup-area .popup.type-warn {
+	box-shadow: inset 5px 0 0 0 #ba3, 0 10px 15px rgba(0,0,0,0.3); 
+}
+cmp.a9os_core_taskbar_popuparea .popup-area .popup.type-error {
+	box-shadow: inset 5px 0 0 0 #b22, 0 10px 15px rgba(0,0,0,0.3); 
+}
+
 @media screen and (max-width: 650px){
 	cmp.a9os_core_taskbar_popuparea .popup-area {
 		right: 0;
 		left: 0;
-		top: 30px;
-		bottom: auto;
+		bottom: 50px;
+		top: auto;
 		width: 100%;
 	}
-	cmp.a9os_core_taskbar_popuparea .popup-area .popup.closed{
+	/*cmp.a9os_core_taskbar_popuparea .popup-area .popup.closed{
 		transform: translateY(-10px);
 		opacity: 0;
 		visibility: hidden;
-	}
+	}*/
 }
 
 

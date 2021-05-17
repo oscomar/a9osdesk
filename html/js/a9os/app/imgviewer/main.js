@@ -41,7 +41,7 @@ a9os_app_imgviewer_main.main = (data) => {
 	});
 	a9os_core_main.addEventListener(self.component.querySelector("img"), "error", (event, img) => {
 		core.loading.unset();
-		a9os_core_taskbar_popuparea.new("No se puede cargar: "+img.src);
+		a9os_core_taskbar_popuparea.new("No se puede cargar: "+img.src, false, "error");
 	});
 
 	a9os_core_main.addEventListener(self.component.querySelector(".main"), "dblclick", self.toggleFullscreen);

@@ -88,6 +88,13 @@ a9os_app_texteditor_main.main = (data) => {
 	if (data.fileExtensions) self.component.fileExtensions = data.fileExtensions;
 
 	self.file.handle();
+
+	a9os_core_main.addEventListener(self.component.querySelector("textarea"), "keydown", (event, textarea) => {
+		if (event.which == 9) {
+			textarea.value += "\t";
+			event.preventDefault();
+		}
+	});
 }
 
 a9os_app_texteditor_main._closeWindow = (event) => {

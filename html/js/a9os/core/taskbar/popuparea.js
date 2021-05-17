@@ -27,10 +27,10 @@ a9os_core_taskbar_popuparea.main = (data) => {
 }
 
 
-a9os_core_taskbar_popuparea.new = (popupHtml, popupIcon) => {
-	
+a9os_core_taskbar_popuparea.new = (popupHtml, popupIcon, popupType) => {
 	var newPopup = document.createElement("div");
 	newPopup.classList.add("popup");
+	if (popupType) newPopup.classList.add("type-"+popupType);
 	
 	newPopup.classList.add("closed");
 	setTimeout((p) => { p.classList.remove("closed") }, 10, newPopup);
@@ -54,12 +54,12 @@ a9os_core_taskbar_popuparea.new = (popupHtml, popupIcon) => {
 		if (newPopup.closeTimeout) clearTimeout(newPopup.closeTimeout);
 		newPopup.closeTimeout = setTimeout((newPopup) => {
 			self.close(newPopup);
-		}, 5000, newPopup);
+		}, 7000, newPopup);
 	});
 
 	newPopup.closeTimeout = setTimeout((newPopup) => {
 		self.close(newPopup);
-	}, 5000, newPopup);
+	}, 7000, newPopup);
 }
 
 a9os_core_taskbar_popuparea.close = (popup) => {
