@@ -20,6 +20,7 @@ class a9os_app_vf_window extends a9os_core_window {
 	public function main($data){
 		$arrBookmarks = $this->getCore()->getModel("a9os.app.vf.window.bookmark")->getBookmarks();
 		$arrSources = $this->getCore()->getModel("a9os.app.vf.sourcerouter.item.user")->getEnabledSources();
+		$arrUserDiskSpaceData = $this->getCore()->getModel("a9os.app.vf.main")->getUserDiskSpaceData();
 		return [
 			"window" => $this->getWindowData($data, [
 				"width" => "860px",
@@ -28,7 +29,8 @@ class a9os_app_vf_window extends a9os_core_window {
 				//"windowColor" => "#dddddd"
 			]),
 			"bookmarks" => $arrBookmarks,
-			"arrSources" => $arrSources
+			"arrSources" => $arrSources,
+			"arrUserDiskSpaceData" => $arrUserDiskSpaceData 
 		];
 	}
 }

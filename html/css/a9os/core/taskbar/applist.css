@@ -110,7 +110,7 @@ cmp.a9os_core_taskbar_applist .main-app-list .header span .avatar{
 	height: 40px;
 	background: rgba(255,255,255,0.2) url(/resources/a9os/core/taskbar/default-avatar.svg) center center no-repeat;
 	background-size: cover;
-	border-radius: 5px;
+	border-radius: 50%;
 	vertical-align: middle;
 }
 cmp.a9os_core_taskbar_applist .main-app-list .header span.logged .name{
@@ -273,6 +273,28 @@ cmp.a9os_core_taskbar_applist .main-app-list .app-list a.filtered{
 	transition: all 0.1s;
 }
 
+cmp.a9os_core_taskbar_applist .main-app-list .app-list .letter-element {
+	display: block;
+	position: relative;
+	font-size: 14px;
+	text-align: left;
+	color: #666;
+	box-sizing: border-box;
+	padding: 5px 0;
+	border-bottom: 1px solid rgba(0,0,0,0.4);
+	width: calc(100% - 30px);
+	margin: 2px 15px;
+	box-shadow: 0 2px 3px -3px rgba(0,0,0,0.7);
+	transition: all 0.1s;
+}
+cmp.a9os_core_taskbar_applist .main-app-list .app-list.in-search .letter-element {
+	opacity: 0;
+	visibility: hidden;
+	height: 0;
+	margin: 0 15px;
+	padding: 0;
+}
+
 
 @media screen and (max-width: 650px){
 	cmp.a9os_core_taskbar_applist .main-app-list {
@@ -362,5 +384,8 @@ cmp.a9os_core_taskbar_applist .main-app-list .app-list a.filtered{
 		height: 35px;
 		min-height: 0;
 		margin: 0;
+	}
+	cmp.a9os_core_taskbar_applist .main-app-list .app-list .letter-element {
+		display: none;
 	}
 }

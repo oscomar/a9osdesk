@@ -117,10 +117,10 @@ a9os_app_vf_desktop_settings.initSourceItem = (currSourceItem, data) => {
 			self.component,
 			{
 				fn : (component) => { 
-					var openFromPath = component.querySelector(".select-file .info .path").textContent;
-					if (openFromPath == "") openFromPath = "/";
+					var openSaveasFromPath = component.querySelector(".select-file .info .path").textContent;
+					if (openSaveasFromPath == "") openSaveasFromPath = "/";
 
-					return { qty : "simple", type : "file", fileExtensions : ["JPG", "PNG"], dropType : "single", doNotOpen : true, openFromPath : openFromPath };
+					return { qty : "simple", type : "file", fileExtensions : ["JPG", "PNG"], dropType : "single", doNotOpen : true, openSaveasFromPath : openSaveasFromPath };
 				}, 
 				args : {
 					component : self.component

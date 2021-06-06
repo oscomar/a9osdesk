@@ -14,7 +14,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
-.a9os_app_vf_window .left {
+cmp.a9os_app_vf_window .left {
 	display: block;
 	position: absolute;
 	width: 150px;
@@ -28,7 +28,7 @@
 	z-index: 3;
 	text-align: center;
 }
-.a9os_app_vf_window .right{
+cmp.a9os_app_vf_window .right{
 	display: block;
 	position: absolute;
 	width: calc(100% - 150px);
@@ -39,7 +39,7 @@
 	box-sizing: border-box;
 	color: #fff;
 }
-.a9os_app_vf_window .right .main-bar{
+cmp.a9os_app_vf_window .right .main-bar{
 	display: inline-block;
 	position: absolute;
 	width: calc(100% - 14px);
@@ -55,10 +55,10 @@
 	overflow: hidden;
 
 }
-.a9os_app_vf_window .right .main-bar .back,
-.a9os_app_vf_window .right .main-bar .forward,
-.a9os_app_vf_window .right .main-bar .main-menu,
-.a9os_app_vf_window .right .main-bar .address-bar-edit {
+cmp.a9os_app_vf_window .right .main-bar .back,
+cmp.a9os_app_vf_window .right .main-bar .forward,
+cmp.a9os_app_vf_window .right .main-bar .main-menu,
+cmp.a9os_app_vf_window .right .main-bar .address-bar-edit {
 	display: inline-block;
 	vertical-align: top;
 	width: 35px;
@@ -68,7 +68,7 @@
 	text-align: center;
 
 }
-.a9os_app_vf_window .right .main-bar .address-bar-edit {
+cmp.a9os_app_vf_window .right .main-bar .address-bar-edit {
 
 	background: url(/resources/a9os/app/vf/icons/edit-icon-white.svg) center center no-repeat;
 	background-size: contain;
@@ -79,29 +79,29 @@
 	width: 35px;
 	height: 35px;
 }
-.a9os_app_vf_window .right .main-bar .address-bar-edit.to-confirm {
+cmp.a9os_app_vf_window .right .main-bar .address-bar-edit.to-confirm {
 	background: url(/resources/a9os/app/vf/icons/enter-icon-white.svg) center center no-repeat;
 }
 
 
-.a9os_app_vf_window .right .main-bar .main-menu {
+cmp.a9os_app_vf_window .right .main-bar .main-menu {
 	padding-left: 10px;
 }
-.a9os_app_vf_window .right .main-bar .back {
+cmp.a9os_app_vf_window .right .main-bar .back {
 	background: url(/resources/a9os/app/vf/icons/back-icon-white.svg) center center no-repeat;
 }
-.a9os_app_vf_window .right .main-bar .back:hover,
-.a9os_app_vf_window .right .main-bar .forward:hover,
-.a9os_app_vf_window .right .main-bar .main-menu:hover,
-.a9os_app_vf_window .right .main-bar .address-bar-edit:hover{
+cmp.a9os_app_vf_window .right .main-bar .back:hover,
+cmp.a9os_app_vf_window .right .main-bar .forward:hover,
+cmp.a9os_app_vf_window .right .main-bar .main-menu:hover,
+cmp.a9os_app_vf_window .right .main-bar .address-bar-edit:hover{
 	background-color: rgba(255,255,255,0.3);
 }
-.a9os_app_vf_window .right .main-bar .main-menu {
+cmp.a9os_app_vf_window .right .main-bar .main-menu {
 	background: url(/resources/a9os/app/vf/icons/burger-icon-white.svg) center center no-repeat;
 	background-size: contain;
 	display: none;
 }
-.a9os_app_vf_window .right .main-bar .address-bar{
+cmp.a9os_app_vf_window .right .main-bar .address-bar{
 	display: none;
 	vertical-align: top;
 	width: calc(100% - 70px);
@@ -117,14 +117,14 @@
 	display: none;
 	box-shadow: inset 0 0 0 2px #bbb;
 }
-.is-mobile .a9os_app_vf_window .right .main-bar .address-bar {
+.is-mobile cmp.a9os_app_vf_window .right .main-bar .address-bar {
 	margin-right: 35px;
 	width: calc(100% - 115px);
 }
-.a9os_app_vf_window .right .main-bar .address-bar.show {
+cmp.a9os_app_vf_window .right .main-bar .address-bar.show {
 	display: inline-block;
 }
-.a9os_app_vf_window .right .main-bar .address-bar-buttons {
+cmp.a9os_app_vf_window .right .main-bar .address-bar-buttons {
 	display: none;
 	vertical-align: top;
 	width: calc(100% - 70px);
@@ -137,14 +137,14 @@
 	white-space: nowrap;
 	overflow-x: auto;
 }
-.is-mobile .a9os_app_vf_window .right .main-bar .address-bar-buttons {
+.is-mobile cmp.a9os_app_vf_window .right .main-bar .address-bar-buttons {
 	margin-right: 35px;
 	width: calc(100% - 115px);
 }
-.a9os_app_vf_window .right .main-bar .address-bar-buttons.show {
+cmp.a9os_app_vf_window .right .main-bar .address-bar-buttons.show {
 	display: inline-block;
 }
-.a9os_app_vf_window .right .main-bar .address-bar-buttons .button {
+cmp.a9os_app_vf_window .right .main-bar .address-bar-buttons .button {
 	font-size: 14px;
 	display: inline-block;
 	height: 100%;
@@ -160,30 +160,30 @@
 	vertical-align: top;
 	text-align: center;
 }
-.a9os_app_vf_window .right .main-bar .address-bar-buttons .button:nth-of-type(1) {
+cmp.a9os_app_vf_window .right .main-bar .address-bar-buttons .button:nth-of-type(1) {
 	min-width: 50px;
 	font-weight: bold;
 	/*background-color: rgba(255,255,255,0.2);*/
 }
-.a9os_app_vf_window .right .main-bar .address-bar-buttons .button:last-of-type{
+cmp.a9os_app_vf_window .right .main-bar .address-bar-buttons .button:last-of-type{
 	background-color: rgba(255,255,255,0.2);
 }
-.a9os_app_vf_window .right .main-bar .address-bar-buttons .button:hover {
+cmp.a9os_app_vf_window .right .main-bar .address-bar-buttons .button:hover {
 	background-color: rgba(255,255,255,0.2);
 }
-.a9os_app_vf_window .right .main-bar .address-bar-buttons .button:last-of-type:hover {
+cmp.a9os_app_vf_window .right .main-bar .address-bar-buttons .button:last-of-type:hover {
 	background-color: rgba(255,255,255,0.4);
 }
-.a9os_app_vf_window .right .main-bar .address-bar-buttons .button span {
+cmp.a9os_app_vf_window .right .main-bar .address-bar-buttons .button span {
 	transform: skewX(15deg);
 	display: inline-block;
 }
-.a9os_app_vf_window .right .main-bar .address-bar-buttons .button.dragover{
+cmp.a9os_app_vf_window .right .main-bar .address-bar-buttons .button.dragover{
 	box-shadow: inset 0 0 0 2px #fff;
 }
 
 
-.a9os_app_vf_window .right .selection-detail {
+cmp.a9os_app_vf_window .right .selection-detail {
 	display: block;
 	position: absolute;
 	bottom: 0;
@@ -202,28 +202,28 @@
 	transform: translateY(3px);
 	transition: all 0.1s;
 }
-.a9os_app_vf_window .right .saveas-input.show + .selection-detail {
+cmp.a9os_app_vf_window .right .saveas-input.show + .selection-detail {
 	bottom: 50px;
 }
-.a9os_app_vf_window .right .selection-detail.show {
+cmp.a9os_app_vf_window .right .selection-detail.show {
 	opacity: 1;
 	transform: translateY(0);
 	visibility: visible;
 }
-.a9os_app_vf_window .right .selection-detail span.hide {
+cmp.a9os_app_vf_window .right .selection-detail span.hide {
 	display: none;
 }
 
-.a9os_app_vf_window .right .vf-files-container .item {
+cmp.a9os_app_vf_window .right .vf-files-container .item {
 	color: #444;
 }
-.a9os_app_vf_window .right .vf-files-container:not(.list-mode) .item:not(.hide){	
+cmp.a9os_app_vf_window .right .vf-files-container:not(.list-mode) .item:not(.hide){	
 	width: 150px;
 	height: 200px;
 	background-color: rgba(0,0,0,0.1);
 }
 
-.a9os_app_vf_window .right .vf-files-container:not(.list-mode) .item .icon{
+cmp.a9os_app_vf_window .right .vf-files-container:not(.list-mode) .item .icon{
 	height: 95px;
 	background-size: cover;
 	border-radius: 5px;
@@ -231,7 +231,7 @@
 }
 
 
-.a9os_app_vf_window .right .saveas-input {
+cmp.a9os_app_vf_window .right .saveas-input {
 	display: none;
 	position: absolute;
 	bottom: 0;
@@ -243,26 +243,26 @@
 	z-index: 2;
 	border-left: 1px solid #aaa;
 }
-.a9os_app_vf_window .right .saveas-input.show{
+cmp.a9os_app_vf_window .right .saveas-input.show{
 	display: block;
 }
-.a9os_app_vf_window .right .saveas-input > * {
+cmp.a9os_app_vf_window .right .saveas-input > * {
 	display: inline-block;
 	vertical-align: middle;
 }
-.a9os_app_vf_window .right .saveas-input .title {
+cmp.a9os_app_vf_window .right .saveas-input .title {
 	width: 60px;
 	font-size: 12px;
 	text-align: center;
 }
-.a9os_app_vf_window .right .saveas-input input {
+cmp.a9os_app_vf_window .right .saveas-input input {
     border: none;
     width: calc(100% - 245px);
     height: 25px;
     box-sizing: border-box;
     padding: 5px 10px;
 }
-.a9os_app_vf_window .right .saveas-input .extension {
+cmp.a9os_app_vf_window .right .saveas-input .extension {
 	margin: 0 0 0 5px;
 	height: 25px;
 	width: 70px;
@@ -271,7 +271,7 @@
 
 
 
-.a9os_app_vf_window .right .vf-files-container{
+cmp.a9os_app_vf_window .right .vf-files-container{
 	display: block;
 	font-size: 12px;
 	position: relative;
@@ -282,27 +282,27 @@
 	padding: 45px 0 0 0;
 }
 
-.a9os_app_vf_window .right .vf-files-container.saveas-mode {
+cmp.a9os_app_vf_window .right .vf-files-container.saveas-mode {
 	height: calc(100% - 50px);
 }
 
-.a9os_app_vf_window .right .vf-files-container .empty-folder{
+cmp.a9os_app_vf_window .right .vf-files-container .empty-folder{
 	margin-top: 50px;
 	display: block;
 	width: 100%;
 	text-align: center;	
 }
-.a9os_app_vf_window .right .vf-files-container .not-exist-folder{
+cmp.a9os_app_vf_window .right .vf-files-container .not-exist-folder{
 	margin-top: 50px;
 	display: block;
 	width: 100%;
 	text-align: center;	
 }
-.a9os_app_vf_window .right .vf-files-container .not-exist-folder .btn {
+cmp.a9os_app_vf_window .right .vf-files-container .not-exist-folder .btn {
 	margin-top: 10px;
 	background-color: #ddd;
 }
-.a9os_app_vf_window .left .top{
+cmp.a9os_app_vf_window .left .top{
 	display: block;
 	position: absolute;
 	top: 0;
@@ -312,7 +312,10 @@
 	overflow-y: auto;
 	overflow-x: hidden;
 }
-.a9os_app_vf_window .left .top > div:not(.bottom) {
+cmp.a9os_app_vf_window .left.with-disk-space .top {
+	bottom: 73px;
+}
+cmp.a9os_app_vf_window .left .top > div:not(.bottom) {
 	display: inline-block;
 	position: relative;
 	text-align: left;
@@ -324,35 +327,35 @@
 	box-sizing: border-box;
 
 }
-.a9os_app_vf_window .left .top > div:first-child {
+cmp.a9os_app_vf_window .left .top > div:first-child {
 	border: none;
 }
-.a9os_app_vf_window .left .top > div > .title {
+cmp.a9os_app_vf_window .left .top > div > .title {
 	display: block;
 	font-weight: bold;
 	font-size: 14px;
 }
 
-.a9os_app_vf_window .left .top > div > .items{
+cmp.a9os_app_vf_window .left .top > div > .items{
 	position: relative;
 }
 
-.a9os_app_vf_window .left .top > div > .items .item {
+cmp.a9os_app_vf_window .left .top > div > .items .item {
 	padding: 5px;
 	font-size: 12px;
 	transition: all 0.1s;
 	position: relative;
 }
-.a9os_app_vf_window .left .top > div > .items .item.dragover{
+cmp.a9os_app_vf_window .left .top > div > .items .item.dragover{
 	box-shadow: inset 0 0 0 2px #444;
 	background-color: rgba(0,0,0,0.2);
 }
 
-.a9os_app_vf_window .left .top > div > .items .item:hover{
+cmp.a9os_app_vf_window .left .top > div > .items .item:hover{
 	background-color: rgba(0,0,0,0.1);
 }
 
-.a9os_app_vf_window .left .top > div > .items .move-divisor {
+cmp.a9os_app_vf_window .left .top > div > .items .move-divisor {
 	display: block;
 	position: relative;
 	height: 3px;
@@ -360,7 +363,7 @@
 	background-color: #fff;
 
 }
-.a9os_app_vf_window .left .top > div > .items .item.tmp-dragger {
+cmp.a9os_app_vf_window .left .top > div > .items .item.tmp-dragger {
 	display: block;
 	position: absolute;
 	top: 0;
@@ -369,7 +372,7 @@
 	background-color: rgba(0,0,0,0.1);
 	transition: none;
 }
-.a9os_app_vf_window .left .top > div > .items.empty:before {
+cmp.a9os_app_vf_window .left .top > div > .items.empty:before {
 	content: "Vacío";
 	display: block;
 	text-align: center;
@@ -379,7 +382,7 @@
 	font-style: italic;
 
 }
-.a9os_app_vf_window .left .top .bookmark-menu .items .item:before {
+cmp.a9os_app_vf_window .left .top .bookmark-menu .items .item:before {
 	content: "";
 	width: 20px;
 	height: 20px;
@@ -390,12 +393,12 @@
 	display: inline-block;
 	position: relative;
 }
-.a9os_app_vf_window .left .top .sources-list .title {
+cmp.a9os_app_vf_window .left .top .sources-list .title {
 	height: 25px;
 	position: relative;
 	line-height: 25px;
 }
-.a9os_app_vf_window .left .top .sources-list .title .edit-btn{
+cmp.a9os_app_vf_window .left .top .sources-list .title .edit-btn{
 	display: inline-block;
 	vertical-align: middle;
 	right: -2.5px;
@@ -411,10 +414,10 @@
 	border: none;
 	outline: none;
 }
-.a9os_app_vf_window .left .top .sources-list .title .edit-btn:hover {
+cmp.a9os_app_vf_window .left .top .sources-list .title .edit-btn:hover {
 	background-color: rgba(0,0,0,0.1);
 }
-.a9os_app_vf_window .left .top .sources-list .items .item .icon {
+cmp.a9os_app_vf_window .left .top .sources-list .items .item .icon {
 	width: 20px;
 	height: 20px;
 	margin-right: 5px;
@@ -422,14 +425,14 @@
 	display: inline-block;
 	position: relative;
 }
-.a9os_app_vf_window .left .top .sources-list .items .item .name {
+cmp.a9os_app_vf_window .left .top .sources-list .items .item .name {
 	display: inline;
 	position: relative;
 	vertical-align: middle;
 }
 
 
-.a9os_app_vf_window .left .bottom{
+cmp.a9os_app_vf_window .left .bottom{
 	display: block;
 	position: absolute;
 	left: 0;
@@ -439,7 +442,10 @@
 	height: 30px;
 	text-align: center;
 }
-.a9os_app_vf_window .left .bottom .search-input{
+cmp.a9os_app_vf_window .left.with-disk-space .bottom {
+	height: 64px;
+}
+cmp.a9os_app_vf_window .left .bottom .search-input{
 	display: inline-block;
 	position: relative;
 	width: 80%;
@@ -453,11 +459,11 @@
 	outline: none;
 	color: #444;
 }
-.a9os_app_vf_window .left .action-buttons {
+cmp.a9os_app_vf_window .left .action-buttons {
 	font-size: 0;
 	text-align: center;
 }
-.a9os_app_vf_window .left .action-buttons .item {
+cmp.a9os_app_vf_window .left .action-buttons .item {
 	display: block;
 	box-sizing: border-box;
 	vertical-align: middle;
@@ -471,63 +477,89 @@
 	cursor: pointer;
 	border-radius: 3px;
 }
-.a9os_app_vf_window .left .action-buttons .item.disabled {
+cmp.a9os_app_vf_window .left .action-buttons .item.disabled {
 	opacity: 0.5;
 	cursor: default;
 }
-.a9os_app_vf_window .left .action-buttons .item:hover {
+cmp.a9os_app_vf_window .left .action-buttons .item:hover {
 	background-color: rgba(0,0,0,0.2);
 }
-.a9os_app_vf_window .left .action-buttons .item span {
+cmp.a9os_app_vf_window .left .action-buttons .item span {
 	display: inline-block;
 	font-size: 12px;
 	line-height: 14px;
 	vertical-align: middle;
 }
 
-.a9os_app_vf_window .left .action-buttons .item.new-folder {
+cmp.a9os_app_vf_window .left .action-buttons .item.new-folder {
 	background-image: url(/resources/a9os/app/vf/icons/new-folder-icon.svg);
 }
-.a9os_app_vf_window .left .action-buttons .item.update {
+cmp.a9os_app_vf_window .left .action-buttons .item.update {
 	background-image: url(/resources/a9os/app/vf/icons/update-icon-white.svg);
 }
 
-.a9os_app_vf_window .left .action-buttons .item.list-mode {
+cmp.a9os_app_vf_window .left .action-buttons .item.list-mode {
 	background-image: url(/resources/a9os/app/vf/icons/list-mode-icon.svg);
 }
-.a9os_app_vf_window .left .action-buttons .item.list-mode.active {
+cmp.a9os_app_vf_window .left .action-buttons .item.list-mode.active {
 	background-image: url(/resources/a9os/app/vf/icons/icon-mode-icon.svg);
 }
 
+cmp.a9os_app_vf_window .left .bottom .user-disk-space {
+	display: block;
+	position: relative;
+	width: 100%;
+	padding: 7px 10%;
+	box-sizing: border-box;
+}
+cmp.a9os_app_vf_window .left .bottom .user-disk-space.hide {
+	display: none;
+}
 
+cmp.a9os_app_vf_window .left .bottom .user-disk-space .progress-bar {
+	height: 8px;
+}
+cmp.a9os_app_vf_window .left .bottom .user-disk-space .progress-bar::after {
+	display: none;
+}
+cmp.a9os_app_vf_window .left .bottom .user-disk-space .text {
+	display: block;
+	position: relative;
+	font-size: 10px;
+	text-align: left;
+}
+
+cmp.a9os_app_vf_window .left .bottom .user-disk-space.low-space .progress-bar::before {
+	background-color: #f22;
+}
 /*RESPOSIVE STYLE*/
-.is-mobile .a9os_app_vf_window .left {
+.is-mobile cmp.a9os_app_vf_window .left {
 	transform: translateX(-150px);
 	transition: all 0.3s;
 }
-.is-mobile .a9os_app_vf_window.side-open .left {
+.is-mobile cmp.a9os_app_vf_window.side-open .left {
 	transform: translateX(0);
 	box-shadow: 0 0 30px rgba(0,0,0,0.2);
 }
-.is-mobile .a9os_app_vf_window.side-open .right {
+.is-mobile cmp.a9os_app_vf_window.side-open .right {
 	transform: translateX(100px);
 }
-.is-mobile .a9os_app_vf_window .right {
+.is-mobile cmp.a9os_app_vf_window .right {
 	width: 100%;
 	transition: all 0.3s;
 }
-.is-mobile .a9os_app_vf_window .right .main-bar .main-menu {
+.is-mobile cmp.a9os_app_vf_window .right .main-bar .main-menu {
 	display: none;
 }
-.is-mobile .a9os_app_vf_window .right .main-bar .main-menu {
+.is-mobile cmp.a9os_app_vf_window .right .main-bar .main-menu {
 	display: inline-block;
 }
 
 @media screen and (max-width: 650px){
-	.a9os_app_vf_window .right .main-bar {
+	cmp.a9os_app_vf_window .right .main-bar {
 		margin-top: 25px;
 	}
-	.a9os_app_vf_window .right .vf-files-container {
+	cmp.a9os_app_vf_window .right .vf-files-container {
 		padding-top: 70px;
 	}
 }

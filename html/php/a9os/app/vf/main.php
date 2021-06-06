@@ -33,14 +33,15 @@ class a9os_app_vf_main extends a9os_core_main {
 			$this->getCore()->end();
 		}
 
-		apache_setenv("no-gzip", "1");
+		if (function_exists("apache_setenv")) apache_setenv("no-gzip", "1");
+		header("Content-Encoding: identity");
 		header("Content-Type: ".mime_content_type($rawPath));
 		header("Accept-Ranges: bytes");
 		$filePointer = fopen($rawPath, "r");
 		$bytesToSend = filesize($rawPath);
 
 		$arrHeaders = getallheaders();
-		if (in_array("Range", array_keys($arrHeaders))) {
+		if (in_array("Range", array_keys($arrHeaders))) { //RETURN RANGE ONLY WITH MULTI-PROCESS SERVERS
 			$arrRange = str_replace(" ", "", $arrHeaders["Range"]);
 			$arrRange = explode("=", $arrRange);
 			$arrRange = explode(",", $arrRange[1]);
@@ -491,5 +492,73 @@ class a9os_app_vf_main extends a9os_core_main {
 		}
 
 		return $arrOutput;
+	}
+
+
+	public function getDirectorySize($arrFiles, $parentDir = ""){
+		$directorySize = 0;
+
+		if (is_string($arrFiles)) $arrFiles = [$arrFiles];
+
+		foreach ($arrFiles as $currFile) {
+			if (is_array($currFile)) {
+				$directorySize += (int)$currFile["size"];
+				continue;
+			}
+			if ($currFile[0] == ".") continue;
+
+			$currFile = $parentDir.$currFile;
+
+			if (is_dir($currFile)) {
+				$arrReadFiles = [];
+				$arrScandir = scandir($currFile);
+				foreach ($arrScandir as $k => $currScandir) {
+					$arrReadFiles[] = $currScandir;
+				}
+
+				$directorySize += $this->getDirectorySize($arrReadFiles, $currFile."/");
+			} else {
+				$directorySize += filesize($currFile);
+			}
+		}
+		return $directorySize;
+	}
+
+
+	public function checkOutOfSpace($arrFiles, $bytesToExclude = 0){
+		$userFolder = $this->getCore()->getModel("a9os.app.vf.main")->getUserFolder();
+		
+		$realDiskFreeSpace = disk_free_space($userFolder);
+
+		$userDiskSpaceData = $this->getUserDiskSpaceData();
+		if ($userDiskSpaceData == -1) $diskFreeSpace = $realDiskFreeSpace;
+		else {
+
+			if ($realDiskFreeSpace < $userDiskSpaceData["totalSpace"] - $userDiskSpaceData["usedSpace"]) 
+				$diskFreeSpace = $realDiskFreeSpace;
+			else $diskFreeSpace = $userDiskSpaceData["totalSpace"] - $userDiskSpaceData["usedSpace"];
+		}
+
+		$allFilesSpace = $this->getDirectorySize($arrFiles, substr($userFolder, 0, -1));
+
+		if ($diskFreeSpace + $bytesToExclude - $allFilesSpace <= 0) return true;
+		return false;
+	}
+
+
+	public function getUserDiskSpaceData(){
+		$userDiskSpaceBytes = $this->getCore()->getModel("a9os.app.vf.main")->_getJsonConfig("userDiskSpaceBytes");
+
+		if (is_null($userDiskSpaceBytes)) return -1;
+
+		$userDiskSpaceBytes = (int)$userDiskSpaceBytes;
+
+		$userFolder = $this->getUserFolder();
+		$userFolderUsedBytes = $this->getDirectorySize($userFolder);
+
+		return [
+			"totalSpace" => $userDiskSpaceBytes,
+			"usedSpace" => (int)$userFolderUsedBytes
+		];
 	}
 }

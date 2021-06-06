@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 
-.a9os_app_vf_desktop .vf-files-container {
+cmp.a9os_app_vf_desktop .vf-files-container {
 	display: block;
 	position: absolute;
 	width: 100%;
@@ -31,14 +31,14 @@
 	overflow-x: auto;
 	scrollbar-width: none;
 }
-.a9os_app_vf_desktop .vf-files-container::-webkit-scrollbar {
+cmp.a9os_app_vf_desktop .vf-files-container::-webkit-scrollbar {
 	display: none;
 }
-.a9os_app_vf_desktop .vf-files-container .item {
+cmp.a9os_app_vf_desktop .vf-files-container .item {
 	text-shadow: 0 0 5px rgba(0,0,0,1);
 }
 
-.a9os_app_vf_desktop .vf-files-container .empty-folder {
+cmp.a9os_app_vf_desktop .vf-files-container .empty-folder {
 	display: block;
 	position: relative;
 	margin: 20px auto;
@@ -48,7 +48,7 @@
 	text-align: center;
 }
 
-.a9os_app_vf_desktop .desktop-scroll {
+cmp.a9os_app_vf_desktop .desktop-scroll {
 	display: none;
 	position: absolute;
 	top: 0;
@@ -61,10 +61,10 @@
 	background-color: rgba(0,0,0,0.1);
 
 }
-.a9os_app_vf_desktop .desktop-scroll.show {
+cmp.a9os_app_vf_desktop .desktop-scroll.show {
 	display: block;
 }
-.a9os_app_vf_desktop .desktop-scroll .bar {
+cmp.a9os_app_vf_desktop .desktop-scroll .bar {
 	display: block;
 	position: absolute;
 	left: 0;
@@ -75,11 +75,11 @@
 	background-color: rgba(0,0,0,0.4);
 	transition: background-color 0.1s, width 0.1s;
 }
-.a9os_app_vf_desktop .desktop-scroll .bar:hover {
+cmp.a9os_app_vf_desktop .desktop-scroll .bar:hover {
 	background-color: rgba(0,0,0,0.8);
 }
 
-.a9os_app_vf_desktop .desktop-scroll.show + .vf-files-container {
+cmp.a9os_app_vf_desktop .desktop-scroll.show + .vf-files-container {
 	padding-top: 25px;
 }
 .vf-files-container .item{
@@ -385,4 +385,15 @@
 .a9os-main .item.move-hide {
 	opacity: 0;
 	transition: opacity 0.1s;
+}
+
+@media screen and (max-width: 650px){
+	cmp.a9os_app_vf_desktop:not(.selected) {
+		opacity: 0;
+		visibility: hidden;
+		transition: opacity 0s 0.2s, visibility 0s 0.2s;
+	}
+	cmp.a9os_app_vf_desktop.selected {
+		transition: opacity 0s, visibility 0s;
+	}
 }

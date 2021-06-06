@@ -23,8 +23,14 @@ class a9os_app_vf_copymove extends a9os_app_vf_main {
 		$type = $data["data"]["type"];
 
 		if ($type == "copy") {
-			if ($this->checkOutOfSpace($arrMoveFiles)) {
+			if ($this->checkOutOfSpace(array_keys($arrMoveFiles))) {
 				return "out of space";
+			}
+		}
+
+		if ($type == "move") {
+			if ($this->checkMoveInSameDir($arrMoveFiles, $dest)) {
+				return "move in same dir";
 			}
 		}
 
@@ -33,37 +39,17 @@ class a9os_app_vf_copymove extends a9os_app_vf_main {
 		return $arrFileFolderExists;
 	}
 
-	public function checkOutOfSpace($arrMoveFiles){
-		$userFolder = $this->getCore()->getModel("a9os.app.vf.main")->getUserFolder();
-		$diskFreeSpace = disk_free_space($userFolder);
-
-		$allFilesSpace = $this->getDirectorySize(substr($userFolder, 0, -1), $arrMoveFiles);
-
-		if ($diskFreeSpace - $allFilesSpace <= 0) return true;
-
-	}
-
-	public function getDirectorySize($parentDir = "", $arrFiles){
-		$directorySize = 0;
-		foreach ($arrFiles as $currFile => $fileObj) {
-			if ($currFile[0] == ".") continue;
-
-			$currFile = $parentDir.$currFile;
-
-			if (is_dir($currFile)) {
-				$arrReadFiles = [];
-				$arrScandir = scandir($currFile);
-				foreach ($arrScandir as $k => $currScandir) {
-					$arrReadFiles[$currScandir] = [];
-				}
-
-				$directorySize += $this->getDirectorySize($currFile."/", $arrReadFiles);
-			} else {
-				$directorySize += filesize($currFile);
+	public function checkMoveInSameDir($arrMoveFiles, $dest){
+		foreach ($arrMoveFiles as $currMovePath => $fileObj) {
+			if ($fileObj["type"] == "folder") {
+				if (strpos($dest, $currMovePath) === 0) return true;
 			}
 		}
-		return $directorySize;
+
+		return false;
 	}
+
+
 
 	public function checkFileFolderExists($arrMoveFiles, $dest, $fromInternal = false){
 		$userFolder = $this->getCore()->getModel("a9os.app.vf.main")->getUserFolder();

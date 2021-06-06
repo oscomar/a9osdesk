@@ -410,7 +410,7 @@ a9os_app_mediaviewer_main.file.handle = () => {
 		},
 		false,
 		{
-			fn : self.file.putFileData,
+			fn : self.file.getFileData,
 			args : {
 				component : self.component,
 				handle : false
@@ -433,7 +433,7 @@ a9os_app_mediaviewer_main.file.getConfigData = (component) => {
 	return { qty : "simple", type : "file", fileExtensions : component.fileExtensions, dropType : "single", onlySrcUrl : true }
 }
 
-a9os_app_mediaviewer_main.file.putFileData = (component, handle) => {
+a9os_app_mediaviewer_main.file.getFileData = (component, handle) => {
 	
 	if (handle.path == "untitled") return;
 

@@ -630,6 +630,7 @@ class a9os_core_install extends a9os_core_window{
 			$coreComponentDependTaskbar->save();
 		}
 
+
 		$a9osUserToInstalledVersion->putA9osVersion($codeVersion);
 		return true;
 	}

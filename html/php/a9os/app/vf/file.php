@@ -97,7 +97,7 @@ class a9os_app_vf_file extends a9os_app_vf_main {
 		$fileName = $data["getData"]["path"];
 		$fileName = str_replace("../", "", $fileName);
 
-		$returnRegistry = $this->putContents($fileName, $_FILES["data"]["tmp_name"]);
+		$returnRegistry = $this->putContents($fileName, $_FILES["data"]);
 
 		if (!$returnRegistry) error_log(json_encode($_FILES["data"]) . " no subido: " . $_FILES["data"]["error"]);
 		return $returnRegistry;
@@ -105,11 +105,18 @@ class a9os_app_vf_file extends a9os_app_vf_main {
 
 
 
-	public function putContents($path, $tmpFile){
+	public function putContents($path, $tmpFileObj){
 		$systemAnonMode = $this->getCore()->getModel("a9os.core.main")->getSystemAnonMode();
 		if ($systemAnonMode == "demo") throw new Exception("__DEMO__");
+
+		if (file_exists($this->getUserFolder().$path)) $oldFileSize = filesize($this->getUserFolder().$path);
+		else $oldFileSize = 0;
+
+		if ($this->checkOutOfSpace([$tmpFileObj], $oldFileSize)) {
+			return "out of space";
+		}
 		
-		if (move_uploaded_file($tmpFile, $this->getUserFolder().$path)){
+		if (move_uploaded_file($tmpFileObj["tmp_name"], $this->getUserFolder().$path)){
 			$registry = $this->getCore()->getModel("a9os.app.vf.registry");
 			$registry->newRegistry($path, "file_write");
 			

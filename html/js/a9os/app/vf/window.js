@@ -58,6 +58,8 @@ a9os_app_vf_window.main = (data) => {
 	self.addressBar.init();
 
 	self.sourcesList.init(data.arrSources);
+
+	self.userDiskSpace.init(data.arrUserDiskSpaceData);
 }
 
 a9os_app_vf_window._selectWindow = () => {
@@ -1162,4 +1164,36 @@ a9os_app_vf_window.winListMenu.openBookmark =
 a9os_app_vf_window.winListMenu.openSource = 
 a9os_app_vf_window.winListMenu.open = (event, winListItem, dataPath) => {
 	core.link.push("/vf", { folder : dataPath });
+}
+
+
+a9os_app_vf_window.userDiskSpace = {};
+a9os_app_vf_window.userDiskSpace.init = (arrUserDiskSpaceData) => {
+	if (arrUserDiskSpaceData == -1) {
+		self.component.querySelector(".user-disk-space").classList.add("hide");
+		return;
+	}
+
+	var totalSpace = arrUserDiskSpaceData.totalSpace;
+	var usedSpace = arrUserDiskSpaceData.usedSpace;
+
+	var percent = 100*usedSpace/totalSpace;
+	if (percent > 100) percent = 100;
+
+	percent = Math.round(percent);
+
+
+	totalSpace = a9os_app_vf_main.convertSize(totalSpace);
+	usedSpace = a9os_app_vf_main.convertSize(usedSpace);
+
+	var userDiskSpaceElement = self.component.querySelector(".user-disk-space");
+	
+	if (percent > 75) userDiskSpaceElement.classList.add("low-space");
+	else userDiskSpaceElement.classList.remove("low-space");
+
+	core.preProcess(userDiskSpaceElement, {
+		userDiskSpace : { percent, totalSpace, usedSpace }
+	});
+
+	self.component.querySelector(".left").classList.add("with-disk-space");
 }

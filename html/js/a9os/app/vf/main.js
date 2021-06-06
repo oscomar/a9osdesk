@@ -25,7 +25,7 @@ a9os_app_vf_main.main = (data) => {
 a9os_app_vf_main.fileHandle = {};
 a9os_app_vf_main.arrFileHandles = {};
 
-a9os_app_vf_main.fileHandle.attach = (component, getConfigDataFn, getFileDataFn, putFileDataFn, getIsFileModifiedFn, requestFileReloadFn, cancelFn) => {
+a9os_app_vf_main.fileHandle.attach = (component, getConfigDataFn, putFileDataFn, getFileDataFn, getIsFileModifiedFn, requestFileReloadFn, cancelFn) => {
 	
 	//component, geCoDa, geFiDa, puFiDa, geIFaMod, reFiRel, cancel
 
@@ -42,8 +42,8 @@ a9os_app_vf_main.fileHandle.attach = (component, getConfigDataFn, getFileDataFn,
 
 		component : component,
 		getConfigDataFn : getConfigDataFn, // call to get config data (extension , selection type, etc)
-		getFileDataFn : getFileDataFn, // app to file
-		putFileDataFn : putFileDataFn, // file to app
+		putFileDataFn : putFileDataFn, // app to file
+		getFileDataFn : getFileDataFn, // file to app
 		getIsFileModifiedFn : getIsFileModifiedFn, // call to get if not saved file changes in app
 		requestFileReloadFn : requestFileReloadFn, // call if file modified by other app
 		cancelFn : cancelFn, // cancel call to select window
@@ -80,7 +80,7 @@ a9os_app_vf_main.fileHandle.new = (component, fileHandleId, finalCallbackFn) => 
 			});
 
 			a9os_core_main.selectWindow(handle.component);
-			if (handle.putFileDataFn) core.callCallback(handle.putFileDataFn, {
+			if (handle.getFileDataFn) core.callCallback(handle.getFileDataFn, {
 				handle : handle
 			});
 
@@ -110,7 +110,7 @@ a9os_app_vf_main.fileHandle.close = (component, fileHandleId, finalCallbackFn) =
 			handle.data = false;
 
 			a9os_core_main.selectWindow(handle.component);
-			if (handle.putFileDataFn) core.callCallback(handle.putFileDataFn, {
+			if (handle.getFileDataFn) core.callCallback(handle.getFileDataFn, {
 				handle : handle
 			});
 
@@ -243,7 +243,7 @@ a9os_app_vf_main.fileHandle.open = (component, fileHandleId, force, finalCallbac
 				file : handle.path
 			});
 			
-			if (handle.putFileDataFn) core.callCallback(handle.putFileDataFn, {
+			if (handle.getFileDataFn) core.callCallback(handle.getFileDataFn, {
 				handle : handle
 			});
 
@@ -314,10 +314,10 @@ a9os_app_vf_main.fileHandle.open = (component, fileHandleId, force, finalCallbac
 				} else {
 
 					var openFolder = "/";
-					if (configData.openFromPath && configData.openFromPath != "" && configData.openFromPath != "untitled") {
-						var openFromPath = configData.openFromPath;
-						if (openFromPath[openFromPath.length - 1] == "/") openFolder = openFromPath;
-						else openFolder = a9os_core_main.splitFilePath(openFromPath)[0]
+					if (configData.openSaveasFromPath && configData.openSaveasFromPath != "" && configData.openSaveasFromPath != "untitled") {
+						var openSaveasFromPath = configData.openSaveasFromPath;
+						if (openSaveasFromPath[openSaveasFromPath.length - 1] == "/") openFolder = openSaveasFromPath;
+						else openFolder = a9os_core_main.splitFilePath(openSaveasFromPath)[0]
 					}
 
 					core.link.push("/vf", {
@@ -414,8 +414,8 @@ a9os_app_vf_main.fileHandle.save = (component, fileHandleId, finalCallbackFn) =>
  		return;
 	}
 
-	if (!handle.getFileDataFn) return;
-	handle.data = new Blob([core.callCallback(handle.getFileDataFn)]);
+	if (!handle.putFileDataFn) return;
+	handle.data = new Blob([core.callCallback(handle.putFileDataFn)]);
 	self.fileHandle.sendFile(handle, finalCallbackFn);
 }
 
@@ -428,10 +428,10 @@ a9os_app_vf_main.fileHandle.saveAs = (component, fileHandleId, finalCallbackFn) 
 
 
 	var openFolder = "/";
-	if (arrConfigData.openFromPath && arrConfigData.openFromPath != "" && arrConfigData.openFromPath != "untitled") {
-		var openFromPath = arrConfigData.openFromPath;
-		if (openFromPath[openFromPath.length - 1] == "/") openFolder = openFromPath;
-		else openFolder = a9os_core_main.splitFilePath(openFromPath)[0]
+	if (arrConfigData.openSaveasFromPath && arrConfigData.openSaveasFromPath != "" && arrConfigData.openSaveasFromPath != "untitled") {
+		var openSaveasFromPath = arrConfigData.openSaveasFromPath;
+		if (openSaveasFromPath[openSaveasFromPath.length - 1] == "/") openFolder = openSaveasFromPath;
+		else openFolder = a9os_core_main.splitFilePath(openSaveasFromPath)[0]
 	}
 
 	core.link.push("/vf", {
@@ -442,9 +442,9 @@ a9os_app_vf_main.fileHandle.saveAs = (component, fileHandleId, finalCallbackFn) 
 			fn : (handle, callbackFn, path) => {
 				handle.path = path;
 
-				if (!handle.getFileDataFn) return;
+				if (!handle.putFileDataFn) return;
 
-				handle.data = new Blob([core.callCallback(handle.getFileDataFn)]);
+				handle.data = new Blob([core.callCallback(handle.putFileDataFn)]);
 
 				a9os_core_main.selectWindow(handle.component);
 
@@ -452,7 +452,7 @@ a9os_app_vf_main.fileHandle.saveAs = (component, fileHandleId, finalCallbackFn) 
 					file : handle.path
 				});
 
-				if (handle.putFileDataFn) core.callCallback(handle.putFileDataFn, {
+				if (handle.getFileDataFn) core.callCallback(handle.getFileDataFn, {
 					handle : handle
 				});
 
@@ -495,6 +495,8 @@ a9os_app_vf_main.fileHandle.sendFile = (handle, callbackFn) => {
 		{
 			fn : (response, handle, callbackFn) => {
 				if (!handle.lastRegistryDateByAction) handle.lastRegistryDateByAction = {};
+
+				if (response == "out of space") self.userDiskSpace.outOfSpace.show();
 
 				handle.lastRegistryDateByAction["file_write"] = response;
 				if (handle.component) a9os_core_main.selectWindow(handle.component);
@@ -844,7 +846,7 @@ a9os_app_vf_main.folderObserver.refresh = (path, forceParent) => {
 				return;
 			}
 
-			var componentName = currComponent.componentName;
+			var componentName = currComponent.getAttribute("data-component-name");
 			if (!pathToRefresh || pathToRefresh == currPath) {
 				core.callCallback(currList[i].refreshFn);
 			}
@@ -900,6 +902,15 @@ a9os_app_vf_main.copyMove.checkProblems = (arrMoveFiles, dest, type) => {
 		fn : (response, dest, type) => {
 			//console.log(response);
 			var boolAllOk = true;
+
+			if (response == "out of space"){
+				self.userDiskSpace.outOfSpace.show();
+				return;
+			}
+			if (response == "move in same dir"){
+				self.copyMove.showMoveInSameDir();
+				return;
+			}
 
 			for (var i in response) {
 				var currResponseAnswer = response[i];
@@ -960,6 +971,10 @@ a9os_app_vf_main.copyMove.checkProblems = (arrMoveFiles, dest, type) => {
 		},
 		fnCheckProblemsCallback
 	);
+}
+
+a9os_app_vf_main.copyMove.showMoveInSameDir = () => {
+	a9os_core_taskbar_popuparea.new("No se puede mover una carpeta adentro de sí misma", false, "error");
 }
 
 a9os_app_vf_main.copyMove.finalMove = (arrMoveFiles, dest, type) => {
@@ -1031,6 +1046,13 @@ a9os_app_vf_main.copyMove.receiveFromGear = (message) => {
 }
 
 
+a9os_app_vf_main.userDiskSpace = {};
+a9os_app_vf_main.userDiskSpace.outOfSpace = {};
+a9os_app_vf_main.userDiskSpace.outOfSpace.show = () => {
+	a9os_core_taskbar_popuparea.new("Sin espacio de almacenamiento", "/resources/a9os/app/vf/icons/disk-out-of-space.svg", "error");
+}
+
+
 
 a9os_app_vf_main.saveasOpenPathInWindow = (event, itemMoveLayer, windowTaskbarItemId) => {
 	var firstMoveLayerItem = itemMoveLayer.querySelector(".item");
@@ -1070,4 +1092,13 @@ a9os_app_vf_main.sanitizePath = (path) => {
 a9os_app_vf_main.catchBackendError = (error) => {
 	a9os_core_taskbar_popuparea.new(error, "/resources/a9os/app/vf/icons/files/file-icon-error.svg", "error");
 	console.error("catchBackendError", error);
+}
+
+
+a9os_app_vf_main.convertSize = (bytes) => {
+	if (bytes < 1024) return bytes + " B";
+	else if (bytes < 1048576) return (bytes / 1024).toFixed(2) + " kB";
+	else if (bytes < 1073741824) return (bytes / 1048576).toFixed(2) + " MB";
+	else if (bytes < 1099511627776) return (bytes / 1073741824).toFixed(2) + " GB";
+	else return (bytes / 1099511627776).toFixed(2) + " TB";
 }

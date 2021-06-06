@@ -17,6 +17,8 @@
 a9os_app_vf_desktop.main = (data) => {
 	
 	var vfFilesContainer = self.component.querySelector(".vf-files-container");
+
+	self.component.classList.add("selected");
 	
 	var arrWindowShortcuts = a9os_app_vf_desktop.keyboardShortcuts.get(vfFilesContainer);
 	a9os_core_main.kbShortcut.add(vfFilesContainer, arrWindowShortcuts);
@@ -113,6 +115,7 @@ a9os_app_vf_desktop.selectDesktop = () => {
 
 	var vfFilesContainer = self.component.querySelector(".vf-files-container");
 	vfFilesContainer.classList.add("selected");
+	self.component.classList.add("selected");
 	
 	var arrWindows = a9os_core_main.component.querySelectorAll("cmp.a9os_core_window > .window");
 	for (var i = 0 ; i < arrWindows.length ; i++){
@@ -238,7 +241,7 @@ a9os_app_vf_desktop.attachDragFileUpload = (vfFilesContainer) => {
 	a9os_core_main.addEventListener(vfFilesContainer, "drop", (event, vfFilesContainer) => {
 		event.preventDefault();
 
-		var componentName = vfFilesContainer.goToParentClass("component", "cmp").componentName;
+		var componentName = vfFilesContainer.goToParentClass("component", "cmp").getAttribute("data-component-name");
 		vfFilesContainer.classList.remove("dragover");
 
 		if (!event.dataTransfer.items) return;
@@ -301,13 +304,6 @@ a9os_app_vf_desktop.file.openWith = (event, item) => {
 	});
 }
 
-a9os_app_vf_desktop.file.convertSize = (bytes) => {
-	if (bytes < 1024) return bytes + " B";
-	else if (bytes < 1048576) return (bytes / 1024).toFixed(2) + " kB";
-	else if (bytes < 1073741824) return (bytes / 1048576).toFixed(2) + " MB";
-	else if (bytes < 1099511627776) return (bytes / 1073741824).toFixed(2) + " GB";
-	else return (bytes / 1099511627776).toFixed(2) + " TB";
-}
 
 a9os_app_vf_desktop.file.delete = (event, item) => {
 		var arrCrossCallbacks = {};
@@ -465,7 +461,7 @@ a9os_app_vf_desktop.file.rename = (event, item, component, newItem) => {
 
 					var cancelCCI = a9os_core_main.windowCrossCallback.add({
 						fn : (component, event, item) => {
-							if (component.componentName == "a9os_app_vf_window") {
+							if (component.getAttribute("data-component-name") == "a9os_app_vf_window") {
 								a9os_core_main.selectWindow(component.goToParentClass("window", "cmp"));
 							}
 							itemName.contentEditable = "true";
@@ -573,7 +569,7 @@ a9os_app_vf_desktop.file.rename = (event, item, component, newItem) => {
 
 					var cancelCCI = a9os_core_main.windowCrossCallback.add({
 						fn : (component, event, item) => {
-							if (component.componentName == "a9os_app_vf_window") {
+							if (component.getAttribute("data-component-name") == "a9os_app_vf_window") {
 								a9os_core_main.selectWindow(component.goToParentClass("window", "cmp"));
 							}
 							itemName.contentEditable = "true";
@@ -680,7 +676,7 @@ a9os_app_vf_desktop.file.multiDownload = (event, arrFilesDivs) => { //TODO!!
 
 a9os_app_vf_desktop.file.upload = (event, item) => {
 	var vfFilesContainer = item;
-	var componentName = vfFilesContainer.goToParentClass("component", "cmp").componentName;
+	var componentName = vfFilesContainer.goToParentClass("component", "cmp").getAttribute("data-component-name");
 	var parentPath = vfFilesContainer.getAttribute("data-path");
 
 	var uploadInput = document.createElement("input");
@@ -818,7 +814,7 @@ a9os_app_vf_desktop.folder.show = (path, arrFiles, baseComponent, arrHandlers, f
 			newItem.setAttribute("data-extension", currFile.extension);
 
 			if (newItem.querySelector(".size")) {
-				newItem.querySelector(".size").textContent = self.file.convertSize(currFile.size);
+				newItem.querySelector(".size").textContent = a9os_app_vf_main.convertSize(currFile.size);
 				newItem.querySelector(".size").setAttribute("data-size", currFile.size);
 			}
 			
@@ -1052,6 +1048,8 @@ a9os_app_vf_desktop.folder.addItemDragAndDrop = (vfFilesContainer, newItem) => {
 					self.unselectItem(currSelectedItem);
 
 					var currItemCoord = arrItemCoords[i];
+
+					currSelectedItem.removeAttribute("data-menu-r");
 
 					itemMoveLayer.appendChild(currSelectedItem);
 					currSelectedItem.style.left = currItemCoord.x - firstItemLeft;
@@ -1361,7 +1359,7 @@ a9os_app_vf_desktop.selectItem = (item, preventCount) => {
 		}
 
 		selectionDetail.querySelector(".qty").textContent = qtyFolders + qtyFiles;
-		selectionDetail.querySelector(".size").textContent = self.file.convertSize(filesTotalSize);
+		selectionDetail.querySelector(".size").textContent = a9os_app_vf_main.convertSize(filesTotalSize);
 	}
 	//////////////
 }
@@ -1582,7 +1580,7 @@ a9os_app_vf_desktop.desktopScroll.checkNeed = (component) => {
 	var desktopScroll = component.querySelector(".desktop-scroll");
 
 	//var vfScrollPercent = 100*vfFilesContainer.offsetWidth/vfFilesContainer.scrollWidth;
-	var vfScrollPercent = 100/vfFilesContainer.scrollWidth*vfFilesContainer.offsetWidth;
+	var vfScrollPercent = Math.ceil(100/vfFilesContainer.scrollWidth*vfFilesContainer.offsetWidth);
 	if (vfScrollPercent >= 100) {
 		desktopScroll.classList.remove("show");
 	} else {

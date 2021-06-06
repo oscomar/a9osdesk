@@ -49,7 +49,7 @@
 		<button class="btn">Aceptar</button>
 	</div>
 	<div class="selection-detail">
-		<span class="qty">5</span> Item<span class="s hide">s</span> <span class="size-lbl hide">| Tamaño: <span class="size">20.25 Mb</span></span>
+		<span class="qty"></span> Item<span class="s hide">s</span> <span class="size-lbl hide">| Tamaño: <span class="size"></span></span>
 	</div>
 	<div class="main-bar ibl-c">
 		<div class="main-menu"></div>
@@ -99,6 +99,12 @@
 		</div>
 	</div>
 	<div class="bottom">
+		<div class="user-disk-space">
+			<div class="progress-bar" data-data="percent:userDiskSpace.percent"></div>
+			<div class="text">
+				<span data-textcontent="userDiskSpace.usedSpace"></span> de <span data-textcontent="userDiskSpace.totalSpace"></span>
+			</div>
+		</div>
 		<input type="text" class="search-input" placeholder="Buscar...">
 	</div>
 </div>

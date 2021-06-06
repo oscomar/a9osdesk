@@ -60,6 +60,8 @@ a9os_core_taskbar_applist.main = (data) => {
 
 		self.component.querySelector(".app-list .add-app").style.display = "none";
 	}
+
+	self.appendOrderLetters();
 }
 
 a9os_core_taskbar_applist.close = (event) => {
@@ -86,6 +88,12 @@ a9os_core_taskbar_applist.search = (query) => {
 	
 	var query = query.toLowerCase().replace(/[^0-9a-z-]/g,"");
 	var container = self.component.appList.querySelector(".main-app-list .app-list");
+
+	if (query != "") {
+		container.classList.add("in-search");
+	} else {
+		container.classList.remove("in-search");
+	}
 
 	container.querySelectorAll("a").forEach((item,i) => {
 		if (query == ""){
@@ -221,6 +229,9 @@ a9os_core_taskbar_applist.setHeaderGradientByBackground = () => {
 		a9os_core_main.addEventListener(imgPreloader, "load", (event, imgPreloader) => {
 			var arrImgColors = a9os_core_main.colorLogic.getAverageRGB(imgPreloader, 2);
 			appListHeader.style.backgroundImage = "linear-gradient(160deg, "+arrImgColors[0]+" 0%, "+arrImgColors[1]+" 50%)";
+
+			var imgColor = a9os_core_main.colorLogic.getAverageRGB(imgPreloader);
+			document.body.style.backgroundColor = imgColor;
 		});
 	}
 
@@ -228,4 +239,27 @@ a9os_core_taskbar_applist.setHeaderGradientByBackground = () => {
 	backgroundImageUrl = backgroundImageUrl.getAttribute("data-background-image");
 	if (backgroundImageUrl != "false") imgPreloader.src = backgroundImageUrl;
 
+}
+
+a9os_core_taskbar_applist.appendOrderLetters = () => {
+	var appList = self.component.appList.querySelector(".app-list-inner");
+	var arrItems = appList.querySelectorAll("a");
+
+	var currLetter = "";
+	for (var i = 0 ; i < arrItems.length ; i++) {
+		var currItem = arrItems[i];
+		var currItemFirstLetter = currItem.querySelector("span").textContent.charAt(0).toUpperCase();
+
+		if (currLetter != currItemFirstLetter) {
+			currLetter = currItemFirstLetter;
+			appendItemLetter(currLetter, currItem);
+		}
+	}
+
+	function appendItemLetter(currLetter, currItem) {
+		var itemElement = document.createElement("div");
+		itemElement.textContent = currLetter;
+		itemElement.classList.add("letter-element");
+		currItem.parentElement.insertBefore(itemElement, currItem);
+	}
 }

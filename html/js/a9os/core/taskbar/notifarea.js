@@ -15,8 +15,5 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 a9os_core_taskbar_notifarea.main = () => {
-		var notifArea = self.component.querySelector(".notif-area");
-		a9os_core_main.addEventListener(notifArea, "click", (event, notifArea) => {
-			a9os_app_vf_desktop.selectDesktop();
-		});
+
 }

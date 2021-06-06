@@ -129,13 +129,13 @@ a9os_app_texteditor_main.file.handle = () => {
 			}
 		},
 		{
-			fn : self.file.getFileData,
+			fn : self.file.putFileData,
 			args : {
 				component : self.component
 			}
 		},
 		{
-			fn : self.file.putFileData,
+			fn : self.file.getFileData,
 			args : {
 				component : self.component,
 				handle : false
@@ -169,14 +169,14 @@ a9os_app_texteditor_main.file.handle = () => {
 }
 
 a9os_app_texteditor_main.file.getConfigData = (component) => {
-	return { qty : "simple", type : "file", fileExtensions : component.fileExtensions, dropType : "single", openFromPath : component.handlePath }
+	return { qty : "simple", type : "file", fileExtensions : component.fileExtensions, dropType : "single", openSaveasFromPath : component.handlePath }
 }
 
-a9os_app_texteditor_main.file.getFileData = (component) => {
+a9os_app_texteditor_main.file.putFileData = (component) => {
 		return self.component.querySelector("textarea").value;
 }
 
-a9os_app_texteditor_main.file.putFileData = (component, handle) => {
+a9os_app_texteditor_main.file.getFileData = (component, handle) => {
 	
 	self.file._updateWindowData(handle.path);
 	component.handlePath = handle.path;
