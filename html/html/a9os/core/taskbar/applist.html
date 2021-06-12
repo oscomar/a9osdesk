@@ -62,7 +62,7 @@
 				]'></div>
 			</div>
 		</span>
-		<input type="text" class="app-search" placeholder="Buscar...">
+		<input type="text" class="app-search search-icon-input darkbackground whiteonfocus" placeholder="Buscar...">
 	</div>
 	<div class="app-list">
 		<a href="/app-installer" class="ibl-c add-app"><img src="/resources/a9os/core/app/installer/icon.svg">Agregar programa</a>
@@ -73,6 +73,7 @@
 					"action" : "addToWindowlist"
 				}
 			]'><img data-src=currApp.icon_url><span data-textcontent="currApp.name"></span></a>
+			<div class="search-not-found" data-preventloop="true">Sin resultados</div>
 		</div>
 	</div>
 </div>

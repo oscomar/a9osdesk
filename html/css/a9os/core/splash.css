@@ -14,7 +14,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
-.a9os_core_splash .container {
+cmp.a9os_core_splash .container {
 	z-index: -1;
 	display: block;
 	position: absolute;
@@ -22,39 +22,46 @@
 	height: 100%;
 	background: rgba(0,0,0,0.2);
 }
-.a9os_core_splash .container .logo {
+cmp.a9os_core_splash .container .logo {
 	display: block;
-	position: relative;
-	width: 500px;
-	height: 20vw;
-	max-width: 90%;
+	position: absolute;
+	width: 150px;
+	height: 50px;
+	top: 0;
+	left: 0;
 	background: url(/resources/a9os/img/a9os_logo.svg) center center no-repeat;
 	background-size: contain;
-	margin: 5% auto;
+	
 }
-.a9os_core_splash .container .login-box {
+cmp.a9os_core_splash .container .login-box {
 	display: block;
-	position: relative;
+	position: absolute;
 	padding: 10px 5%;
+	height: 165px;
 	max-width: 95%;
 	box-sizing: border-box;
-	background-color: rgba(255,255,255,1);
+	background-color: rgba(240,240,240,0.6);
+	backdrop-filter: blur(8px) brightness(2.5);
 	border-radius: 5px;
 	width: 400px;
-	margin: 50px auto;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	margin: auto;
 }
-.a9os_core_splash .container .login-box label {
+cmp.a9os_core_splash .container .login-box label {
 	display: block;
 	position: relative;
 	width: 100%;
-	margin: 10px 0 20px 0;
+	margin: 10px 0 24px 0;
 }
 
-.a9os_core_splash .container .login-box label input {
+cmp.a9os_core_splash .container .login-box label input {
 	display: block;
 	position: relative;
 	width: 100%;
-	height: 30px;
+	height: 27px;
 	padding: 5px;
 	border: none;
 	border: none;
@@ -63,26 +70,29 @@
 	box-sizing: border-box;
 	transition: all 0.1s;
 }
-.a9os_core_splash .container .login-box label input:focus {
+cmp.a9os_core_splash .container .login-box label input:focus {
 	outline: none;
-	border-bottom: 1px solid #222;
+	border-bottom: none;
+	border-radius: 3px;
+	background-color: #fff;
+
 }
-.a9os_core_splash .container .login-box label span {
+cmp.a9os_core_splash .container .login-box label span {
 	display: inline-block;
 	position: relative;
 	font-size: 15px;
 	margin: -27px 0 0 5px;
 	transition: all 0.1s;
 }
-.a9os_core_splash .container .login-box label input:focus + span,
-.a9os_core_splash .container .login-box label input.non-empty + span {
+cmp.a9os_core_splash .container .login-box label input:focus + span,
+cmp.a9os_core_splash .container .login-box label input.non-empty + span {
 	margin: -40px 0 0 2px;
 	font-size: 12px;
 }
-.a9os_core_splash .container .login-box .buttons {
+cmp.a9os_core_splash .container .login-box .buttons {
 	text-align: center;
 }
-.a9os_core_splash .container .login-box .buttons > * {
+cmp.a9os_core_splash .container .login-box .buttons > * {
 	display: inline-block;
 	color: #fff;
 	text-align: center;
@@ -100,11 +110,11 @@
 	vertical-align: middle;
 	cursor: pointer;
 }
-.a9os_core_splash .container .login-box .buttons > *:hover{
+cmp.a9os_core_splash .container .login-box .buttons > *:hover{
 	background-color: #222;
 }
 
-.a9os_core_splash .container .login-box .error {
+cmp.a9os_core_splash .container .login-box .error {
 	display: block;
 	position: relative;
 	width: 100%;
@@ -120,10 +130,36 @@
 	margin-top: 0;
 	transition: all 0.2s;
 }
-.a9os_core_splash .container .login-box .error.show {
+cmp.a9os_core_splash .container .login-box .error.show {
 	opacity: 1;
 	visibility: visible;
 	height: auto;
 	margin-top: 10px;
 	padding: 10px;
+}
+
+cmp.a9os_core_splash .login-and-footer footer{
+	display: block;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	box-sizing: border-box;
+	text-align: right;
+	background-color: rgba(0,0,0,0.8);
+	color: #666;
+	font-size: 13px;
+	line-height: 16px;
+	padding: 10px 55px 10px 10px;
+}
+cmp.a9os_core_splash .login-and-footer footer::after{
+	content: "";
+	display: block;
+	position: absolute;
+	height: 100%;
+	width: 50px;
+	right: 0;
+	top: 0;
+	background: url(/resources/a9os/core/splash/asp95-logo-bottom.svg) center center no-repeat;
+	background-size: contain;
 }

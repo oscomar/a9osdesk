@@ -17,6 +17,8 @@
 a9os_core_splash.main = (data) => {
 	self.attachFormActions();
 	self.attachChangeScope();
+
+	if (data.wallpaper) self.setWallpaper(data.wallpaper);
 }
 a9os_core_splash.attachChangeScope = () => {
 	a9os_core_main.addEventListener(self.component, "click", (event, component) => {
@@ -90,4 +92,9 @@ a9os_core_splash.submitLogin = (event) => {
 			}
 		}
 	)
+}
+
+
+a9os_core_splash.setWallpaper = (wallpaper) => {
+	a9os_core_main.mainDiv.style.backgroundImage = "url("+wallpaper+")";
 }

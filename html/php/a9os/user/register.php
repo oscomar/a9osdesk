@@ -30,6 +30,7 @@ class a9os_user_register extends a9os_user {
 				"width" => "300px",
 				"height" => "auto",
 				"position" => "center",
+				"windowColor" => "rgba(220,220,220,0.8)"
 			],
 		];
 	}

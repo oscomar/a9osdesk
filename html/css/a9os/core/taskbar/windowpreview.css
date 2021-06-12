@@ -30,7 +30,8 @@ cmp.a9os_core_taskbar_windowpreview .window-preview {
 	transform: translateY(10px);
 	transition: all 0.2s;
 	overflow: hidden;
-	box-shadow: 0 0 10px rgba(0,0,0,0.2);
+	border-radius: 3px 3px 0 0;
+	box-shadow: 0 10px 15px rgba(0,0,0,0.3);
 }
 cmp.a9os_core_taskbar_windowpreview .window-preview.dark-foreground {
 	color: #222;
@@ -62,6 +63,7 @@ cmp.a9os_core_taskbar_windowpreview .window-preview .preview {
 	text-overflow: initial;
 	position: relative;
 	border: 1px solid rgba(255,255,255,0.3);
+	border-radius: 3px;
 	transition: height 0.2s;
 }
 cmp.a9os_core_taskbar_windowpreview .window-preview .preview .main-content {

@@ -18,6 +18,10 @@
 
 class a9os_core_splash extends a9os_core_main {
 	public function main($data){
-		
+		$vfDesktopForWallpaper = $this->getCore()->getModel("a9os.app.vf.desktop");
+		$currWallpaper = $vfDesktopForWallpaper->getSystemWallpaperResourceFolder().$vfDesktopForWallpaper->getSystemWallpaperRandomImage();
+		return [
+			"wallpaper" => $currWallpaper
+		];
 	}
 }

@@ -93,19 +93,32 @@ a9os_core_taskbar_applist.search = (query) => {
 		container.classList.add("in-search");
 	} else {
 		container.classList.remove("in-search");
+		container.querySelector(".search-not-found").classList.remove("show");
 	}
 
-	container.querySelectorAll("a").forEach((item,i) => {
+	var arrApps = container.querySelectorAll("a");
+	var qtyFound = 0;
+	for (var i = 0 ; i < arrApps.length ; i++) {
+		var item = arrApps[i];
 		if (query == ""){
 			item.classList.remove("filtered");
-			return;
+			qtyFound = 0;
+			continue;
 		}
 		if (item.textContent.toLowerCase().indexOf(query) == -1){
 			item.classList.add("filtered");
+			qtyFound++;
 		} else {
 			item.classList.remove("filtered");
+			qtyFound--;
 		}
-	});
+	}
+
+	if (qtyFound == arrApps.length) {
+		container.querySelector(".search-not-found").classList.add("show");
+	} else {
+		container.querySelector(".search-not-found").classList.remove("show");
+	}
 }
 
 a9os_core_taskbar_applist.open = () => {

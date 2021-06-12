@@ -14,24 +14,27 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
-.a9os_user_register h1 {
+cmp.a9os_user_register {
+	color: #222;
+}
+cmp.a9os_user_register h1 {
 	display: block;
 	width: 100%;
 	box-sizing: border-box;
 	padding: 10px 5%;
 	margin: 0;
 }
-.a9os_user_register .newuser-form{
+cmp.a9os_user_register .newuser-form{
 	margin: 0;
 }
-.a9os_user_register label {
+cmp.a9os_user_register label {
 	display: block;
 	position: relative;
 	width: 100%;
 	box-sizing: border-box;
-	padding: 10px 5%;
+	padding: 15px 5%;
 }
-.a9os_user_register label input {
+cmp.a9os_user_register label input {
 	display: block;
 	position: relative;
 	width: 100%;
@@ -43,24 +46,27 @@
 	background-color: transparent;
 	box-sizing: border-box;
 }
-.a9os_user_register label span {
+cmp.a9os_user_register label span {
 	display: inline-block;
 	position: relative;
 	font-size: 13px;
 	margin: -25px 0 0 5px;
 	transition: all 0.1s;
 }
-.a9os_user_register label input:focus {
+cmp.a9os_user_register label input:focus {
 	outline: none;
-	border-bottom: 1px solid #222;
+	/*border-bottom: 1px solid #222;*/
 	transition: all 0.1s;
+	border: none;
+	border-radius: 3px;
+	background-color: #fff;
 }
-.a9os_user_register label input:focus + span,
-.a9os_user_register label input.non-empty + span {
-	margin: -40px 0 0 2px;
+cmp.a9os_user_register label input:focus + span,
+cmp.a9os_user_register label input.non-empty + span {
+	margin: -42px 0 0 2px;
 	font-size: 10px;
 }
-.a9os_user_register .actions {
+cmp.a9os_user_register .actions {
 	display: block;
 	position: relative;
 	width: 100%;
@@ -68,14 +74,14 @@
 	box-sizing: border-box;
 	padding: 20px 5%;
 }
-.a9os_user_register .actions > * {
+cmp.a9os_user_register .actions > * {
 	display: inline-block;
 }
-.a9os_user_register .actions .btn.submit[disabled] {
+cmp.a9os_user_register .actions .btn.submit[disabled] {
 	opacity: 0.5;
 }
 
-.a9os_user_register label .error {
+cmp.a9os_user_register label .error {
 	display: block;
 	position: absolute;
 	top: 10px;
@@ -83,7 +89,7 @@
 	width: 20px;
 	height: 20px;
 }
-.a9os_user_register label .error .error-icon {
+cmp.a9os_user_register label .error .error-icon {
 	display: block;
 	position: relative;
 	width: 20px;
@@ -96,7 +102,7 @@
 	font-size: 20px;
 	line-height: 20px;
 }
-.a9os_user_register label .error .popup-msg {
+cmp.a9os_user_register label .error .popup-msg {
 	display: block;
 	opacity: 0;
 	visibility: hidden;
@@ -114,8 +120,8 @@
 	margin: 3px 0 0 0;
 	transition: all 0.1s;
 }
-.a9os_user_register label .error .error-icon:hover + .popup-msg,
-.a9os_user_register label .error .error-icon .popup-msg {
+cmp.a9os_user_register label .error .error-icon:hover + .popup-msg,
+cmp.a9os_user_register label .error .error-icon .popup-msg {
 	opacity: 1;
 	visibility: visible;
 	transform: translateY(0px);

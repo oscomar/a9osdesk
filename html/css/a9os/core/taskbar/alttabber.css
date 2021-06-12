@@ -159,7 +159,7 @@ cmp.a9os_core_taskbar_alttabber .alttabber.dark-foreground .indicator {
 
 	opacity: 1;
 
-	transform: skew(0, -20deg) scale(var(--tmp-alttabber-zoom-factor))!important;
+	transform: skew(0, -20.2deg) scale(var(--tmp-alttabber-zoom-factor))!important;
 	transform-origin: bottom;
 }
 .a9os-main:not(.alttabber-mode) .window.alttabber-idx {
@@ -220,6 +220,11 @@ cmp.a9os_core_taskbar_alttabber .alttabber.dark-foreground .indicator {
 }
 .a9os-main.alttabber-mode .window.alttabber-idx.aix3:after {
 	background-color: rgba(60,60,60,0.5);
+}
+.a9os-main.alttabber-mode .window.alttabber-idx{
+	box-shadow: none;
+	border-radius: 10px;
+	overflow: hidden;
 }
 
 @media screen and (max-width: 650px){
