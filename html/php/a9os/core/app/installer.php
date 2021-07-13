@@ -82,7 +82,7 @@ class a9os_core_app_installer extends a9os_core_window {
 
 		$arrAllApps = [];
 		while ($currApp = $appAppCollection->fetch()) {
-			$arrAllApps[$currApp->getID()] = $this->buildAppReturnObject($currApp);
+			$arrAllApps[$currApp->getID()] = $this->buildAppReturnObject($currApp)["appInstallerAppData"];
 		}
 
 		return $arrAllApps;
@@ -109,16 +109,19 @@ class a9os_core_app_installer extends a9os_core_window {
 		} 
 
 		return [
-			"id" => $currApp->getID(),
-			"name" => $currApp->getName(),
-			"icon_url" => $currApp->getIconUrl(),
-			"app_scope" => $currApp->getAppScope(),
-			"app_code" => $currApp->getAppCode(),
-			"version_installed" => implode(".", json_decode($currApp->getAppVersion(), true)),
-			"version_to_update" => implode(".", $versionToUpdate?:[]),
-			"user_id_list" => explode(",", $currApp->getUserIdList()),
-			"app_install_status" => $appInstallStatus,
-			"arr_changelog" => $this->getArrChangelog($installerClassName)
+			"appInstallerAppData" => [
+				"id" => $currApp->getID(),
+				"name" => $currApp->getName(),
+				"icon_url" => $currApp->getIconUrl(),
+				"app_scope" => $currApp->getAppScope(),
+				"app_code" => $currApp->getAppCode(),
+				"version_installed" => implode(".", json_decode($currApp->getAppVersion(), true)),
+				"version_to_update" => implode(".", $versionToUpdate?:[]),
+				"user_id_list" => explode(",", $currApp->getUserIdList()),
+				"app_install_status" => $appInstallStatus,
+				"arr_changelog" => $this->getArrChangelog($installerClassName)
+			],
+			"appList" => $this->getCore()->getModel("a9os.core.taskbar.applist")->getAllUserApps()
 		];
 	}
 
@@ -172,6 +175,8 @@ class a9os_core_app_installer extends a9os_core_window {
 
 		$appAppData = $newApp->getData();
 		$appAppData["url"] = $this->getAppPathFromCode($data["data"]["code"]);
+
+		$appAppData["appList"] = $this->getCore()->getModel("a9os.core.taskbar.applist")->getAllUserApps();
 
 		return $appAppData;
 	}

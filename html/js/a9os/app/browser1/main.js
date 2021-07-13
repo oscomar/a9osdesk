@@ -46,25 +46,25 @@ a9os_app_browser1_main.interface = {};
 a9os_app_browser1_main.interface.init = () => {
 	
 	var newtabButton = self.component.querySelector(".header .tabs .newtab-button");
-	a9os_core_main.addEventListener(newtabButton, "click", self.newTab.add);
+	core.addEventListener(newtabButton, "click", self.newTab.add);
 
 	/*var backButton = self.component.querySelector(".header .main-bar .back");
-	a9os_core_main.addEventListener(backButton, "click", self.headerActions.back);
+	core.addEventListener(backButton, "click", self.headerActions.back);
 
 	var forwardButton = self.component.querySelector(".header .main-bar .forward");
-	a9os_core_main.addEventListener(forwardButton, "click", self.headerActions.forward);*/
+	core.addEventListener(forwardButton, "click", self.headerActions.forward);*/
 
 	var refreshButton = self.component.querySelector(".header .main-bar .refresh");
-	a9os_core_main.addEventListener(refreshButton, "click", self.headerActions.refresh);
+	core.addEventListener(refreshButton, "click", self.headerActions.refresh);
 
 	var addressBar = self.component.querySelector(".header .address-bar");
-	a9os_core_main.addEventListener(addressBar, "keypress", a9os_app_browser1_main.headerActions.urlInput.keyEvent);
-	a9os_core_main.addEventListener(addressBar, "focus", self.newTab.unsetTitleUpdateInterval);
-	a9os_core_main.addEventListener(addressBar, "blur", self.newTab.setTitleUpdateInterval);
+	core.addEventListener(addressBar, "keypress", a9os_app_browser1_main.headerActions.urlInput.keyEvent);
+	core.addEventListener(addressBar, "focus", self.newTab.unsetTitleUpdateInterval);
+	core.addEventListener(addressBar, "blur", self.newTab.setTitleUpdateInterval);
 
 
 	/*var favoritesMenu = self.component.querySelector(".header .favorites-menu");
-	a9os_core_main.addEventListener(favoritesMenu, "click", self.headerActions.favorites);*/
+	core.addEventListener(favoritesMenu, "click", self.headerActions.favorites);*/
 
 	self.newTab.setTitleUpdateInterval();
 }
@@ -84,7 +84,7 @@ a9os_app_browser1_main.newTab.add = (event, newtabButton, component) => {
 	component.querySelector(".main-content").appendChild(newContentDiv);
 	newTabDiv.classList.remove("opening");
 
-	a9os_core_main.addEventListener(newContentDiv.querySelector("iframe"), "load", (event, iframe, newTabDiv, newContentDiv, newTabId) => {
+	core.addEventListener(newContentDiv.querySelector("iframe"), "load", (event, iframe, newTabDiv, newContentDiv, newTabId) => {
 		newTabDiv.classList.remove("loading");
 		self.headerActions.urlInput.update(newTabDiv.getAttribute("data-tabid"));
 
@@ -241,13 +241,13 @@ a9os_app_browser1_main.tabActions.select = (tabId) => {
 a9os_app_browser1_main.tabActions.appendActions = (tabDiv) => {
 		var tabId = tabDiv.getAttribute("data-tabid");
 
-	a9os_core_main.addEventListener(tabDiv, "mousedown", (event, tabDiv) => {
+	core.addEventListener(tabDiv, "mousedown", (event, tabDiv) => {
 		self.tabActions.select(tabId);
 		if (event.button == "1") self.tabActions.close(tabId);
 	});
 
 	var closeBtn = tabDiv.querySelector(".close");
-	a9os_core_main.addEventListener(closeBtn, "click", (event, closeBtn, tabId) => {
+	core.addEventListener(closeBtn, "click", (event, closeBtn, tabId) => {
 		self.tabActions.close(tabId);
 	}, tabId);
 }

@@ -34,20 +34,20 @@ a9os_app_vf_sourcerouter_edit_window.attachControls = () => {
 	var arrItems = self.component.querySelectorAll(".sources-list .item");
 
 	var arrItemCheckboxes = self.component.querySelectorAll(".sources-list .item .check");
-	a9os_core_main.addEventListener(arrItemCheckboxes, "click", (event, currCheckbox) => {
+	core.addEventListener(arrItemCheckboxes, "click", (event, currCheckbox) => {
 		currCheckbox.parentElement.setAttribute("data-selected", currCheckbox.checked);
 	});
 
-	a9os_core_main.addEventListener(cancelButton, "click", (event, cancelButton) => {
+	core.addEventListener(cancelButton, "click", (event, cancelButton) => {
 		a9os_core_window.close();
 	});
 
-	a9os_core_main.addEventListener(arrItems, "click", (event, currItem) => {
+	core.addEventListener(arrItems, "click", (event, currItem) => {
 		if (event.target == currItem.querySelector(".check")) return;
 		currItem.querySelector(".check").click();
 	});
 
-	a9os_core_main.addEventListener(submitButton, "click", (event, submitButton) => {
+	core.addEventListener(submitButton, "click", (event, submitButton) => {
 		submitButton.disabled = true;
 
 		var arrReturnItemData = [];

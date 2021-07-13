@@ -27,7 +27,7 @@ a9os_app_imgviewer_main.main = (data) => {
 	self.attachTouchZoom();
 	self.file.attach();
 
-	a9os_core_main.addEventListener(self.component.querySelector("img"), "load", (event, img) => {
+	core.addEventListener(self.component.querySelector("img"), "load", (event, img) => {
 		core.loading.unset();
 		img.classList.add("loaded");
 		var imgColor = a9os_core_main.colorLogic.getAverageRGB(img);
@@ -39,12 +39,12 @@ a9os_app_imgviewer_main.main = (data) => {
 
 		//mainDiv.querySelector(".buttons").style.setProperty("--window-color", imgColor);
 	});
-	a9os_core_main.addEventListener(self.component.querySelector("img"), "error", (event, img) => {
+	core.addEventListener(self.component.querySelector("img"), "error", (event, img) => {
 		core.loading.unset();
 		a9os_core_taskbar_popuparea.new("No se puede cargar: "+img.src, false, "error");
 	});
 
-	a9os_core_main.addEventListener(self.component.querySelector(".main"), "dblclick", self.toggleFullscreen);
+	core.addEventListener(self.component.querySelector(".main"), "dblclick", self.toggleFullscreen);
 
 }
 
@@ -161,7 +161,7 @@ a9os_app_imgviewer_main.attachScrollEvent = () => {
 	var scaleMax = 10;
 	var currScale = 1;
 	var boolLimit = -1;
-	a9os_core_main.addEventListener(self.component.querySelector(".main"), "wheel", (event) => {
+	core.addEventListener(self.component.querySelector(".main"), "wheel", (event) => {
 		var direction = (event.deltaY < 0)?"up":"down";
 		currScale = self.getCurentScale();
 		if (currScale > scaleMax) boolLimit = 1;
@@ -198,7 +198,7 @@ a9os_app_imgviewer_main.attachButtonsEvent = () => {
 	
 	var zoomDiv = self.component.querySelector(".buttons .zoom");
 
-	a9os_core_main.addEventListener(zoomDiv, "click", (event, elem) => {
+	core.addEventListener(zoomDiv, "click", (event, elem) => {
 		elem.textContent = "100%";
 		elem.setAttribute("data-scale", 1);
 		elem.setAttribute("data-translate-x", 0);
@@ -208,7 +208,7 @@ a9os_app_imgviewer_main.attachButtonsEvent = () => {
 
 	var prevDiv = self.component.querySelector(".buttons .prev");
 	var nextDiv = self.component.querySelector(".buttons .next");
-	a9os_core_main.addEventListener([prevDiv, nextDiv], "click", (event, button) => {
+	core.addEventListener([prevDiv, nextDiv], "click", (event, button) => {
 		button.disabled = true;
 
 		if (button.classList.contains("prev")) {
@@ -291,7 +291,7 @@ a9os_app_imgviewer_main.attachTouchZoom = () => {
 	var initElementScale =  parseFloat(dataElement.getAttribute("data-scale"))||0;
 	var movX = 0;
 	var movY = 0;
-	a9os_core_main.addEventListener(self.component.querySelector(".main"), "touchstart", (event, item) => {
+	core.addEventListener(self.component.querySelector(".main"), "touchstart", (event, item) => {
 		if (event.touches.length >= 2) { 
 			initScaleDiff = Math.hypot(
 				event.touches[0].pageX - event.touches[1].pageX,
@@ -302,7 +302,7 @@ a9os_app_imgviewer_main.attachTouchZoom = () => {
 		movY = event.touches[0].pageY;
 
 	});
-	a9os_core_main.addEventListener(self.component.querySelector(".main"), "touchmove", (event, item) => {
+	core.addEventListener(self.component.querySelector(".main"), "touchmove", (event, item) => {
 		if (event.touches.length >= 2) { //zoom
 			var currScaleDiff =  initScaleDiff - Math.hypot(
 				event.touches[0].pageX - event.touches[1].pageX,
@@ -328,7 +328,7 @@ a9os_app_imgviewer_main.attachTouchZoom = () => {
 		}
 	});
 
-	a9os_core_main.addEventListener(self.component.querySelector(".main"), "touchend", (event, item) => {
+	core.addEventListener(self.component.querySelector(".main"), "touchend", (event, item) => {
 		initScaleDiff = 0;
 		initElementScale = parseFloat(dataElement.getAttribute("data-scale"))||0;
 		movX = 0;

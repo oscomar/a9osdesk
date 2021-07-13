@@ -78,30 +78,30 @@ a9os_app_vf_window._closeWindow = () => {
 
 a9os_app_vf_window.addWindowListeners = () => {
 	
-	a9os_core_main.addEventListener(self.mainBar.querySelector(".main-menu"), "click", self.panel.show);
-	a9os_core_main.addEventListener(self.component.querySelector(".right"), "click", self.panel.hide);
-	a9os_core_main.addEventListener(self.component.querySelector(".right"), "touchstart", self.panel.hide);
+	core.addEventListener(self.mainBar.querySelector(".main-menu"), "click", self.panel.show);
+	core.addEventListener(self.component.querySelector(".right"), "click", self.panel.hide);
+	core.addEventListener(self.component.querySelector(".right"), "touchstart", self.panel.hide);
 
-	a9os_core_main.addEventListener(self.mainBar.querySelector(".back"), "click", self.folder.back);
-	a9os_core_main.addEventListener(self.mainBar.querySelector(".address-bar"), "keyup", self.enterAddress);
-	a9os_core_main.addEventListener(self.leftPanel.querySelector(".bottom .search-input"), "keyup", self.searchItems)
+	core.addEventListener(self.mainBar.querySelector(".back"), "click", self.folder.back);
+	core.addEventListener(self.mainBar.querySelector(".address-bar"), "keyup", self.enterAddress);
+	core.addEventListener(self.leftPanel.querySelector(".bottom .search-input"), "keyup", self.searchItems)
 
-	a9os_core_main.addEventListener(self.component.querySelector(".vf-files-container"), "click", (event, elem) => {
+	core.addEventListener(self.component.querySelector(".vf-files-container"), "click", (event, elem) => {
 		// event.stopPropagation();
 		if (!elem.querySelector(".square-selection")) a9os_app_vf_desktop.unselectItems(elem);
 		self.addressBar.switchToButtons(true); 
 	});
 
-	a9os_core_main.addEventListener(self.leftPanel.querySelector(".action-buttons .new-folder"), "click", (event, button) => {
+	core.addEventListener(self.leftPanel.querySelector(".action-buttons .new-folder"), "click", (event, button) => {
 		if (button.classList.contains("disabled")) return;
 		self.folder.new(event, button);	
 	});
 
-	a9os_core_main.addEventListener(self.leftPanel.querySelector(".action-buttons .update"), "click", (event, button) => {
+	core.addEventListener(self.leftPanel.querySelector(".action-buttons .update"), "click", (event, button) => {
 		if (button.classList.contains("disabled")) return;
 		self.refresh(event, button);
 	});
-	a9os_core_main.addEventListener(
+	core.addEventListener(
 		self.leftPanel.querySelector(".left .item.alter-list"), 
 		"click", 
 		(event, button, vfFilesContainer) => {
@@ -113,7 +113,7 @@ a9os_app_vf_window.addWindowListeners = () => {
 
 	var wind0w = self.component.goToParentClass("window");
 
-	a9os_core_main.addEventListener(wind0w, "wind0waltermobile", (event, wind0w) => {
+	core.addEventListener(wind0w, "wind0waltermobile", (event, wind0w) => {
 		self.changeListType(event, wind0w.querySelector(".left .item.alter-list"), wind0w.querySelector(".vf-files-container"))
 	});
 }
@@ -423,7 +423,7 @@ a9os_app_vf_window.folder.showNotExists = (component) => {
 	component.querySelector(".vf-files-container").appendChild(notExistTemplate);
 
 	var createFolderBtn = self.component.querySelector(".vf-files-container .not-exist-folder .btn");
-	a9os_core_main.addEventListener(createFolderBtn, "click", self.folder.createFromNotExists, component);
+	core.addEventListener(createFolderBtn, "click", self.folder.createFromNotExists, component);
 }
 a9os_app_vf_window.folder.createFromNotExists = (event, button, component) => {
 	core.sendRequest(
@@ -573,7 +573,7 @@ a9os_app_vf_window.bookmark.addItem = (event, item, preventSaveItems) => {
 	]));
 	newItem.setAttribute("data-vf-drop-area", true);
 
-	a9os_core_main.addEventListener(newItem, "click", (event, newItem) => {
+	core.addEventListener(newItem, "click", (event, newItem) => {
 		self.component.classList.remove("side-open");
 		self.folder.change(event, newItem);
 	});
@@ -751,7 +751,7 @@ a9os_app_vf_window.showSaveInput = () => {
 	}
 	
 
-	a9os_core_main.addEventListener(submitBtn, "click", (event, submitBtn) => {
+	core.addEventListener(submitBtn, "click", (event, submitBtn) => {
 			submitBtn.setAttribute("data-filename", input.value);
 
 			submitBtn.setAttribute("data-path", submitBtn.getAttribute("data-parent-path")+submitBtn.getAttribute("data-filename"));
@@ -759,9 +759,9 @@ a9os_app_vf_window.showSaveInput = () => {
 		}
 	);
 
-	a9os_core_main.addEventListener(input, "keyup", inputKeypress);
+	core.addEventListener(input, "keyup", inputKeypress);
 
-	a9os_core_main.addEventListener(input, "blur", inputExtensionAutocomplete);
+	core.addEventListener(input, "blur", inputExtensionAutocomplete);
 
 	function inputKeypress(event, input) {
 		submitBtn.setAttribute("data-filename",
@@ -821,7 +821,7 @@ a9os_app_vf_window.showSaveInput = () => {
 				extensionSelector.appendChild(new Option(currExtension, currExtension));
 			}
 
-			a9os_core_main.addEventListener(extensionSelector, "change", (event, item) => {
+			core.addEventListener(extensionSelector, "change", (event, item) => {
 				var input = item.parentElement.querySelector("input");
 				var inputValue = input.value;
 
@@ -848,7 +848,7 @@ a9os_app_vf_window.showSaveInput = () => {
 a9os_app_vf_window.addressBar = {};
 a9os_app_vf_window.addressBar.init = () => {
 	var editButton = self.component.querySelector(".main-bar .address-bar-edit");
-	a9os_core_main.addEventListener(editButton, "click", (event, editButton) => {
+	core.addEventListener(editButton, "click", (event, editButton) => {
 		if (editButton.classList.contains("to-confirm")) {
 			self.addressBar.switchToButtons(); 
 		} else {
@@ -857,7 +857,7 @@ a9os_app_vf_window.addressBar.init = () => {
 	});
 
 	var addressBarButtons = self.component.querySelector(".address-bar-buttons");
-	a9os_core_main.addEventListener(addressBarButtons, "dblclick", (event, addressBarButtons) => {
+	core.addEventListener(addressBarButtons, "dblclick", (event, addressBarButtons) => {
 		self.addressBar.switchToEdit();
 	});
 }
@@ -933,7 +933,7 @@ a9os_app_vf_window.addressBar.setValue = (component, path) => {
 	});
 
 	var arrButtons = component.querySelectorAll(".right .main-bar .address-bar-buttons .button");
-	a9os_core_main.addEventListener(arrButtons, "click", self.folder.change);
+	core.addEventListener(arrButtons, "click", self.folder.change);
 }
 
 a9os_app_vf_window.addressBar.clear = (component) => {
@@ -952,7 +952,7 @@ a9os_app_vf_window.sourcesList.init = (dataArrSources) => {
 	self.sourcesList.processItems(self.component);
 
 	var editButton = self.component.querySelector(".left .top .sources-list .title .edit-btn");
-	a9os_core_main.addEventListener(editButton, "click", self.sourcesList.openWindow, self.component);
+	core.addEventListener(editButton, "click", self.sourcesList.openWindow, self.component);
 
 	self.sourcesList.appendMoveEvent();
 }
@@ -994,7 +994,7 @@ a9os_app_vf_window.sourcesList.processItems = (component) => {
 
 	var arrListItems = component.querySelectorAll(".left .top .sources-list .items .item");
 
-	a9os_core_main.addEventListener(arrListItems, "click", (event, currListItem) => {
+	core.addEventListener(arrListItems, "click", (event, currListItem) => {
 		self.component.classList.remove("side-open");
 		self.folder.get(currListItem.getAttribute("data-path"));
 	});

@@ -100,7 +100,7 @@ a9os_app_vf_dialog.addAction = (actionName, arrAction) => {
 		newActionBtn.setAttribute("data-is-cancel", "true");
 	}
 	newActionBtn.textContent = arrAction.name;
-	a9os_core_main.addEventListener(newActionBtn, "click", (event, item) => {
+	core.addEventListener(newActionBtn, "click", (event, item) => {
 		if (item.getAttribute("data-cci")) {
 			self.excuteAction(item.getAttribute("data-cci"));
 		}

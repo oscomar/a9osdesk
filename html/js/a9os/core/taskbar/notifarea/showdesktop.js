@@ -18,14 +18,14 @@ a9os_core_taskbar_notifarea_showdesktop.main = () => {
 	
 	var showDesktopDiv = self.component.querySelector(".show-desktop");
 
-	a9os_core_main.addEventListener(showDesktopDiv, "click", self.alter);
+	core.addEventListener(showDesktopDiv, "click", self.alter);
 
-	a9os_core_main.addEventListener(showDesktopDiv, "mouseenter", () => {
+	core.addEventListener(showDesktopDiv, "mouseenter", () => {
 		self.component.hlTimeout = setTimeout(() => {
 			if (window.a9os_core_window) a9os_core_window.highligthWindow();
 		}, 300);
 	});
-	a9os_core_main.addEventListener(showDesktopDiv, "mouseleave", () => {
+	core.addEventListener(showDesktopDiv, "mouseleave", () => {
 		if (self.component.hlTimeout) {
 			clearTimeout(self.component.hlTimeout);	
 			self.component.hlTimeout = false;

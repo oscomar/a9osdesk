@@ -95,12 +95,12 @@ a9os_core_taskbar_windowlist.item.new = (windowData, arrMenuCustomActions) => {
 	])));
 
 	if (!newItem.classList.contains("usedbefore")) {
-		a9os_core_main.addEventListener(newItem, "click", (event, newItem) => {
+		core.addEventListener(newItem, "click", (event, newItem) => {
 			if (newItem.classList.contains("pinned") && !newItem.classList.contains("used"))  return;
 
 			self.item.selectRestoreWindow(newItem);
 		});
-		a9os_core_main.addEventListener(newItem, "mousedown", (event, newItem) => {	
+		core.addEventListener(newItem, "mousedown", (event, newItem) => {	
 			if (newItem.classList.contains("pinned") && !newItem.classList.contains("used"))  return;
 
 			if (event.button == "1") self.item.newInstance(event, newItem);
@@ -329,11 +329,11 @@ a9os_core_taskbar_windowlist.item.pinned.add = (newPinnedApp, preventBackendUpda
 	newItem.classList.add("pinned");
 
 	newItem.style.backgroundImage = "url("+newPinnedApp.icon+")";
-	newItem.setAttribute("data-url", newPinnedApp.url);
+	newItem.setAttribute("data-app-url", newPinnedApp.url);
 	newItem.setAttribute("data-appid", newPinnedApp.id);
 	newItem.title = newPinnedApp.title;
 
-	a9os_core_main.addEventListener(newItem, "click", self.item.pinned.open);
+	core.addEventListener(newItem, "click", self.item.pinned.open);
 	if (!ifExistSameOpenAppItem) {
 		newItem.setAttribute("data-menu-r", JSON.stringify(self.item.pinned.menuR));
 		self.item.addToList(newItem);
@@ -345,7 +345,7 @@ a9os_core_taskbar_windowlist.item.pinned.add = (newPinnedApp, preventBackendUpda
 
 a9os_core_taskbar_windowlist.item.pinned.open = (event, item) => {
 	if (!item.classList.contains("used"))
-		core.link.push(item.getAttribute("data-url"));
+		core.link.push(item.getAttribute("data-app-url"));
 }
 
 a9os_core_taskbar_windowlist.item.pinned.remove = (event, item) => {
@@ -365,9 +365,9 @@ a9os_core_taskbar_windowlist.item.pinned.openItemToPinned = (event, item) => {
 	}
 
 	var itemUrl = applistItem.getAttribute("href");
-	item.setAttribute("data-url", itemUrl);
+	item.setAttribute("data-app-url", itemUrl);
 
-	a9os_core_main.addEventListener(item, "click", self.item.pinned.open);
+	core.addEventListener(item, "click", self.item.pinned.open);
 }
 
 a9os_core_taskbar_windowlist.item.pinned.menuR = [

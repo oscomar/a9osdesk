@@ -31,7 +31,7 @@ a9os_app_vf_desktop_settings.main = (data) => {
 			currSourceItem.querySelector(".item-radio").checked = true;
 		}
 	}
-	a9os_core_main.addEventListener(arrSourceItems, "click", (event, currSourceItem) => {
+	core.addEventListener(arrSourceItems, "click", (event, currSourceItem) => {
 		var sourceItemToUnselect = self.component.querySelector(".sources-selector .source.selected");
 		sourceItemToUnselect.classList.remove("selected");
 		sourceItemToUnselect.querySelector(".item-radio").checked = false;
@@ -52,7 +52,7 @@ a9os_app_vf_desktop_settings.main = (data) => {
 
 	var arrSizeSelectorItems = self.component.querySelectorAll(".size-selector .size");
 
-	a9os_core_main.addEventListener(arrSizeSelectorItems, "click", (event, currSizeSelectorItem) => {
+	core.addEventListener(arrSizeSelectorItems, "click", (event, currSizeSelectorItem) => {
 		var sizeSelectorToUnselect = self.component.querySelector(".size-selector .size.selected");
 		sizeSelectorToUnselect.classList.remove("selected");
 
@@ -63,7 +63,7 @@ a9os_app_vf_desktop_settings.main = (data) => {
 
 
 	var colorSelector = self.component.querySelector(".source.color input[type=color]");
-	a9os_core_main.addEventListener(colorSelector, "change", (event, colorSelector) => {
+	core.addEventListener(colorSelector, "change", (event, colorSelector) => {
 		self.udpateDesktop();
 	});
 }
@@ -103,7 +103,7 @@ a9os_app_vf_desktop_settings._closeWindow = () => {
 a9os_app_vf_desktop_settings.initSourceItem = (currSourceItem, data) => {
 	if (currSourceItem.classList.contains("system")) {
 		var arrSystemWallpaperItems = currSourceItem.querySelectorAll(".system-wallpapers-selector .item");
-		a9os_core_main.addEventListener(arrSystemWallpaperItems, "click", (event, currSystemWallpaperItems) => {
+		core.addEventListener(arrSystemWallpaperItems, "click", (event, currSystemWallpaperItems) => {
 			for (var i = 0 ; i < arrSystemWallpaperItems.length ; i++) {
 				arrSystemWallpaperItems[i].removeAttribute("data-selected");
 			}
@@ -141,7 +141,7 @@ a9os_app_vf_desktop_settings.initSourceItem = (currSourceItem, data) => {
 		var selectFileBtn = currSourceItem.querySelector(".btn.select-file");
 
 		selectFileBtn.setAttribute("data-vf-drop-area", userWpFileHandleId);
-		a9os_core_main.addEventListener(selectFileBtn, "click", (event, selectFileBtn, component, userWpFileHandleId) => {
+		core.addEventListener(selectFileBtn, "click", (event, selectFileBtn, component, userWpFileHandleId) => {
 			a9os_app_vf_main.fileHandle.open(component, userWpFileHandleId);
 		}, self.component, userWpFileHandleId);
 

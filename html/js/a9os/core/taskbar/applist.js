@@ -15,29 +15,40 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 a9os_core_taskbar_applist.main = (data) => {
-	
-	a9os_core_main.addEventListener(a9os_core_main.mainDiv, "click", self.close);
-
-	a9os_core_main.addEventListener(a9os_core_taskbar.component.querySelector(".taskbar .main-button"), "click", self.toggle);
-
 	self.component.appList = self.component.querySelector(".main-app-list");
-	a9os_core_main.addEventListener(self.component.appList, "click", (event) => {event.stopPropagation()});
+	
+	core.addEventListener(a9os_core_main.mainDiv, "click", self.close);
+	core.addEventListener(self.component.appList, "click", (event) => {event.stopPropagation()});
 
-	self.component.appList.querySelectorAll(".app-list a, .header .register").forEach((e) => {
-		e.addEventListener("click", self.toggle);
-	});
 
-	self.component.appList.querySelector(".main-app-list .app-search").addEventListener("keyup", (event) => { 
-		self.search(event.currentTarget.value); 
-		self.searchEnter(event);
-	});
+	core.addEventListener(a9os_core_taskbar.component.querySelector(".taskbar .main-button"), "click", self.toggle);
 
+
+
+	self.appSearchInput.init();
+
+
+
+	self.userControl.init(data);
+
+
+	self.appendOrderLetters();
+	core.parseHrefHandlers();
+	self.appendCloseEventToItems();
+}
+
+a9os_core_taskbar_applist.appendCloseEventToItems = () => {
+	core.addEventListener(self.component.appList.querySelectorAll(".app-list a, .header .register"), "click", self.toggle);
+}
+
+a9os_core_taskbar_applist.userControl = {};
+a9os_core_taskbar_applist.userControl.init = (data) => {
 	var submitBtn = self.component.appList.querySelector(".header .not-logged .buttons .submit");
-	a9os_core_main.addEventListener(submitBtn, "click", self.submitLogin);
+	core.addEventListener(submitBtn, "click", self.userControl.submitLogin);
 
 	var passInput = self.component.appList.querySelector(".header .not-logged input.password");
-	a9os_core_main.addEventListener(passInput, "keyup", (event, input) => {
-		if (event.which == 13) self.submitLogin();
+	core.addEventListener(passInput, "keyup", (event, input) => {
+		if (event.which == 13) self.userControl.submitLogin();
 	});
 
 	if (window.a9os_user && a9os_user.user.name != "__anon__") {
@@ -60,10 +71,57 @@ a9os_core_taskbar_applist.main = (data) => {
 
 		self.component.querySelector(".app-list .add-app").style.display = "none";
 	}
-
-	self.appendOrderLetters();
 }
 
+a9os_core_taskbar_applist.userControl.submitLogin = (event) => {
+	
+	var arrUserPass = {
+		name : self.component.appList.querySelector(".header input.name").value,
+		password : self.component.appList.querySelector(".header input.password").value
+	};
+
+	if (arrUserPass.name == "" || arrUserPass.password == "") return;
+
+	core.sendRequest(
+		"/login",
+		arrUserPass,
+		{
+			fn : (response, component) => {
+				if (response == "ok") {
+					a9os_app_vf_desktop.selectDesktop();
+					core.reloadPage();
+				} else {
+					a9os_core_taskbar_popuparea.new("Usuario o contraseña incorrectas", false, "error");
+					component.appList.querySelector(".header input.name").value = "";
+					component.appList.querySelector(".header input.password").value = "";
+				}
+			},
+			args : {
+				response : false,
+				component : self.component
+			}
+		}
+	)
+}
+
+
+
+
+a9os_core_taskbar_applist.toggle = (event) => {
+	if (event) event.stopPropagation();
+	if (self.component.appList.classList.contains("open")){
+		a9os_core_taskbar_applist.close(event);
+	} else {
+		a9os_core_taskbar_applist.open(event);
+	}
+}
+a9os_core_taskbar_applist.open = () => {
+	
+	self.component.appList.classList.add("open");
+	/*setTimeout(() => {
+		self.component.appList.querySelector(".app-search").focus();
+	}, 100);*/
+}
 a9os_core_taskbar_applist.close = (event) => {
 	event.stopPropagation();
 	self.component.appList.classList.remove("open");
@@ -72,19 +130,30 @@ a9os_core_taskbar_applist.close = (event) => {
 	self.component.appList.querySelector(".header input.password").value = "";
 	self.component.appList.querySelector(".app-list").scrollTop = 0;
 	self.component.appList.querySelector(".app-search").value = "";
-	self.search("");
+	self.appSearchInput.search("");
 }
 
-a9os_core_taskbar_applist.toggle = (event) => {
-	
-	if (event) event.stopPropagation();
-	if (self.component.appList.classList.contains("open")){
-		a9os_core_taskbar_applist.close(event);
-	} else {
-		a9os_core_taskbar_applist.open(event);
-	}
+
+
+
+
+a9os_core_taskbar_applist.appSearchInput = {};
+a9os_core_taskbar_applist.appSearchInput.init = () => {
+	var appSearchInput = self.component.appList.querySelector(".main-app-list .app-search");
+
+	core.addEventListener(appSearchInput, "input", (event, appSearchInput) => {
+		self.appSearchInput.search(appSearchInput.value); 
+	});
+
+	core.addEventListener(appSearchInput, "keyup", (event, appSearchInput) => {
+		if (event.which == 13){
+			var firstFoundApp = self.component.appList.querySelector(".app-list a:not(.filtered)");
+			if (firstFoundApp) firstFoundApp.click();
+		}
+	});
 }
-a9os_core_taskbar_applist.search = (query) => {
+
+a9os_core_taskbar_applist.appSearchInput.search = (query) => {
 	
 	var query = query.toLowerCase().replace(/[^0-9a-z-]/g,"");
 	var container = self.component.appList.querySelector(".main-app-list .app-list");
@@ -121,61 +190,12 @@ a9os_core_taskbar_applist.search = (query) => {
 	}
 }
 
-a9os_core_taskbar_applist.open = () => {
-	
-	self.component.appList.classList.add("open");
-	/*setTimeout(() => {
-		self.component.appList.querySelector(".app-search").focus();
-	}, 100);*/
-}
-
-a9os_core_taskbar_applist.searchEnter = (event) => {
-	
-	if (event.which == 13){
-		self.component.appList.querySelector(".app-list a:not(.filtered)").click();
-	}
-}
-
-a9os_core_taskbar_applist.addAppToList = (arrAppData) => {
-	
-	var itemHTML = '<a href="'+arrAppData.url+'" class="ibl-c"><img src="'+arrAppData.icon_url+'"><span>'+arrAppData.name+'</span></a>';
-	var appsContainer = self.component.appList.querySelector(".app-list-inner");
-	appsContainer.innerHTML = itemHTML+appsContainer.innerHTML;
+a9os_core_taskbar_applist.reloadAppList = (appList) => {
+	core.preProcess(self.component.appList.querySelector(".app-list"), { appList : appList });
+	self.appendOrderLetters();
 	core.parseHrefHandlers();
+	self.appendCloseEventToItems();
 }
-
-
-a9os_core_taskbar_applist.submitLogin = (event) => {
-	
-	var arrUserPass = {
-		name : self.component.appList.querySelector(".header input.name").value,
-		password : self.component.appList.querySelector(".header input.password").value
-	};
-
-	if (arrUserPass.name == "" || arrUserPass.password == "") return;
-
-	core.sendRequest(
-		"/login",
-		arrUserPass,
-		{
-			fn : (response, component) => {
-				if (response == "ok") {
-					a9os_app_vf_desktop.selectDesktop();
-					core.reloadPage();
-				} else {
-					a9os_core_taskbar_popuparea.new("Usuario o contraseña incorrectas", false, "error");
-					component.appList.querySelector(".header input.name").value = "";
-					component.appList.querySelector(".header input.password").value = "";
-				}
-			},
-			args : {
-				response : false,
-				component : self.component
-			}
-		}
-	)
-}
-
 
 a9os_core_taskbar_applist.addToWindowlist = (event, item) => {
 	var newPinnedApp = {
@@ -234,14 +254,14 @@ a9os_core_taskbar_applist.openAbout = () => {
 a9os_core_taskbar_applist.setHeaderGradientByBackground = () => {
 	if (!window.a9os_app_vf_desktop) return;
 
-	var appListHeader = self.component.querySelector(".header");
+	var appList = self.component.querySelector(".main-app-list");
 
 	var imgPreloader = self.component.querySelector(".tmp-preloader");
 	if (imgPreloader.getAttribute("data-attached") == "false") {
 		imgPreloader.setAttribute("data-attached", "true");
-		a9os_core_main.addEventListener(imgPreloader, "load", (event, imgPreloader) => {
+		core.addEventListener(imgPreloader, "load", (event, imgPreloader) => {
 			var arrImgColors = a9os_core_main.colorLogic.getAverageRGB(imgPreloader, 2);
-			appListHeader.style.backgroundImage = "linear-gradient(160deg, "+arrImgColors[0]+" 0%, "+arrImgColors[1]+" 50%)";
+			appList.style.backgroundImage = "linear-gradient(160deg, "+arrImgColors[0]+" 0%, "+arrImgColors[1]+" 50%)";
 
 			var imgColor = a9os_core_main.colorLogic.getAverageRGB(imgPreloader);
 			document.body.style.backgroundColor = imgColor;

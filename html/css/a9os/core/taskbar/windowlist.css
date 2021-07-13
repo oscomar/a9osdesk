@@ -32,10 +32,11 @@ cmp.a9os_core_taskbar_windowlist .window-list{
 
 cmp.a9os_core_taskbar_windowlist .window-list .item{
 	display: inline-block;
-	vertical-align: middle;
-	height: 100%;
-	width: 50px;
-	margin: 0 1px;
+	vertical-align: top;
+	height: calc(100% - 6px);
+	width: 44px;
+	border-radius: 3px;
+	margin: 3px 1px;
 	background: url(/resources/a9os/app/vf/icons/warning-icon.svg) center center no-repeat;
 	background-size: 70%;
 	background-color: rgba(255,255,255,0.1);
@@ -113,9 +114,10 @@ cmp.a9os_core_taskbar_windowlist .window-list .item.move-marginleft {
 		white-space: nowrap;
 		overflow-x: auto;
 		overflow-y: hidden;
+		text-align: center;
 	}
 	cmp.a9os_core_taskbar_windowlist .window-list .item{
-		width: 40px;
+		width: 35px;
 	}
 
 }

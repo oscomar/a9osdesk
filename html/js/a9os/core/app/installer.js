@@ -38,7 +38,7 @@ a9os_core_app_installer.canSyskey.attachControls = () => {
 
 
 	var mobileAppButton = self.canSyskey.baseDiv.querySelector(".mobile-app-button");
-	a9os_core_main.addEventListener(mobileAppButton, "click", (event, mobileAppButton) => {
+	core.addEventListener(mobileAppButton, "click", (event, mobileAppButton) => {
 		if (self.canSyskey.baseDiv.classList.contains("mobile-show-apps")) {
 			self.canSyskey.baseDiv.classList.remove("mobile-show-apps");
 		} else {
@@ -47,13 +47,13 @@ a9os_core_app_installer.canSyskey.attachControls = () => {
 	});
 
 	var appArea = self.canSyskey.baseDiv.querySelector(".app-area");
-	a9os_core_main.addEventListener(appArea, ["mousedown", "touchstart"], (event, appArea) => {
+	core.addEventListener(appArea, ["mousedown", "touchstart"], (event, appArea) => {
 		self.canSyskey.baseDiv.classList.remove("mobile-show-apps");
 	});
 
 	var appCodeLine = self.canSyskey.baseDiv.querySelector(".app-area .app-code-line");
 	var appCodeInput = appCodeLine.querySelector("input");
-	a9os_core_main.addEventListener(appCodeLine.querySelector(".btn.alter-show"), "click", (event, alterShowBtn, appCodeInput) => {
+	core.addEventListener(appCodeLine.querySelector(".btn.alter-show"), "click", (event, alterShowBtn, appCodeInput) => {
 		if (appCodeInput.type == "text") {
 			appCodeInput.type = "password";
 			alterShowBtn.textContent = "Mostrar";
@@ -68,7 +68,7 @@ a9os_core_app_installer.canSyskey.attachControls = () => {
 	var arrAppListItems = self.canSyskey.baseDiv.querySelectorAll(".app-list .item");
 	var appListSearchInput = self.canSyskey.baseDiv.querySelectorAll(".app-list input.search");
 
-	a9os_core_main.addEventListener(appListSearchInput, "keyup", (event, appListSearchInput, arrAppListItems) => {
+	core.addEventListener(appListSearchInput, "keyup", (event, appListSearchInput, arrAppListItems) => {
 		var query = appListSearchInput.value.toLowerCase().replace(/[^0-9a-z-]/g,"");
 
 		for (var i = 0 ; i < arrAppListItems.length ; i++) {
@@ -86,17 +86,17 @@ a9os_core_app_installer.canSyskey.attachControls = () => {
 	}, arrAppListItems);
 
 
-	a9os_core_main.addEventListener(arrAppListItems, "click", (event, currAppListItem) => {
+	core.addEventListener(arrAppListItems, "click", (event, currAppListItem) => {
 		self.canSyskey.loadAppArea(currAppListItem);
 	});
 
 	var arrUserListItems = self.canSyskey.baseDiv.querySelectorAll(".app-data .enabled-users .users-list .user-item");
-	a9os_core_main.addEventListener(arrUserListItems, "change", (event, currUserItem) => {
+	core.addEventListener(arrUserListItems, "change", (event, currUserItem) => {
 		self.canSyskey.baseDiv.querySelector(".app-data .enabled-users .buttons .btn.apply").disabled = false;
 		self.canSyskey.baseDiv.querySelector(".app-data .enabled-users .buttons .btn.reset").disabled = false;
 	});
 
-	a9os_core_main.addEventListener(self.canSyskey.baseDiv.querySelector(".app-data .enabled-users .buttons .btn.reset"), "click", (event, userResetBtn) => {
+	core.addEventListener(self.canSyskey.baseDiv.querySelector(".app-data .enabled-users .buttons .btn.reset"), "click", (event, userResetBtn) => {
 		var appId = self.canSyskey.baseDiv.querySelector(".app-list .item.selected").getAttribute("data-app-id");
 		var appData = self.component.arrApps[appId];
 		self.canSyskey.fillUsersList(appData);
@@ -105,9 +105,9 @@ a9os_core_app_installer.canSyskey.attachControls = () => {
 		self.canSyskey.baseDiv.querySelector(".app-data .enabled-users .buttons .btn.reset").disabled = true;
 	});
 
-	a9os_core_main.addEventListener(self.canSyskey.baseDiv.querySelector(".app-data .enabled-users .buttons .btn.apply"), "click", self.canSyskey.updateUserData);
-	a9os_core_main.addEventListener(self.canSyskey.baseDiv.querySelectorAll(".app-data .buttons.app .btn"), "click", self.canSyskey.installActions);
-	a9os_core_main.addEventListener(self.canSyskey.baseDiv.querySelectorAll(".app-data .changelog-area .title"), "click", self.canSyskey.switchChangelogArea);
+	core.addEventListener(self.canSyskey.baseDiv.querySelector(".app-data .enabled-users .buttons .btn.apply"), "click", self.canSyskey.updateUserData);
+	core.addEventListener(self.canSyskey.baseDiv.querySelectorAll(".app-data .buttons.app .btn"), "click", self.canSyskey.installActions);
+	core.addEventListener(self.canSyskey.baseDiv.querySelectorAll(".app-data .changelog-area .title"), "click", self.canSyskey.switchChangelogArea);
 }
 
 
@@ -254,12 +254,15 @@ a9os_core_app_installer.canSyskey.installActions = (event, button) => {
 				for (var i = 0 ; i < arrButtons.length ; i++) arrButtons[i].disabled = false;
 				self.canSyskey.baseDiv.classList.remove("installing-blocked");
 
-				self.component.arrApps[appId] = response;
+				self.component.arrApps[appId] = response.appInstallerAppData;
 
 				var appListItem = self.canSyskey.baseDiv.querySelector(".app-list .item[data-app-id='"+appId+"']");
-				appListItem.querySelector(".status-icon").setAttribute("data-status", response.app_install_status);
+				appListItem.querySelector(".status-icon").setAttribute("data-status", response.appInstallerAppData.app_install_status);
 				
 				self.canSyskey.loadAppArea(appListItem);
+
+
+				if (window.a9os_core_taskbar_applist) a9os_core_taskbar_applist.reloadAppList(response.appList);
 
 			},
 			args : {
@@ -297,7 +300,7 @@ a9os_core_app_installer.attachControls = () => {
 	var inputCode = self.component.querySelector("input.code");
 	var submitButton = self.component.querySelector(".btn.submit");
 	var cancelButton = self.component.querySelector(".btn.cancel");
-	a9os_core_main.addEventListener(inputCode, "keyup", (event, inputCode) => {
+	core.addEventListener(inputCode, "keyup", (event, inputCode) => {
 		if (event.which == 13) self.submitCode();
 		if (inputCode.value != "") {
 			inputCode.classList.add("non-empty");
@@ -306,8 +309,8 @@ a9os_core_app_installer.attachControls = () => {
 		}
 	});
 
-	a9os_core_main.addEventListener(submitButton, "click", self.submitCode);
-	a9os_core_main.addEventListener(cancelButton, "click", a9os_core_window.close);
+	core.addEventListener(submitButton, "click", self.submitCode);
+	core.addEventListener(cancelButton, "click", a9os_core_window.close);
 }
 a9os_core_app_installer.submitCode = () => {
 	var previewContainer = self.component.querySelector(".preview");
@@ -352,7 +355,9 @@ a9os_core_app_installer.confirmAndExit = () => {
 					self.showErrorResult();
 				} else {
 					a9os_core_taskbar_popuparea.new(response.name + " Agregado", response.icon_url, "info");
-					a9os_core_taskbar_applist.addAppToList(response);
+
+					if (window.a9os_core_taskbar_applist) a9os_core_taskbar_applist.reloadAppList(response.appList);
+					
 					a9os_core_window.close();
 				}
 			},

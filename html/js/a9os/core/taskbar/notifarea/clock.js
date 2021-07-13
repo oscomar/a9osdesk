@@ -42,7 +42,7 @@ a9os_core_taskbar_notifarea_clock.main = () => {
 				var nextYear = calendar.querySelector(".month-buttons .y.next");
 				var returnToday = calendar.querySelector(".month-buttons .y-and-m");
 
-				a9os_core_main.addEventListener(prevMonth, "click", (event, prevMonth, calendar) => {
+				core.addEventListener(prevMonth, "click", (event, prevMonth, calendar) => {
 					var year = parseInt(calendar.querySelector(".month-buttons .year").textContent);
 					var month = parseInt(calendar.querySelector(".m-line").getAttribute("data-month-num"));
 					month--;
@@ -57,7 +57,7 @@ a9os_core_taskbar_notifarea_clock.main = () => {
 					});
 				}, calendar);
 
-				a9os_core_main.addEventListener(nextMonth, "click", (event, nextMonth, calendar) => {
+				core.addEventListener(nextMonth, "click", (event, nextMonth, calendar) => {
 					var year = parseInt(calendar.querySelector(".month-buttons .year").textContent);
 					var month = parseInt(calendar.querySelector(".m-line").getAttribute("data-month-num"));
 					month++;
@@ -72,7 +72,7 @@ a9os_core_taskbar_notifarea_clock.main = () => {
 					});
 				}, calendar);
 
-				a9os_core_main.addEventListener(prevYear, "click", (event, prevYear, calendar) => {
+				core.addEventListener(prevYear, "click", (event, prevYear, calendar) => {
 					var year = parseInt(calendar.querySelector(".month-buttons .year").textContent);
 					var month = parseInt(calendar.querySelector(".m-line").getAttribute("data-month-num"));
 
@@ -83,7 +83,7 @@ a9os_core_taskbar_notifarea_clock.main = () => {
 					});
 				}, calendar);
 
-				a9os_core_main.addEventListener(nextYear, "click", (event, nextYear, calendar) => {
+				core.addEventListener(nextYear, "click", (event, nextYear, calendar) => {
 					var year = parseInt(calendar.querySelector(".month-buttons .year").textContent);
 					var month = parseInt(calendar.querySelector(".m-line").getAttribute("data-month-num"));
 
@@ -94,7 +94,7 @@ a9os_core_taskbar_notifarea_clock.main = () => {
 					});
 				}, calendar);
 
-				a9os_core_main.addEventListener(returnToday, "click", (event, returnToday, calendar) => {
+				core.addEventListener(returnToday, "click", (event, returnToday, calendar) => {
 					self.calendar.process(calendar);
 				}, calendar);
 

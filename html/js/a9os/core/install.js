@@ -27,17 +27,17 @@ a9os_core_install.attachControls = () => {
 	var syskeyMsg = self.component.querySelector(".syskey-input .message");
 
 
-	a9os_core_main.addEventListener(cancelButton, "click", (event, cancelButton) => {
+	core.addEventListener(cancelButton, "click", (event, cancelButton) => {
 		a9os_core_window.close();
 		core.link.push("/");
 	});
 
-	a9os_core_main.addEventListener(syskeyMsg, "click", (event, syskeyMsg) => {
+	core.addEventListener(syskeyMsg, "click", (event, syskeyMsg) => {
 		syskeyMsg.classList.remove("show");
 	});
 
 
-	a9os_core_main.addEventListener(submitButton, "click", (event, submitButton) => {
+	core.addEventListener(submitButton, "click", (event, submitButton) => {
 		submitButton.disabled = true;
 
 		syskeyMsg.textContent = "Instalando...";

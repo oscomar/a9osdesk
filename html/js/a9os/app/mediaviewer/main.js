@@ -165,46 +165,46 @@ a9os_app_mediaviewer_main.attachControls = () => {
 
 		currAV.playing = false;
 		
-		a9os_core_main.addEventListener(currAV, "durationchange", (event, video) => {
+		core.addEventListener(currAV, "durationchange", (event, video) => {
 			if (video.classList.contains("used")) {
 				self.component.querySelector(".times .e").textContent = new Date(video.duration * 1000).toISOString().substr(11, 8);
 			}
 		});
 
-		a9os_core_main.addEventListener(currAV, "play", (event, currAV) => {
+		core.addEventListener(currAV, "play", (event, currAV) => {
 			self.component.querySelector(".player").classList.remove("paused");
 			self.component.querySelector(".player").classList.add("playing");
 			currAV.playing = true;
 		});
 
-		a9os_core_main.addEventListener(currAV, "playing", (event, currAV) => {
+		core.addEventListener(currAV, "playing", (event, currAV) => {
 			self.component.querySelector(".buffering").classList.remove("show");
 			self.component.querySelector(".error").classList.remove("show");
 		});
 
-		a9os_core_main.addEventListener(currAV, "pause", (event, currAV) => {
+		core.addEventListener(currAV, "pause", (event, currAV) => {
 			self.component.querySelector(".player").classList.add("paused");
 			currAV.playing = false;
 		});
 
-		a9os_core_main.addEventListener(currAV, "progress", (event, currAV) => {
+		core.addEventListener(currAV, "progress", (event, currAV) => {
 			self.loadBufferedProgress();
 			self.component.querySelector(".error").classList.remove("show");
 		});
 
-		a9os_core_main.addEventListener(currAV, "volumechange", (event, currAV) => {
+		core.addEventListener(currAV, "volumechange", (event, currAV) => {
 			self.component.querySelector(".v.percent .p").textContent = Math.round(currAV.volume*100) + "%";
 		});
 
-		a9os_core_main.addEventListener(currAV, "waiting", (event, currAV) => {
+		core.addEventListener(currAV, "waiting", (event, currAV) => {
 			self.component.querySelector(".buffering").classList.add("show");
 		});
 
-		a9os_core_main.addEventListener(currAV, "ended", (event, currAV) => {
+		core.addEventListener(currAV, "ended", (event, currAV) => {
 			self.mediaPopup.item.nextVideo();
 		});
 		
-		a9os_core_main.addEventListener(currAV, "error", (event, currAV) => {
+		core.addEventListener(currAV, "error", (event, currAV) => {
 			if (currAV.getAttribute("src") == "") return;
 			if (!core.link.hash.get()["file"]) {
 				self.component.querySelector(".player").classList.remove("playing");
@@ -228,12 +228,12 @@ a9os_app_mediaviewer_main.attachControls = () => {
 	} 
 
 
-	a9os_core_main.addEventListener(self.component.querySelector(".player"), "onmouseover", self.hidePlayerControls);
-	a9os_core_main.addEventListener(self.component.querySelector(".player"), "onmousemove", self.preventHideControls);
-	a9os_core_main.addEventListener(self.component.querySelector(".player"), "onmouseout", self.cancelHideControls);
-	a9os_core_main.addEventListener(self.component.querySelector(".player"), "onkeypress", self.detectKeys);
+	core.addEventListener(self.component.querySelector(".player"), "onmouseover", self.hidePlayerControls);
+	core.addEventListener(self.component.querySelector(".player"), "onmousemove", self.preventHideControls);
+	core.addEventListener(self.component.querySelector(".player"), "onmouseout", self.cancelHideControls);
+	core.addEventListener(self.component.querySelector(".player"), "onkeypress", self.detectKeys);
 
-	a9os_core_main.addEventListener(self.component.querySelector(".player"), "wheel", (event) => {
+	core.addEventListener(self.component.querySelector(".player"), "wheel", (event) => {
 		var direction = (event.deltaY < 0)?"up":"down";
 		if (direction == "up") {
 			self.upVolume();
@@ -242,26 +242,26 @@ a9os_app_mediaviewer_main.attachControls = () => {
 		}
 	});
 
-	a9os_core_main.addEventListener(self.component.querySelector(".player .big-play"), "click", self.mediaPopup.item.alterPlayPause);
-	a9os_core_main.addEventListener(self.component.querySelector(".player .controls .play"), "click", self.mediaPopup.item.alterPlayPause);
-	a9os_core_main.addEventListener(self.component.querySelector(".player .controls .prevvideo"), "click", self.mediaPopup.item.prevVideo);
-	a9os_core_main.addEventListener(self.component.querySelector(".player .controls .stop"), "click", self.mediaPopup.item.stop);
-	a9os_core_main.addEventListener(self.component.querySelector(".player .controls .nextvideo"), "click", self.mediaPopup.item.nextVideo);
+	core.addEventListener(self.component.querySelector(".player .big-play"), "click", self.mediaPopup.item.alterPlayPause);
+	core.addEventListener(self.component.querySelector(".player .controls .play"), "click", self.mediaPopup.item.alterPlayPause);
+	core.addEventListener(self.component.querySelector(".player .controls .prevvideo"), "click", self.mediaPopup.item.prevVideo);
+	core.addEventListener(self.component.querySelector(".player .controls .stop"), "click", self.mediaPopup.item.stop);
+	core.addEventListener(self.component.querySelector(".player .controls .nextvideo"), "click", self.mediaPopup.item.nextVideo);
 
-	a9os_core_main.addEventListener(self.component.querySelector(".player .bar"), ["mouseup", "touchleave"], self.moveVideoTime);
+	core.addEventListener(self.component.querySelector(".player .bar"), ["mouseup", "touchleave"], self.moveVideoTime);
 
-	a9os_core_main.addEventListener(self.component.querySelector(".player .controls .v.up"), "click", self.upVolume);
-	a9os_core_main.addEventListener(self.component.querySelector(".player .controls .v.down"), "click", self.downVolume);
-	a9os_core_main.addEventListener(self.component.querySelector(".player .controls .v.percent"), "click", self.alterMuteVolume);
+	core.addEventListener(self.component.querySelector(".player .controls .v.up"), "click", self.upVolume);
+	core.addEventListener(self.component.querySelector(".player .controls .v.down"), "click", self.downVolume);
+	core.addEventListener(self.component.querySelector(".player .controls .v.percent"), "click", self.alterMuteVolume);
 
 
-	a9os_core_main.addEventListener(self.component.querySelector(".player .big-play"), "dblclick", self.toggleFullScreen);
-	a9os_core_main.addEventListener(self.component.querySelector(".player .controls .fullscreen"), "click", self.toggleFullScreen);
+	core.addEventListener(self.component.querySelector(".player .big-play"), "dblclick", self.toggleFullScreen);
+	core.addEventListener(self.component.querySelector(".player .controls .fullscreen"), "click", self.toggleFullScreen);
 
-	a9os_core_main.addEventListener(self.component.querySelector(".player .controls .list"), "click", self.mediaPopup.alterShow);
-	a9os_core_main.addEventListener(self.component.querySelector(".media-popup .buttons .add"), "click", self.mediaPopup.selectNewFile);
-	a9os_core_main.addEventListener(self.component.querySelector(".media-popup .buttons .repeat"), "click", self.mediaPopup.alterRepeatButton);
-	a9os_core_main.addEventListener(self.component.querySelector(".media-popup .buttons .shuffle"), "click", self.mediaPopup.alterShuffleButton);
+	core.addEventListener(self.component.querySelector(".player .controls .list"), "click", self.mediaPopup.alterShow);
+	core.addEventListener(self.component.querySelector(".media-popup .buttons .add"), "click", self.mediaPopup.selectNewFile);
+	core.addEventListener(self.component.querySelector(".media-popup .buttons .repeat"), "click", self.mediaPopup.alterRepeatButton);
+	core.addEventListener(self.component.querySelector(".media-popup .buttons .shuffle"), "click", self.mediaPopup.alterShuffleButton);
 }
 
 a9os_app_mediaviewer_main.moveVideoTime = (event, element) => {
@@ -551,7 +551,7 @@ a9os_app_mediaviewer_main.mediaPopup.item.append = (path, srcUrl, play) => {
 	]));
 	self.component.querySelector(".media-popup .list").appendChild(newItem);
 
-	a9os_core_main.addEventListener(newItem, "dblclick", (event, item) => { self.mediaPopup.item.play(item) });
+	core.addEventListener(newItem, "dblclick", (event, item) => { self.mediaPopup.item.play(item) });
 
 	var ifItemPlayedOrPaused = self.component.querySelector(".media-popup .list .item.play, .media-popup .list .item.pause");
 	if (play || !ifItemPlayedOrPaused) self.mediaPopup.item.play(newItem);

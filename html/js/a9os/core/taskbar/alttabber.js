@@ -26,7 +26,7 @@ a9os_core_taskbar_alttabber.main = () => {
 		}
 	]);
 
-	a9os_core_main.addEventListener(document.body, "keyup", (event, component) => {
+	core.addEventListener(document.body, "keyup", (event, component) => {
 		if (event.which == 16 && self.component.altTabber.classList.contains("show")) {
 			self.select();
 		}
@@ -103,7 +103,7 @@ a9os_core_taskbar_alttabber.openAndLoad = () => {
  			self.udpateIndicator(newItem);
 		}
 
-		a9os_core_main.addEventListener(newItem, "click", self.selectByClick);
+		core.addEventListener(newItem, "click", self.selectByClick);
 
 		if (currWindow.classList.contains("minimized")) {
 			self.component.arrMinimizedWindows.push(currWindow);

@@ -42,7 +42,7 @@ cmp.a9os_core_taskbar_applist .main-app-list.open{
 	visibility: visible;
 	transform: translateY(0);
 	background-color: rgba(255, 255, 255, 0.8);
-	backdrop-filter: blur(10px) contrast(1.5);
+	/*backdrop-filter: blur(10px) contrast(1.5);*/
 	transition: all 0.2s, transform 0.2s, backdrop-filter 0s 0.2s, background-color 0.5s 0.2s;
 }
 
@@ -51,7 +51,6 @@ cmp.a9os_core_taskbar_applist .main-app-list .header{
 	position: relative;
 	height: 140px;
 	box-sizing: border-box;
-	background-color: #444;
 	transition: all 0.2s;
 
 }
@@ -62,7 +61,7 @@ cmp.a9os_core_taskbar_applist .main-app-list .header::before{
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: rgba(127,127,127,0.3) url(/resources/a9os/core/taskbar/a9os_header.svg) left top no-repeat;
+	background: url(/resources/a9os/core/taskbar/a9os_header.svg) left top no-repeat;
 	background-size: cover;
 }
 
@@ -216,7 +215,7 @@ cmp.a9os_core_taskbar_applist .main-app-list .header .app-search:focus::placehol
 cmp.a9os_core_taskbar_applist .main-app-list .app-list{
 	display: block;
 	height: calc(100% - 140px);
-	/* background-color: rgba(0,0,0,0.3);*/
+	background-color: #eee;
 	/*box-shadow: inset 0 1px 0 rgba(255,255,255,1);*/
 	box-sizing: border-box;
 	padding: 5px 0;
@@ -225,7 +224,9 @@ cmp.a9os_core_taskbar_applist .main-app-list .app-list{
 }
 cmp.a9os_core_taskbar_applist .main-app-list .app-list a{
 	display: block;
-	width: 100%;
+	width: 95%;
+	margin-left: 2.5%;
+	border-radius: 5px;
 	height: 80px;
 	color: #444;
 	text-decoration: none;
@@ -240,7 +241,7 @@ cmp.a9os_core_taskbar_applist .main-app-list .app-list a{
 }
 
 cmp.a9os_core_taskbar_applist .main-app-list .app-list a:hover{
-	background-color: #eee;
+	background-color: #fff;
 }
 cmp.a9os_core_taskbar_applist .main-app-list.open .app-list a{
 	opacity: 1;
@@ -290,14 +291,14 @@ cmp.a9os_core_taskbar_applist .main-app-list .app-list .letter-element {
 	display: block;
 	position: relative;
 	font-size: 14px;
+	line-height: 15px;
 	text-align: left;
+	font-weight: bold;
 	color: #666;
 	box-sizing: border-box;
-	padding: 5px 0;
-	border-bottom: 1px solid rgba(0,0,0,0.4);
+	padding: 8px 0;
 	width: calc(100% - 30px);
 	margin: 2px 15px;
-	box-shadow: 0 2px 3px -3px rgba(0,0,0,0.7);
 	transition: all 0.1s;
 }
 cmp.a9os_core_taskbar_applist .main-app-list .app-list.in-search .letter-element {
@@ -350,7 +351,14 @@ cmp.a9os_core_taskbar_applist .main-app-list .search-not-found.show {
 	}
 	cmp.a9os_core_taskbar_applist .main-app-list .app-list {
 		text-align: center;
-		padding: 10px 5% 60px;
+		padding: 10px 5% 5px;
+		width: 95%;
+		margin-left: 2.5%;
+		margin-bottom: 40px;
+		border-radius: 5px;
+		background-color: #eee;
+		overflow: auto;
+		height: calc(100% - 185px);
 	}
 	cmp.a9os_core_taskbar_applist .main-app-list .app-list a{
 		display: inline-block;
@@ -375,9 +383,6 @@ cmp.a9os_core_taskbar_applist .main-app-list .search-not-found.show {
 	}
 	cmp.a9os_core_taskbar_applist .main-app-list .app-list a img {
 		transition: opacity 0.1s;
-	}
-	cmp.a9os_core_taskbar_applist .main-app-list .app-list a:hover img{
-		opacity: 0.7;
 	}
 	cmp.a9os_core_taskbar_applist .main-app-list .app-list a:before{
 		display: none;

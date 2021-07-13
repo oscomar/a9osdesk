@@ -89,7 +89,7 @@ a9os_app_texteditor_main.main = (data) => {
 
 	self.file.handle();
 
-	a9os_core_main.addEventListener(self.component.querySelector("textarea"), "keydown", (event, textarea) => {
+	core.addEventListener(self.component.querySelector("textarea"), "keydown", (event, textarea) => {
 		if (event.which == 9) {
 			textarea.value += "\t";
 			event.preventDefault();
@@ -211,11 +211,11 @@ a9os_app_texteditor_main.file.fileModifiedPopupAttach = () => {
 	var reloadBtn = self.component.querySelector(".filechange-popup .btn.reload");
 	var cancelBtn = self.component.querySelector(".filechange-popup .btn.cancel");
 
-	a9os_core_main.addEventListener(cancelBtn, "click", (event, cancelBtn) => {
+	core.addEventListener(cancelBtn, "click", (event, cancelBtn) => {
 		self.component.querySelector(".filechange-popup").classList.remove("show");
 	});
 
-	a9os_core_main.addEventListener(reloadBtn, "click", (event, reloadBtn) => {
+	core.addEventListener(reloadBtn, "click", (event, reloadBtn) => {
 		if (self.component.confirmCallback) self.component.confirmCallback();
 		self.component.querySelector(".filechange-popup").classList.remove("show");
 	});
@@ -287,7 +287,7 @@ a9os_app_texteditor_main.file.fileModified.attach = () => {
 	var component = a9os_app_texteditor_main.component;
 	a9os_app_texteditor_main.file.fileModified.set(false);
 
-	a9os_core_main.addEventListener(
+	core.addEventListener(
 		component.querySelector("textarea"),
 		"keyup",
 		(event, item) => {

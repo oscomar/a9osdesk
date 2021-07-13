@@ -18,6 +18,20 @@
 
 class a9os_core_taskbar_applist extends a9os_core_taskbar {
 	public function main($data){
+
+		$a9osUser = $this->getCore()->getModel("a9os.user");
+		$systemAnonMode = $this->getCore()->getModel("a9os.core.main")->getSystemAnonMode();
+
+		$appList = $this->getAllUserApps();
+
+		return [
+			"appList" => $appList,
+			"userAvatar" => $a9osUser->getUserAvatar(),
+			"systemAnonMode" => $systemAnonMode
+		];
+	}
+
+	public function getAllUserApps(){
 		$aa = $this->getCore()->getModel("application.application");
 		$cca = $this->getCore()->getModel("core.controller.application");
 		$cc = $this->getCore()->getModel("core.controller");
@@ -40,13 +54,6 @@ class a9os_core_taskbar_applist extends a9os_core_taskbar {
 			}
 		}
 
-		$a9osUser = $this->getCore()->getModel("a9os.user");
-		$systemAnonMode = $this->getCore()->getModel("a9os.core.main")->getSystemAnonMode();
-
-		return [
-			"appList" => $appList,
-			"userAvatar" => $a9osUser->getUserAvatar(),
-			"systemAnonMode" => $systemAnonMode
-		];
+		return $appList;
 	}
 }

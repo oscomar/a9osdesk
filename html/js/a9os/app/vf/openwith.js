@@ -30,7 +30,7 @@ a9os_app_vf_openwith.main = (data) => {
 }
 a9os_app_vf_openwith.attachItemListeners = (fileExtension) => {
 	
-	a9os_core_main.addEventListener(self.component.querySelectorAll(".app-list .app"), "click", (event, item) => {
+	core.addEventListener(self.component.querySelectorAll(".app-list .app"), "click", (event, item) => {
 		
 		if (self.component.querySelector(".as-default input").checked) {
 			self.updateDefaultApp(item.getAttribute("data-app-id"), fileExtension, () => {
@@ -50,7 +50,7 @@ a9os_app_vf_openwith.attachItemListeners = (fileExtension) => {
 
 	});
 
-	a9os_core_main.addEventListener(self.component.querySelector(".no-apps .download"), "click", (event, downloadButton, filePath) => {
+	core.addEventListener(self.component.querySelector(".no-apps .download"), "click", (event, downloadButton, filePath) => {
 		a9os_app_vf_main.fileHandle.download([filePath]);
 		a9os_core_window.close();
 	}, self.component.filePath);

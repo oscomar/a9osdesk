@@ -30,7 +30,7 @@ a9os_app_vf_modules_tags_folderaddon.receiveVfFilesContainer = (vfFilesContainer
 	var expandTagsItem = self.component.querySelector(".expand-tags");
 
 
-	a9os_core_main.addEventListener(vfFilesContainer, "click", (event, vfFilesContainer) => {
+	core.addEventListener(vfFilesContainer, "click", (event, vfFilesContainer) => {
 		var usedAddButton = vfFilesContainer.querySelector(".expand-tags .add-button.hide");
 		var usedAddDialog = vfFilesContainer.querySelector(".expand-tags .add-dialog.show");
 
@@ -61,7 +61,7 @@ a9os_app_vf_modules_tags_folderaddon.receiveVfFilesContainer = (vfFilesContainer
 		var addDialogTagValue = addDialog.querySelector("input.input-value");
 		var addDialogTagSubmitBtn = addDialog.querySelector(".btn.submit");
 
-		a9os_core_main.addEventListener(addButton, "click", (event, addButton, addDialog, addDialogTagInput, addDialogTagValue) => {
+		core.addEventListener(addButton, "click", (event, addButton, addDialog, addDialogTagInput, addDialogTagValue) => {
 			event.stopPropagation();
 
 			addButton.classList.add("hide");
@@ -74,17 +74,17 @@ a9os_app_vf_modules_tags_folderaddon.receiveVfFilesContainer = (vfFilesContainer
 
 		}, addDialog, addDialogTagInput, addDialogTagValue);
 
-		a9os_core_main.addEventListener(addDialog.querySelectorAll("input"), ["click", "dblclick", "mousedown"], (event, addButton) => {
+		core.addEventListener(addDialog.querySelectorAll("input"), ["click", "dblclick", "mousedown"], (event, addButton) => {
 			event.stopPropagation();
 		});
 
-		a9os_core_main.addEventListener(addDialog.querySelectorAll("input"), "keyup", (event, addButton, addDialogTagInput, addDialogTagValue, currFileItemId, vfFilesContainer) => {
+		core.addEventListener(addDialog.querySelectorAll("input"), "keyup", (event, addButton, addDialogTagInput, addDialogTagValue, currFileItemId, vfFilesContainer) => {
 			if (event.which == 13 && addDialogTagInput.value.trim() != "" && addDialogTagValue.value.trim() != "") {
 				self.addNew.submit(currFileItemId, addDialogTagInput.value.trim(), addDialogTagValue.value.trim(), vfFilesContainer);
 			}
 		}, addDialogTagInput, addDialogTagValue, currFileItemId, vfFilesContainer);
 
-		a9os_core_main.addEventListener(addDialogTagSubmitBtn, "click", (event, addDialogTagSubmitBtn, addDialogTagInput, addDialogTagValue, currFileItemId, vfFilesContainer) => {
+		core.addEventListener(addDialogTagSubmitBtn, "click", (event, addDialogTagSubmitBtn, addDialogTagInput, addDialogTagValue, currFileItemId, vfFilesContainer) => {
 			if (addDialogTagInput.value.trim() == "" || addDialogTagValue.value.trim() == "") return;
 			self.addNew.submit(currFileItemId, addDialogTagInput.value.trim(), addDialogTagValue.value.trim(), vfFilesContainer);
 		}, addDialogTagInput, addDialogTagValue, currFileItemId, vfFilesContainer);
@@ -92,11 +92,11 @@ a9os_app_vf_modules_tags_folderaddon.receiveVfFilesContainer = (vfFilesContainer
 
 		addDialogTagInput.setAttribute("data-menu", JSON.stringify(arrAllTagsMenu));
 
-		a9os_core_main.addEventListener(addDialogTagInput, "focus", (event, addDialogTagInput) => {
+		core.addEventListener(addDialogTagInput, "focus", (event, addDialogTagInput) => {
 			a9os_core_main.removeMenu();
 			a9os_core_main.showMenu(addDialogTagInput);
 		});
-		a9os_core_main.addEventListener(addDialogTagValue, "focus", (event, addDialogTagInput) => {
+		core.addEventListener(addDialogTagValue, "focus", (event, addDialogTagInput) => {
 			a9os_core_main.removeMenu();
 		});
 	}

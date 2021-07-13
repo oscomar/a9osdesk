@@ -19,5 +19,5 @@ a9os_core_about_main.main = (data) => {
 
 	self.component.querySelector(".head .version").innerHTML = "c "+a9os_core_main.coreVersion+"<br>d "+a9os_core_main.deskVersion;
 
-	a9os_core_main.addEventListener(self.component.querySelector(".btn.close"), "click", a9os_core_window.close);
+	core.addEventListener(self.component.querySelector(".btn.close"), "click", a9os_core_window.close);
 }

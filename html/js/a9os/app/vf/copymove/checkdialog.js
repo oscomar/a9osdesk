@@ -111,7 +111,7 @@ a9os_app_vf_copymove_checkdialog.initInterface = () => {
 
 
 	var arrFileToCheckItems = self.component.querySelectorAll(".files-to-check-container .item");
-	a9os_core_main.addEventListener(arrFileToCheckItems, "click", (event, item) => {
+	core.addEventListener(arrFileToCheckItems, "click", (event, item) => {
 		var itemId = item.getAttribute("data-id");
 
 		for (var i = 0 ; i < arrFileDialogs.length ; i++){
@@ -127,7 +127,7 @@ a9os_app_vf_copymove_checkdialog.initInterface = () => {
 
 
 	var cancelButton = self.component.querySelector(".bottom-buttons .cancel");
-	a9os_core_main.addEventListener(cancelButton, "click", (event, button) => {
+	core.addEventListener(cancelButton, "click", (event, button) => {
 		a9os_core_window.close();
 	});
 
@@ -135,7 +135,7 @@ a9os_app_vf_copymove_checkdialog.initInterface = () => {
 
 
 	var arrDialogButtons = self.component.querySelectorAll(".file-dialog-container .file-dialog .buttons .btn");
-	a9os_core_main.addEventListener(arrDialogButtons, "click", (event, button) => {
+	core.addEventListener(arrDialogButtons, "click", (event, button) => {
 		var currFileDialog = button.goToParentClass("file-dialog");
 		var arrDialogButtons = currFileDialog.querySelectorAll(".buttons .btn");
 
@@ -152,13 +152,13 @@ a9os_app_vf_copymove_checkdialog.initInterface = () => {
 
 
 	var arrRenameInputs = self.component.querySelectorAll(".file-dialog-container .file-dialog .rename-line input");
-	a9os_core_main.addEventListener(arrRenameInputs, "keypress", (event, input) => {
+	core.addEventListener(arrRenameInputs, "keypress", (event, input) => {
 		if (event.key == "/"){
 			event.preventDefault();
 			return false;
 		}
 	});
-	a9os_core_main.addEventListener(arrRenameInputs, "keyup", (event, input) => {
+	core.addEventListener(arrRenameInputs, "keyup", (event, input) => {
 		var currFileDialog = input.goToParentClass("file-dialog");
 		self.checkFileDialogDecision(currFileDialog);
 	});
@@ -167,7 +167,7 @@ a9os_app_vf_copymove_checkdialog.initInterface = () => {
 
 
 	var okButton = self.component.querySelector(".bottom-buttons .btn.submit");
-	a9os_core_main.addEventListener(okButton, "click", (event, okButton) => {
+	core.addEventListener(okButton, "click", (event, okButton) => {
 
 		var arrFileDialogs = self.component.querySelectorAll(".file-dialog-container .file-dialog");
 		for (var i = 0 ; i < arrFileDialogs.length ; i++ ){

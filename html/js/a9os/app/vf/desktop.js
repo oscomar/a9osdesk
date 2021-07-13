@@ -26,7 +26,7 @@ a9os_app_vf_desktop.main = (data) => {
 	if (data.window) a9os_core_window.processWindowData(data);
 
 
-	a9os_core_main.addEventListener(vfFilesContainer, "click", (event, vfFilesContainer) => {
+	core.addEventListener(vfFilesContainer, "click", (event, vfFilesContainer) => {
 		self.selectDesktop();
 
 		if (!vfFilesContainer.querySelector(".square-selection")) self.unselectItems(vfFilesContainer);
@@ -238,7 +238,7 @@ a9os_app_vf_desktop.squareSelection.calculateItemCoords = (vfFilesContainer) => 
 
 
 a9os_app_vf_desktop.attachDragFileUpload = (vfFilesContainer) => {
-	a9os_core_main.addEventListener(vfFilesContainer, "drop", (event, vfFilesContainer) => {
+	core.addEventListener(vfFilesContainer, "drop", (event, vfFilesContainer) => {
 		event.preventDefault();
 
 		var componentName = vfFilesContainer.goToParentClass("component", "cmp").getAttribute("data-component-name");
@@ -265,11 +265,11 @@ a9os_app_vf_desktop.attachDragFileUpload = (vfFilesContainer) => {
 			});
 		}
 	});
-	a9os_core_main.addEventListener(vfFilesContainer, "dragover", (event, vfFilesContainer) => {
+	core.addEventListener(vfFilesContainer, "dragover", (event, vfFilesContainer) => {
 		event.preventDefault();
 		vfFilesContainer.classList.add("dragover");
 	});
-	a9os_core_main.addEventListener(vfFilesContainer, "dragleave", (event, vfFilesContainer) => {
+	core.addEventListener(vfFilesContainer, "dragleave", (event, vfFilesContainer) => {
 		event.preventDefault();
 		vfFilesContainer.classList.remove("dragover");
 	});
@@ -382,8 +382,8 @@ a9os_app_vf_desktop.file.rename = (event, item, component, newItem) => {
 		itemName.focus();
 		selectText(itemName);
 	}, 20, itemName);
-	a9os_core_main.addEventListener(itemName, "blur", (e,i) => { postEditFunction(e,i,component)});
-	a9os_core_main.addEventListener(itemName, "keyup", (e, i) => {
+	core.addEventListener(itemName, "blur", (e,i) => { postEditFunction(e,i,component)});
+	core.addEventListener(itemName, "keyup", (e, i) => {
 		if (e.which == 32 || e.which == 13) e.preventDefault(); // space | enter
 		if (e.which == 27) { // Esc
 			cancelEdit(i);
@@ -392,7 +392,7 @@ a9os_app_vf_desktop.file.rename = (event, item, component, newItem) => {
 			}
 		}
 	});
-	a9os_core_main.addEventListener(itemName, "keydown", (e, i) => {
+	core.addEventListener(itemName, "keydown", (e, i) => {
 		if ((e.shiftKey && e.which == 55) || e.which == 111) e.preventDefault(); // shift+7 || "/"
 		if (e.which == 13) { // enter
 			e.preventDefault();
@@ -400,8 +400,8 @@ a9os_app_vf_desktop.file.rename = (event, item, component, newItem) => {
 		}
 	});
 
-	a9os_core_main.addEventListener(itemName, "click", (e,i) => { e.stopPropagation(); return false; });
-	a9os_core_main.addEventListener(itemName, "dblclick", (e,i) => { e.stopPropagation(); return false; });
+	core.addEventListener(itemName, "click", (e,i) => { e.stopPropagation(); return false; });
+	core.addEventListener(itemName, "dblclick", (e,i) => { e.stopPropagation(); return false; });
 
 	function confirmEdit(event, item, component, forceEdit) {
 		var forceEdit = forceEdit||false;
@@ -685,7 +685,7 @@ a9os_app_vf_desktop.file.upload = (event, item) => {
 
 	uploadInput.click();
 
-	a9os_core_main.addEventListener(uploadInput, "change", (event, uploadInput, vfFilesContainer) => {
+	core.addEventListener(uploadInput, "change", (event, uploadInput, vfFilesContainer) => {
 		if (!uploadInput.files) return;
 		for (var i = 0 ; i < uploadInput.files.length ; i++){
 			var currFile = uploadInput.files[i];
@@ -911,7 +911,7 @@ a9os_app_vf_desktop.folder.show = (path, arrFiles, baseComponent, arrHandlers, f
 		for (var type in arrHandlers){ 
 			if (currFile.type == type){
 				for (var handler in arrHandlers[type]) {
-					a9os_core_main.addEventListener(newItem, handler, (event, item, callback, vfFilesContainer, component) => {
+					core.addEventListener(newItem, handler, (event, item, callback, vfFilesContainer, component) => {
 						if (event.ctrlKey) { // multiple select
 							event.stopPropagation();
 						} else {
@@ -924,7 +924,7 @@ a9os_app_vf_desktop.folder.show = (path, arrFiles, baseComponent, arrHandlers, f
 			}
 		}
 
-		a9os_core_main.addEventListener(newItem, "click", (event, item) => {
+		core.addEventListener(newItem, "click", (event, item) => {
 			if (!event.ctrlKey) return;
 			event.stopPropagation();
 			if (item.classList.contains("selected")) {
@@ -935,7 +935,7 @@ a9os_app_vf_desktop.folder.show = (path, arrFiles, baseComponent, arrHandlers, f
 		});
 
 		var longTouchTimeout = false;
-		a9os_core_main.addEventListener(newItem, "touchstart", (event, item) => {
+		core.addEventListener(newItem, "touchstart", (event, item) => {
 			if (longTouchTimeout) clearTimeout(longTouchTimeout);
 			longTouchTimeout = setTimeout((event, item) => {
 				event.stopPropagation();
@@ -947,7 +947,7 @@ a9os_app_vf_desktop.folder.show = (path, arrFiles, baseComponent, arrHandlers, f
 				}
 			}, 1500, event, item);
 		});
-		a9os_core_main.addEventListener(newItem, "touchend", (event, item) => {
+		core.addEventListener(newItem, "touchend", (event, item) => {
 			if (longTouchTimeout) clearTimeout(longTouchTimeout);
 		});
 
@@ -956,7 +956,7 @@ a9os_app_vf_desktop.folder.show = (path, arrFiles, baseComponent, arrHandlers, f
 		if (vfFilesContainer.getAttribute("data-prevent-selection")) {
 			newItem.removeChild(newItem.querySelector(".select-button"));
 		} else {
-			a9os_core_main.addEventListener(newItem.querySelector(".select-button"), "click", (event, item) => {
+			core.addEventListener(newItem.querySelector(".select-button"), "click", (event, item) => {
 				event.stopPropagation();
 				var item = item.parentElement;
 
@@ -1535,7 +1535,7 @@ a9os_app_vf_desktop.desktopScroll.init = () => {
 		movingFromBar = false;
 	});
 
-	a9os_core_main.addEventListener(vfFilesContainer, "scroll", (event, vfFilesContainer) => {
+	core.addEventListener(vfFilesContainer, "scroll", (event, vfFilesContainer) => {
 		if (movingFromBar) return;
 
 

@@ -38,7 +38,8 @@ class a9os_user_control extends a9os_user {
 		];
 		$arrAnonClosedModeModels = [
 			"a9os.user.register::submit",
-			"a9os.user.login"
+			"a9os.user.login",
+			"a9os.app.vf.publicfile.downloader"
 		];
 
 		$user = $this->getCore()->getModel("a9os.user")->getSessionUser();

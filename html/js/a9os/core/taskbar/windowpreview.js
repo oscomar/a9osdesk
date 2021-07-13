@@ -19,7 +19,7 @@ a9os_core_taskbar_windowpreview.wpHideT = false;
 a9os_core_taskbar_windowpreview.main = () => {
 		var windowPreview = self.component.querySelector(".window-preview");
 
-	a9os_core_main.addEventListener(windowPreview, "mouseenter", (event, windowPreview) => {
+	core.addEventListener(windowPreview, "mouseenter", (event, windowPreview) => {
 		if (self.wpHideT) clearTimeout(self.wpHideT);
 
 		var taskbarItemId = windowPreview.getAttribute("data-taskbar-item-id");
@@ -27,7 +27,7 @@ a9os_core_taskbar_windowpreview.main = () => {
 
 		if (window.a9os_core_window) a9os_core_window.highligthWindow(hlWindow);
 	});
-	a9os_core_main.addEventListener(windowPreview, "mouseleave", (event, windowPreview) => {
+	core.addEventListener(windowPreview, "mouseleave", (event, windowPreview) => {
 		if (self.wpShowT) clearTimeout(self.wpShowT);
 		if (window.a9os_core_window) a9os_core_window.removeHighligthWindows();
 
@@ -36,7 +36,7 @@ a9os_core_taskbar_windowpreview.main = () => {
 			self.wpHideT = false;
 		}, 400, windowPreview);
 	});
-	a9os_core_main.addEventListener(windowPreview, "click", (event, windowPreview) => {
+	core.addEventListener(windowPreview, "click", (event, windowPreview) => {
 		var taskbarItem = a9os_core_taskbar_windowlist.component.querySelector(".item[data-taskbar-item-id='"+windowPreview.getAttribute("data-taskbar-item-id")+"']");
 		taskbarItem.click();
 		windowPreview.classList.remove("show");
@@ -48,9 +48,9 @@ a9os_core_taskbar_windowpreview.main = () => {
 a9os_core_taskbar_windowpreview.appendItem = (taskbarItem) => {
 	var windowPreview = a9os_core_taskbar_windowpreview.component.querySelector(".window-preview");
 
-	a9os_core_main.addEventListener(taskbarItem, "mouseenter", itemMouseOver, windowPreview);
+	core.addEventListener(taskbarItem, "mouseenter", itemMouseOver, windowPreview);
 
-	a9os_core_main.addEventListener(taskbarItem, "mouseleave", (event, taskbarItem, windowPreview) => {
+	core.addEventListener(taskbarItem, "mouseleave", (event, taskbarItem, windowPreview) => {
 		if (taskbarItem.classList.contains("pinned") && !taskbarItem.classList.contains("used"))  return;
 
 		if (self.wpShowT) clearTimeout(self.wpShowT);
@@ -62,7 +62,7 @@ a9os_core_taskbar_windowpreview.appendItem = (taskbarItem) => {
 
 	}, windowPreview);
 
-	a9os_core_main.addEventListener(taskbarItem, "click", (event, taskbarItem, windowPreview) => {
+	core.addEventListener(taskbarItem, "click", (event, taskbarItem, windowPreview) => {
 		if (taskbarItem.classList.contains("pinned") && !taskbarItem.classList.contains("used"))  return;
 
 		windowPreview.classList.remove("show");

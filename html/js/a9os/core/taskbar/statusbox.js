@@ -34,8 +34,8 @@ a9os_core_taskbar_statusbox.main = () => {
 		}
 	};
 
-	a9os_core_main.addEventListener(a9os_core_main.mainDiv, "mousedown", closeEvent);
-	a9os_core_main.addEventListener(a9os_core_main.mainDiv, "touchstart", closeEvent);
+	core.addEventListener(a9os_core_main.mainDiv, "mousedown", closeEvent);
+	core.addEventListener(a9os_core_main.mainDiv, "touchstart", closeEvent);
 }
 
 a9os_core_taskbar_statusbox.arrNotifItems = [];
@@ -50,7 +50,7 @@ a9os_core_taskbar_statusbox.append = (notifItem, boxNode, loadFn, closeFn) => {
 		shown : false
 	});
 
-	a9os_core_main.addEventListener(notifItem, "click", (event, notifItem, boxNode, loadFn, closeFn, currArrNotifItem) => {
+	core.addEventListener(notifItem, "click", (event, notifItem, boxNode, loadFn, closeFn, currArrNotifItem) => {
 		if (notifItem.classList.contains("selected")) {
 			self.close(true);
 			notifItem.classList.remove("selected");

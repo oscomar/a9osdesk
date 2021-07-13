@@ -16,10 +16,10 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 a9os_user_register.main = (data) => {
 	if (data.window) a9os_core_window.processWindowData(data);
-	a9os_core_main.addEventListener(self.component.querySelector(".btn.close"), "click", a9os_core_window.close);
-	a9os_core_main.addEventListener(self.component.querySelector("form"), "submit", self.submit, "CACA");
-	a9os_core_main.addEventListener(self.component.querySelectorAll("form input"), "blur", self.ifInputEmpty);
-	a9os_core_main.addEventListener(self.component.querySelectorAll("form input"), "keyup", self.enableDisableSubmit);
+	core.addEventListener(self.component.querySelector(".btn.close"), "click", a9os_core_window.close);
+	core.addEventListener(self.component.querySelector("form"), "submit", self.submit, "CACA");
+	core.addEventListener(self.component.querySelectorAll("form input"), "blur", self.ifInputEmpty);
+	core.addEventListener(self.component.querySelectorAll("form input"), "keyup", self.enableDisableSubmit);
 }
 
 a9os_user_register.submit = (event, btn) => {

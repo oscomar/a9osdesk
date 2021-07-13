@@ -43,14 +43,14 @@ a9os_core_taskbar_popuparea.new = (popupHtml, popupIcon, popupType) => {
 	newPopup.innerHTML = iconStr + '<div class="text">' + popupHtml + '</div>';
 	self.component.popupArea.appendChild(newPopup);
 	
-	a9os_core_main.addEventListener(newPopup, "click", (event, newPopup) => {
+	core.addEventListener(newPopup, "click", (event, newPopup) => {
 		self.close(newPopup);
 	});
 
-	a9os_core_main.addEventListener(newPopup, "mouseenter", (event, newPopup) => {
+	core.addEventListener(newPopup, "mouseenter", (event, newPopup) => {
 		if (newPopup.closeTimeout) clearTimeout(newPopup.closeTimeout);
 	});
-	a9os_core_main.addEventListener(newPopup, "mouseout", (event, newPopup) => {
+	core.addEventListener(newPopup, "mouseout", (event, newPopup) => {
 		if (newPopup.closeTimeout) clearTimeout(newPopup.closeTimeout);
 		newPopup.closeTimeout = setTimeout((newPopup) => {
 			self.close(newPopup);

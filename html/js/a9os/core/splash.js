@@ -21,8 +21,7 @@ a9os_core_splash.main = (data) => {
 	if (data.wallpaper) self.setWallpaper(data.wallpaper);
 }
 a9os_core_splash.attachChangeScope = () => {
-	a9os_core_main.addEventListener(self.component, "click", (event, component) => {
-		core.link.push("/", {}, true);
+	core.addEventListener(self.component, "click", (event, component) => {
 		core.link.title("os.com.ar - login");
 	});
 }
@@ -39,7 +38,7 @@ a9os_core_splash.attachFormActions = () => {
 			}
 		}	
 	}, 200, arrInputs);
-	a9os_core_main.addEventListener(
+	core.addEventListener(
 		self.component.querySelectorAll(".login-box input"),
 		"keyup",
 		(event, currInput) => {
@@ -52,7 +51,7 @@ a9os_core_splash.attachFormActions = () => {
 		}
 	);
 
-	a9os_core_main.addEventListener(
+	core.addEventListener(
 		self.component.querySelectorAll(".login-box .submit"),
 		"click",
 		self.submitLogin
